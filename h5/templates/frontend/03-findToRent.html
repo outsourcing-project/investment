@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>03-findToRent</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/03-findToRent.css">
+    <script src="//at.alicdn.com/t/font_pgikhqa26vtpgb9.js"></script>
+</head>
+<body>
+<!--通用top begin -->
+
+<!--header begin-->
+<header class="wrap">
+    <div class="banxin welcome clearfix">
+        <div class="wel_left fl">
+            <span class="white">欢迎来到租房网！更多房源选择任您挑选！请选择您的位置：</span>
+            <select class="city white" name="city" id="">
+                <option value="武汉" selected>武汉</option>
+            </select>
+
+        </div>
+        <div class="wel_right fr">
+            <a class="white" href="javascript:void(0)">收藏本站 |</a>
+            <a class="white" href="javascript:void(0)">设为首页 |</a>
+            <a class="white" href="javascript:void(0)">登录 |</a>
+            <a class="white" href="javascript:void(0)">注册 </a>
+        </div>
+    </div>
+</header>
+<!--header end-->
+
+<!--nav begin-->
+<nav class="wrap">
+    <div class="banxin nav  clearfix">
+        <a class="logo" href="javascript:void(0)"></a>
+        <ul class="nav_items fl clearfix">
+            <li class="fl"><a href="javascript:void(0)">首页</a></li>
+            <li class="fl"><a href="javascript:void(0)">房源信息</a></li>
+            <li class="fl active"><a href="javascript:void(0)">求租信息</a></li>
+            <li class="fl"><a href="javascript:void(0)">生活馆</a></li>
+            <li class="fl"><a href="javascript:void(0)">注册登录</a></li>
+        </ul>
+        <div class="hot-line fr clearfix">
+            <p class="p_number green"><b></b>400-6789-888</p>
+            <p class="p_time" align="right">看房热线：<span class="green">08:00 - 21:00</span></p>
+        </div>
+    </div>
+</nav>
+<!--nav end-->
+<!--通用top end -->
+
+<div class="user">
+    <img src="images/member-bg.jpg" alt="">
+</div>
+<div class="panel-filter banxin clearfix">
+    <!--位置筛选-->
+    <div class="container clearfix">
+        <!--地区列表-->
+        <ul class="tabs clearfix">
+            <li><strong>区域</strong>：&nbsp</li>
+            <li><a href="#tab1">&nbsp洪山&nbsp </a></li>
+            <li><a href="#tab2">&nbsp汉阳&nbsp</a></li>
+            <li><a href="#tab1">&nbsp武昌&nbsp</a></li>
+            <li><a href="#tab2">&nbsp黄陂&nbsp</a></li>
+            <li><a href="#tab1">&nbsp江岸&nbsp</a></li>
+            <li><a href="#tab2">&nbsp东西湖&nbsp</a></li>
+            <li><a href="#tab1">&nbsp江夏&nbsp</a></li>
+            <li><a href="#tab2">&nbsp汉桥&nbsp</a></li>
+            <li><a href="#tab1">&nbsp硚口&nbsp</a></li>
+            <li><a href="#tab2">&nbsp青山&nbsp</a></li>
+            <li><a href="#tab1">&nbsp蔡甸&nbsp</a></li>
+            <li><a href="#tab2">&nbsp新洲&nbsp</a></li>
+            <li><a href="#tab1">&nbsp武汉周边&nbsp</a></li>
+            <li><a href="#tab2">&nbsp东湖高新&nbsp</a></li>
+            <li><a href="#tab1">&nbsp经济开发区&nbsp</a></li>
+            <li><a href="#tab2">&nbsp汉南&nbsp</a></li>
+            <li><a href="#tab1">&nbsp全部&nbsp</a></li>
+        </ul>
+
+        <!--区域范围列表-->
+        <div class="district_container">
+            <div id="tab1" class="tab_content" style="display: block;">
+                <ul class="service_tabs clearfix">
+                    <li>&nbsp全部&nbsp</li>
+                    <li>&nbspE 二七&nbsp</li>
+                    <li>&nbspH 后湖&nbsp</li>
+                    <li>&nbspJ 解放公园&nbsp</li>
+                </ul>
+            </div>
+            <div id="tab2" class="tab_content" style="display: none;">
+                <ul class="service_tabs clearfix">
+                    <li>&nbsp全部&nbsp</li>
+                    <li>&nbspE 十里铺&nbsp </li>
+                    <li>&nbspH 王家湾&nbsp</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!--价格筛选-->
+    <div class="row price">
+        <ul class="clearfix">
+            <li><strong>价格</strong>：&nbsp</li>
+            <li class="active">&nbsp不限&nbsp</li>
+            <li>500以下&nbsp</li>
+            <li>500-1000&nbsp</li>
+            <li>1000-1500&nbsp</li>
+            <li>1500-2000&nbsp</li>
+            <li>2000-2500&nbsp</li>
+            <li>2500-3000&nbsp</li>
+            <li>3000-3500&nbsp</li>
+            <li>3500-4000&nbsp</li>
+            <li><input type="text"> - <input type="text"> <button>确定</button></li>
+
+        </ul>
+    </div>
+
+    <!--户型筛选-->
+    <div class="row structure">
+        <ul class="clearfix">
+            <li><strong>户型</strong>：&nbsp</li>
+            <li class="active">&nbsp不限&nbsp</li>
+            <li>一室&nbsp</li>
+            <li>二室&nbsp</li>
+            <li>三室&nbsp</li>
+            <li>四室&nbsp</li>
+            <li>五室&nbsp</li>
+            <li>其他&nbsp</li>
+        </ul>
+    </div>
+
+    <!--合租/整租 筛选-->
+    <div class="row wayToRent">
+        <ul class="clearfix">
+            <li><strong>方式</strong>：&nbsp</li>
+            <li class="active">&nbsp不限&nbsp </li>
+            <li id="entireRent">整租&nbsp</li>
+            <li id="sharedRent">合租&nbsp</li>
+        </ul>
+    </div>
+
+    <!--室友 筛选-->
+    <div class="row roommate">
+        <ul class="clearfix">
+            <li><strong>室友</strong>：&nbsp</li>
+            <li>&nbsp不限&nbsp</li>
+            <li> 都是美女&nbsp</li>
+            <li> 都是帅哥&nbsp</li>
+            <li> 美女帅哥&nbsp</li>
+        </ul>
+    </div>
+</div>
+<div class="banxin">
+    <ul class="items">
+        <li class="item clearfix">
+            <div class="left fl">
+                <img src="images/user-face.jpg" alt="">
+                <p><button class="getContact">联系他</button></p>
+                <p><button class="complaint">举报他</button></p></p>
+            </div>
+            <div class="right fl">
+                <p><label for="">租客姓名：</label>张三四</p>
+                <p><label for="">房租预算：</label><strong class="orange">1500</strong></p>
+                <p><label for="">期望房型：</label>二房一厅</p>
+                <p><label for="">其他要求：</label>有天然气可以做饭，合租总人数不超过5人</p>
+                <p><label for="">基础设施：</label></p>
+                <ul class="surrounding-facilities clearfix">
+                    <li><img src="images/01bingxiang.jpg" alt=""><br><label>冰箱</label><br></li>
+                    <li><img src="images/02reshuiqi.jpg" alt=""><br><label>热水器</label><br></li>
+                    <li><img src="images/03-dianshi.jpg" alt=""><br><label>电视</label><br></li>
+                    <li><img src="images/04-kongtiao.jpg" alt=""><br><label>空调</label><br></li>
+                    <li><img src="images/05wifi.jpg" alt=""><br><label>无线网</label><br></li>
+                    <li><img src="images/06chuang.jpg" alt=""><br><label>床</label><br></li>
+                    <li><img src="images/07shafa.jpg" alt=""><br><label>沙发</label><br></li>
+                    <li><img src="images/08yigui.jpg" alt=""><br><label>衣柜</label><br></li>
+                    <li><img src="images/09chufang.jpg" alt=""><br><label>厨房</label><br></li>
+                    <li><img src="images/10nuanqi.jpg" alt=""><br><label>暖气</label><br></li>
+                </ul>
+            </div>
+        </li>
+        <li class="item clearfix">
+            <div class="left fl">
+                <img src="images/user-face.jpg" alt="">
+                <p><button class="getContact">联系他</button></p>
+                <p><button class="complaint">举报他</button></p></p>
+            </div>
+            <div class="right fl">
+                <p><label for="">租客姓名：</label>张三四</p>
+                <p><label for="">房租预算：</label><strong class="orange">1500</strong></p>
+                <p><label for="">期望房型：</label>二房一厅</p>
+                <p><label for="">其他要求：</label>有天然气可以做饭，合租总人数不超过5人</p>
+                <p><label for="">基础设施：</label></p>
+                <ul class="surrounding-facilities clearfix">
+                    <li><img src="images/01bingxiang.jpg" alt=""><br><label>冰箱</label><br></li>
+                    <li><img src="images/02reshuiqi.jpg" alt=""><br><label>热水器</label><br></li>
+                    <li><img src="images/03-dianshi.jpg" alt=""><br><label>电视</label><br></li>
+                    <li><img src="images/04-kongtiao.jpg" alt=""><br><label>空调</label><br></li>
+                    <li><img src="images/05wifi.jpg" alt=""><br><label>无线网</label><br></li>
+                    <li><img src="images/06chuang.jpg" alt=""><br><label>床</label><br></li>
+                    <li><img src="images/07shafa.jpg" alt=""><br><label>沙发</label><br></li>
+                    <li><img src="images/08yigui.jpg" alt=""><br><label>衣柜</label><br></li>
+                    <li><img src="images/09chufang.jpg" alt=""><br><label>厨房</label><br></li>
+                    <li><img src="images/10nuanqi.jpg" alt=""><br><label>暖气</label><br></li>
+                </ul>
+            </div>
+        </li>
+        <li class="item clearfix">
+            <div class="left fl">
+                <img src="images/user-face.jpg" alt="">
+                <p><button class="getContact">联系他</button></p>
+                <p><button class="complaint">举报他</button></p></p>
+            </div>
+            <div class="right fl">
+                <p><label for="">租客姓名：</label>张三四</p>
+                <p><label for="">房租预算：</label><strong class="orange">1500</strong></p>
+                <p><label for="">期望房型：</label>二房一厅</p>
+                <p><label for="">其他要求：</label>有天然气可以做饭，合租总人数不超过5人</p>
+                <p><label for="">基础设施：</label></p>
+                <ul class="surrounding-facilities clearfix">
+                    <li><img src="images/01bingxiang.jpg" alt=""><br><label>冰箱</label><br></li>
+                    <li><img src="images/02reshuiqi.jpg" alt=""><br><label>热水器</label><br></li>
+                    <li><img src="images/03-dianshi.jpg" alt=""><br><label>电视</label><br></li>
+                    <li><img src="images/04-kongtiao.jpg" alt=""><br><label>空调</label><br></li>
+                    <li><img src="images/05wifi.jpg" alt=""><br><label>无线网</label><br></li>
+                    <li><img src="images/06chuang.jpg" alt=""><br><label>床</label><br></li>
+                    <li><img src="images/07shafa.jpg" alt=""><br><label>沙发</label><br></li>
+                    <li><img src="images/08yigui.jpg" alt=""><br><label>衣柜</label><br></li>
+                    <li><img src="images/09chufang.jpg" alt=""><br><label>厨房</label><br></li>
+                    <li><img src="images/10nuanqi.jpg" alt=""><br><label>暖气</label><br></li>
+                </ul>
+            </div>
+        </li>
+        <li class="item clearfix">
+            <div class="left fl">
+                <img src="images/user-face.jpg" alt="">
+                <p><button class="getContact">联系他</button></p>
+                <p><button class="complaint">举报他</button></p></p>
+            </div>
+            <div class="right fl">
+                <p><label for="">租客姓名：</label>张三四</p>
+                <p><label for="">房租预算：</label><strong class="orange">1500</strong></p>
+                <p><label for="">期望房型：</label>二房一厅</p>
+                <p><label for="">其他要求：</label>有天然气可以做饭，合租总人数不超过5人</p>
+                <p><label for="">基础设施：</label></p>
+                <ul class="surrounding-facilities clearfix">
+                    <li><img src="images/01bingxiang.jpg" alt=""><br><label>冰箱</label><br></li>
+                    <li><img src="images/02reshuiqi.jpg" alt=""><br><label>热水器</label><br></li>
+                    <li><img src="images/03-dianshi.jpg" alt=""><br><label>电视</label><br></li>
+                    <li><img src="images/04-kongtiao.jpg" alt=""><br><label>空调</label><br></li>
+                    <li><img src="images/05wifi.jpg" alt=""><br><label>无线网</label><br></li>
+                    <li><img src="images/06chuang.jpg" alt=""><br><label>床</label><br></li>
+                    <li><img src="images/07shafa.jpg" alt=""><br><label>沙发</label><br></li>
+                    <li><img src="images/08yigui.jpg" alt=""><br><label>衣柜</label><br></li>
+                    <li><img src="images/09chufang.jpg" alt=""><br><label>厨房</label><br></li>
+                    <li><img src="images/10nuanqi.jpg" alt=""><br><label>暖气</label><br></li>
+                </ul>
+            </div>
+        </li>
+        <li class="item clearfix">
+            <div class="left fl">
+                <img src="images/user-face.jpg" alt="">
+                <p><button class="getContact">联系他</button></p>
+                <p><button class="complaint">举报他</button></p></p>
+            </div>
+            <div class="right fl">
+                <p><label for="">租客姓名：</label>张三四</p>
+                <p><label for="">房租预算：</label><strong class="orange">1500</strong></p>
+                <p><label for="">期望房型：</label>二房一厅</p>
+                <p><label for="">其他要求：</label>有天然气可以做饭，合租总人数不超过5人</p>
+                <p><label for="">基础设施：</label></p>
+                <ul class="surrounding-facilities clearfix">
+                    <li><img src="images/01bingxiang.jpg" alt=""><br><label>冰箱</label><br></li>
+                    <li><img src="images/02reshuiqi.jpg" alt=""><br><label>热水器</label><br></li>
+                    <li><img src="images/03-dianshi.jpg" alt=""><br><label>电视</label><br></li>
+                    <li><img src="images/04-kongtiao.jpg" alt=""><br><label>空调</label><br></li>
+                    <li><img src="images/05wifi.jpg" alt=""><br><label>无线网</label><br></li>
+                    <li><img src="images/06chuang.jpg" alt=""><br><label>床</label><br></li>
+                    <li><img src="images/07shafa.jpg" alt=""><br><label>沙发</label><br></li>
+                    <li><img src="images/08yigui.jpg" alt=""><br><label>衣柜</label><br></li>
+                    <li><img src="images/09chufang.jpg" alt=""><br><label>厨房</label><br></li>
+                    <li><img src="images/10nuanqi.jpg" alt=""><br><label>暖气</label><br></li>
+                </ul>
+            </div>
+        </li>
+        <li class="item clearfix">
+            <div class="left fl">
+                <img src="images/user-face.jpg" alt="">
+                <p><button class="getContact">联系他</button></p>
+                <p><button class="complaint">举报他</button></p></p>
+            </div>
+            <div class="right fl">
+                <p><label for="">租客姓名：</label>张三四</p>
+                <p><label for="">房租预算：</label><strong class="orange">1500</strong></p>
+                <p><label for="">期望房型：</label>二房一厅</p>
+                <p><label for="">其他要求：</label>有天然气可以做饭，合租总人数不超过5人</p>
+                <p><label for="">基础设施：</label></p>
+                <ul class="surrounding-facilities clearfix">
+                    <li><img src="images/01bingxiang.jpg" alt=""><br><label>冰箱</label><br></li>
+                    <li><img src="images/02reshuiqi.jpg" alt=""><br><label>热水器</label><br></li>
+                    <li><img src="images/03-dianshi.jpg" alt=""><br><label>电视</label><br></li>
+                    <li><img src="images/04-kongtiao.jpg" alt=""><br><label>空调</label><br></li>
+                    <li><img src="images/05wifi.jpg" alt=""><br><label>无线网</label><br></li>
+                    <li><img src="images/06chuang.jpg" alt=""><br><label>床</label><br></li>
+                    <li><img src="images/07shafa.jpg" alt=""><br><label>沙发</label><br></li>
+                    <li><img src="images/08yigui.jpg" alt=""><br><label>衣柜</label><br></li>
+                    <li><img src="images/09chufang.jpg" alt=""><br><label>厨房</label><br></li>
+                    <li><img src="images/10nuanqi.jpg" alt=""><br><label>暖气</label><br></li>
+                </ul>
+            </div>
+        </li>
+        <li class="item clearfix">
+            <div class="left fl">
+                <img src="images/user-face.jpg" alt="">
+                <p><button class="getContact">联系他</button></p>
+                <p><button class="complaint">举报他</button></p></p>
+            </div>
+            <div class="right fl">
+                <p><label for="">租客姓名：</label>张三四</p>
+                <p><label for="">房租预算：</label><strong class="orange">1500</strong></p>
+                <p><label for="">期望房型：</label>二房一厅</p>
+                <p><label for="">其他要求：</label>有天然气可以做饭，合租总人数不超过5人</p>
+                <p><label for="">基础设施：</label></p>
+                <ul class="surrounding-facilities clearfix">
+                    <li><img src="images/01bingxiang.jpg" alt=""><br><label>冰箱</label><br></li>
+                    <li><img src="images/02reshuiqi.jpg" alt=""><br><label>热水器</label><br></li>
+                    <li><img src="images/03-dianshi.jpg" alt=""><br><label>电视</label><br></li>
+                    <li><img src="images/04-kongtiao.jpg" alt=""><br><label>空调</label><br></li>
+                    <li><img src="images/05wifi.jpg" alt=""><br><label>无线网</label><br></li>
+                    <li><img src="images/06chuang.jpg" alt=""><br><label>床</label><br></li>
+                    <li><img src="images/07shafa.jpg" alt=""><br><label>沙发</label><br></li>
+                    <li><img src="images/08yigui.jpg" alt=""><br><label>衣柜</label><br></li>
+                    <li><img src="images/09chufang.jpg" alt=""><br><label>厨房</label><br></li>
+                    <li><img src="images/10nuanqi.jpg" alt=""><br><label>暖气</label><br></li>
+                </ul>
+            </div>
+        </li>
+        <li class="item clearfix">
+            <div class="left fl">
+                <img src="images/user-face.jpg" alt="">
+                <p><button class="getContact">联系他</button></p>
+                <p><button class="complaint">举报他</button></p></p>
+            </div>
+            <div class="right fl">
+                <p><label for="">租客姓名：</label>张三四</p>
+                <p><label for="">房租预算：</label><strong class="orange">1500</strong></p>
+                <p><label for="">期望房型：</label>二房一厅</p>
+                <p><label for="">其他要求：</label>有天然气可以做饭，合租总人数不超过5人</p>
+                <p><label for="">基础设施：</label></p>
+                <ul class="surrounding-facilities clearfix">
+                    <li><img src="images/01bingxiang.jpg" alt=""><br><label>冰箱</label><br></li>
+                    <li><img src="images/02reshuiqi.jpg" alt=""><br><label>热水器</label><br></li>
+                    <li><img src="images/03-dianshi.jpg" alt=""><br><label>电视</label><br></li>
+                    <li><img src="images/04-kongtiao.jpg" alt=""><br><label>空调</label><br></li>
+                    <li><img src="images/05wifi.jpg" alt=""><br><label>无线网</label><br></li>
+                    <li><img src="images/06chuang.jpg" alt=""><br><label>床</label><br></li>
+                    <li><img src="images/07shafa.jpg" alt=""><br><label>沙发</label><br></li>
+                    <li><img src="images/08yigui.jpg" alt=""><br><label>衣柜</label><br></li>
+                    <li><img src="images/09chufang.jpg" alt=""><br><label>厨房</label><br></li>
+                    <li><img src="images/10nuanqi.jpg" alt=""><br><label>暖气</label><br></li>
+                </ul>
+            </div>
+        </li>
+        <li class="item clearfix">
+            <div class="left fl">
+                <img src="images/user-face.jpg" alt="">
+                <p><button class="getContact">联系他</button></p>
+                <p><button class="complaint">举报他</button></p></p>
+            </div>
+            <div class="right fl">
+                <p><label for="">租客姓名：</label>张三四</p>
+                <p><label for="">房租预算：</label><strong class="orange">1500</strong></p>
+                <p><label for="">期望房型：</label>二房一厅</p>
+                <p><label for="">其他要求：</label>有天然气可以做饭，合租总人数不超过5人</p>
+                <p><label for="">基础设施：</label></p>
+                <ul class="surrounding-facilities clearfix">
+                    <li><img src="images/01bingxiang.jpg" alt=""><br><label>冰箱</label><br></li>
+                    <li><img src="images/02reshuiqi.jpg" alt=""><br><label>热水器</label><br></li>
+                    <li><img src="images/03-dianshi.jpg" alt=""><br><label>电视</label><br></li>
+                    <li><img src="images/04-kongtiao.jpg" alt=""><br><label>空调</label><br></li>
+                    <li><img src="images/05wifi.jpg" alt=""><br><label>无线网</label><br></li>
+                    <li><img src="images/06chuang.jpg" alt=""><br><label>床</label><br></li>
+                    <li><img src="images/07shafa.jpg" alt=""><br><label>沙发</label><br></li>
+                    <li><img src="images/08yigui.jpg" alt=""><br><label>衣柜</label><br></li>
+                    <li><img src="images/09chufang.jpg" alt=""><br><label>厨房</label><br></li>
+                    <li><img src="images/10nuanqi.jpg" alt=""><br><label>暖气</label><br></li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<!--footer begin-->
+<div class="footer wrap">
+    <img src="images/footer.png" alt="">
+    <div class="company banxin">
+        <span class="service">SERVICE</span>
+        电话咨询服务电话：<span class="number green">400-1371-365</span>
+        <span class="right">&reg 2017 Zuke</span>
+    </div>
+</div>
+<!--footer end-->
+<script src="js/jquery-3.2.1.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+<script src="js/03-findToRent.js"></script>
+
+
+</body>
+</html>

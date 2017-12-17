@@ -1,0 +1,534 @@
+{% extends 'frontend/base.html' %}
+
+{% block pageheader %}
+用户中心
+{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/static/website/js/dropzone-min/bootStyle.css">
+    <link rel="stylesheet" href="/static/website/css/base.css">
+    <link rel="stylesheet" href="/static/website/css/05-4-member.css">
+    <link type="text/css" rel="stylesheet" href="/static/website/js/jquery-ui-1.12.1.custom/jquery-ui.css"/>
+    <link type="text/css" rel="stylesheet" href="/static/website/js/jquery-ui-1.12.1.custom/jquery-ui.structure.css"/>
+    <link type="text/css" rel="stylesheet" href="/static/website/js/jquery-ui-1.12.1.custom/jquery-ui.theme.css"/>
+    <link rel="stylesheet" href="/static/website/css/jquery.fileupload.css">
+    <style type="text/css">
+        .bar {
+            height: 18px;
+            background: green;
+        }
+    </style>
+{% endblock %}
+
+{% block container %}
+<div class="user">
+    <img src="/static/website/images/member-bg.jpg" alt="" id="user_avatar">
+    <div class="user-info banxin clearfix">
+        <div class="user-face fl" id="container1" >
+            <img class="avatar-pic" src="{{ client.avatar_url }}" alt="">
+            <a class="avatar"><input type="file" id="pickfiles1">修改头像</a>
+        </div>
+        <p class="user-name grey">你好，<span>{{ client.user_name }}</span>！</p>
+        <p class="user-loginTime grey">上次登录：<span>{{client.updated|date:"Y-m-d H:i:s"}}</span></p>
+        <p class="user-credit grey">租客信用：<span class="green">900/1000</span> <strong class="green">优</strong></p>
+    </div>
+</div>
+
+<div class="container banxin clearfix">
+    <!--左边列表-->
+    <ul class="tabs fl">
+        <h4 align="center">账号管理</h4>
+        <li {% if sub_module == 'user_index' %} class="active" {% endif %}>
+            <a href="{% url 'website:user_index' %}">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-01jbxx"></use>
+                </svg> 基本信息
+            </a>
+        </li>
+        <li {% if sub_module == 'housing_resource_create' %} class="active" {% endif %}>
+            <a href="{% url 'website:housing_resource_create' %}">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-02fbfy"></use>
+                </svg> 房源发布
+            </a>
+        </li>
+        <li {% if sub_module == 'housing_resource' %} class="active" {% endif %}>
+            <a href="{% url 'website:housing_resources' %}">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-03fygl"></use>
+                </svg> 房源管理
+            </a>
+        </li>
+        <li {% if sub_module == 'rent_house_create' %} class="active" {% endif %}>
+            <a href="">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-04qzfb"></use>
+                </svg> 求租发布
+            </a>
+        </li>
+        <li {% if sub_module == 'rent_house' %} class="active" {% endif %}>
+            <a href="">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-05qzgl"></use>
+                </svg> 求租管理
+            </a>
+        </li>
+        <li {% if sub_module == 'look_house' %} class="active" {% endif %}>
+            <a href="">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-06kfgl"></use>
+                </svg> 看房管理
+            </a>
+        </li>
+        <li {% if sub_module == 'bill' %} class="active" {% endif %}>
+            <a href="">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-07zjgl"></use>
+                </svg> 资金管理
+            </a>
+        </li>
+        <li>
+            <a href="">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-07zjgl"></use>
+                </svg> 系统消息
+            </a>
+        </li>
+    </ul>
+    <!--右边列表-->
+    <div class="tab_container fr">
+        <!--tab2 房源发布-->
+        <div id="tab2" class="tab_content house-release clearfix">
+            <form method="POST" action="{% url 'website:housing_resource_create' %}" enctype="multipart/form-data" id="form1">
+            {% csrf_token %}
+            <h4>房源描述</h4><br>
+                <textarea class="house-description" name="content" id="house-description" cols="50" rows="10" placeholder="请输入房源描述">{{ housing_resources.content }}</textarea><br><br>
+                <h4>房源详情</h4>
+                <p>
+                    <label>租赁方式：</label>
+                    <select name="leasing-method" id="leasing-method" name="lease">
+                        <option value="" {% if not housing_resources.lease %}selected{% endif %}>整租</option>
+                        <option value="1" {% if housing_resources.lease == 1 %}selected{% endif %}>合租</option>
+                    </select>
+                </p>
+                <p>
+                    <label>房屋类型：</label>
+                    <input class="house-type" name="category" id="house-type" type="text" placeholder="例如：2室1厅   独立卫生间   精装修" value="{{ housing_resources.category }}">
+                </p>
+                <p>
+                    <label>每月租金：</label>
+                    <input class="house-payment" name="month_rent" value="{{ housing_resources.month_rent }}" type="text" placeholder="月租">元
+                </p>
+                <p>
+                    <label>押付方式：</label>
+                    押 <select name="bet" id="cashPlebetdge">
+                        <option value="0.5" {% if not housing_resources.bet or housing_resources.bet == 0.5 %} selected {% endif %}>0.5</option>
+                        <option value="1" {% if housing_resources.bet == 1 %}selected{% endif %}>1</option>
+                        <option value="1.5" {% if housing_resources.bet == 1.5 %}selected{% endif %}>1.5</option>
+                        <option value="2" {% if housing_resources.bet == 2 %}selected{% endif %}>2</option>
+                        <option value="2.5" {% if housing_resources.bet == 2.5 %}selected{% endif %}>2.5</option>
+                        <option value="3" {% if housing_resources.bet == 3 %}selected{% endif %}>3</option>
+                    </select>
+                        付 <select name="pay" id="cashRent">
+                        <option value="0.5" {% if not housing_resources.pay or housing_resources.bet == 0.5 %}selected{% endif %}>0.5</option>
+                        <option value="1" {% if housing_resources.bet == 1 %}selected{% endif %}>1</option>
+                        <option value="1.5" {% if housing_resources.bet == 1.5 %}selected{% endif %}>1.5</option>
+                        <option value="2" {% if housing_resources.bet == 2 %}selected{% endif %}>2</option>
+                        <option value="2.5" {% if housing_resources.bet == 2.5 %}selected{% endif %}>2.5</option>
+                        <option value="3" {% if housing_resources.bet == 3 %}selected{% endif %}>3</option>
+                    </select> (月份)
+                </p>
+                <p>
+                    <label>楼层朝向：</label>
+                    <select name="direction" id="floor-orientation">
+                        <option value="0" {% if not housing_resources.direction %}selected{% endif %}>东</option>
+                        <option value="1" {% if housing_resources.direction == 1 %}selected{% endif %}>南</option>
+                        <option value="2" {% if housing_resources.direction == 2 %}selected{% endif %}>西</option>
+                        <option value="3" {% if housing_resources.direction == 3 %}selected{% endif %}>北</option>
+                    </select><br>
+                </p>
+                <p>
+                    <label>楼层数：</label>
+                    <input class="house-type" name="layer" type="number" placeholder="" value="{{ housing_resources.layer }}">
+                </p>
+                <p>
+                    <label>总层数：</label>
+                    <input class="house-type" name="total_layer" type="number" placeholder="" value="{{ housing_resources.total_layer }}">
+                </p>
+                <p>
+                    <label>所在小区：</label>
+                    <input class="district" name="community" id="district" type="text" placeholder="输入小区名字" value="{{ housing_resources.community }}">
+                </p>
+                <p class="address">
+                    <label>详细地址：</label>
+                    <select name="province">
+                        <option value="湖北省">湖北省</option>
+                    </select>
+                    <select name="city">
+                        <option value="武汉市">武汉市</option>
+                    </select>
+                    <select name="area">
+                        <option value="武昌区" {% if not housing_resources.area or housing_resources == '武昌区' %}selected{% endif %}>武昌区</option>
+                        <option value="洪山区" {% if housing_resources.area == '洪山区' %}selected{% endif %}>洪山区</option>
+                        <option value="汉阳区" {% if housing_resources.area == '汉阳区' %}selected{% endif %}>汉阳区</option>
+                    </select>
+                    <input class="addr" name="address" id="addr" type="text" placeholder="具体街道地址" value="{{ housing_resources.address }}">
+                </p>
+                <h4>基础设施</h4>
+                <ul class="surrounding-facilities clearfix">
+                    {% for i in infrastructures %}
+                    <li>
+                        <img src="{{ i.cover_url }}" alt="">
+                        <br>
+                        <label>{{ i.name }}</label>
+                        <br>
+                        <input type="checkbox" name="infrastructures" value="{{ i.id }}">
+                    </li>
+                {% endfor %}
+                </ul>
+                <h4>周边配套</h4>
+                <p>
+                    <label>附近公交：</label>
+                    <input class="bus" name="bus" type="text" placeholder="公交站、公交路线" value="{{ housing_resources.bus }}">
+                </p>
+                <p>
+                    <label>附近地铁：</label>
+                    <input class="tube" type="text" placeholder="地铁站、地铁路线" value="{{ housing_resources.subway }}"></p>
+                <p>
+                    <label>餐饮购物：</label>
+                    <input class="mall" type="text" placeholder="商场、超市等" value="{{ housing_resources.buy }}">
+                </p>
+                <h4>客厅</h4>
+                <p>
+                    有无客厅：
+                    <input type="radio" name="sitting_room" id="yes" {% if not housing_resources.sitting_room %}checked{% endif %}> 有 &nbsp;&nbsp;
+                    <input type="radio" name="sitting_room" id="no" {% if housing_resources.sitting_room == 1 %}checked{% endif %}> 无
+                </p>
+                <p class="livingArea">
+                    <label>面积：</label>
+                    <input class="area" name="sitting_room_area" type="text" value="{{ housing_resources.sitting_room }}">&nbsp; m³
+                </p>
+                <p class="livingSet">
+                    客厅配置：
+                    <label>阳台 </label>
+                    <input type="checkbox" name="sitting_room_complete" value="1" {% if '1' in housing_resources.sitting_room_complete %}checked{% endif %}>
+                    &nbsp;&nbsp;
+                    <label>飘窗 </label>
+                    <input type="checkbox" name="sitting_room_complete" value="2" {% if '2' in housing_resources.sitting_room_complete %}checked{% endif %}>
+                    &nbsp;&nbsp;
+                </p>
+                <h4>卧室</h4>
+                {% for b in housing_resources.bedrooms %}
+                    <div class="bedroom">
+                        <h5>卧室</h5>
+                        <p>
+                            <label>面积：</label>
+                            <input class="area" name="area{{ forloop.counter }}" type="text" value="{{ b.area }}">&nbsp m³
+                        </p>
+                        <p>房间配置：
+                            <label>飘窗 </label>
+                            <input type="checkbox" name="details{{ forloop.counter }}" value="1" {% if '1' in b.complete %}selected{% endif %}>&nbsp&nbsp
+                            <label>空调 </label>
+                            <input type="checkbox" name="details{{ forloop.counter }}" value="2" {% if '2' in b.complete %}selected{% endif %}>&nbsp&nbsp
+                            <label>床 </label>
+                            <input type="checkbox" name="details{{ forloop.counter }}" value="3" {% if '3' in b.complete %}selected{% endif %}>&nbsp&nbsp
+                            <label>书桌 </label>
+                            <input type="checkbox" name="details{{ forloop.counter }}" value="4" {% if '4' in b.complete %}selected{% endif %}>&nbsp&nbsp
+                            <label>衣柜 </label>
+                            <input type="checkbox" name="details{{ forloop.counter }}" value="5" {% if '5' in b.complete %}selected{% endif %}>&nbsp&nbsp
+                            <label>沙发 </label>
+                            <input type="checkbox" name="details{{ forloop.counter }}" value="6" {% if '6' in b.complete %}selected{% endif %}>&nbsp&nbsp
+                            <label>独立卫生间 </label>
+                            <input type="checkbox" name="details{{ forloop.counter }}" value="7" {% if '7' in b.complete %}selected{% endif %}>
+                        </p>
+                        <p><label for=""></label></p>
+                    </div>
+                {% endfor %}
+
+                <button class="addBedroom" type="button">增加卧室</button>
+                <h4>上传房产证照片</h4>
+                <p><input type="file" class="deedPic" id="test-image-file" name="deedPic"></p>
+                <div class="photos" id="test-image-preview">图片预览</div>
+                <h4>上传照片</h4>
+                <span class="btn btn-success fileinput-button">
+                    <i class="glyphicon glyphicon-plus"></i>
+                    <span>选择图片</span>
+                    <input id="fileupload" type="file" name="files[]" multiple>
+                </span>
+                <br>
+                <br>
+                <!-- The global progress bar -->
+                <div id="progress" class="progress">
+                    <div class="progress-bar progress-bar-success"></div>
+                </div>
+
+<!--            <div id="actions" class="row">
+                    <p>
+                        <input type="file" class="deedPic" id="test-image-file" name="cover">
+                    </p>
+                </div> -->
+                <div class="release-ways">
+                    <input type="hidden" name="bedroom_count" id="bedroom_count" {% if housing_resources %} value="{{ housing_resources.bedroom_count }}" {% else %} value="0" {% endif %}>
+                    <button class="release-pay" type="button">提交审核</button>
+<!--                <button class="release-reserve" type="button">暂时保存</button> -->
+                </div>
+            </form>
+        </div>
+        <div class="backToTop">↑<p>Top</p></div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+<script src="/static/pingpp-js/dist/pingpp.js" type="text/javascript"></script>
+<script src="/static/vendor/qiniu.min.js"></script>
+<script src="/static/vendor/plupload.full.min.js"></script>
+<script src="/static/website/js/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+<script src="/static/website/js/dropzone-min/dropzone.min.js"></script>
+<script src="/static/website/js/dropzone-min/bootStyle.js"></script>
+<script src="/static/website/js/vendor/jquery.ui.widget.js"></script>
+<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+<script src="/static/website/js/jquery.iframe-transport.js"></script>
+<!-- The basic File Upload plugin -->
+<script src="/static/website/js/jquery.fileupload.js"></script>
+
+<script>
+$(document).ready(function () {
+
+   $('#fileupload').fileupload({
+        url: '{% url "website:upload_file" %}',
+        dataType: 'json',
+        add: function (e, data) {
+            data.context = $('<button/>').text('Upload')
+                .appendTo(document.body)
+                .click(function () {
+                    $(this).replaceWith($('<p/>').text('Uploading...'));
+                    data.submit();
+                });
+        },
+        done: function (e, data) {
+            data.context.text('Upload finished.');
+        }
+    });
+
+    function completeHandler(res){
+        alert(res.error_msg)
+        if (!res.error_code) {
+            location.href = '{% url "website:housing_resources" %}'
+        }
+    }
+
+    function errorHandler(err){
+        alert('提交失败,请确认填写字段正确！')
+    }
+
+    $('.release-pay').on('click', function(){
+        var formData = new FormData($('form')[0]);
+        $.ajax({
+          url: '{% url "website:housing_resource_create" %}', //接收页面
+          type: 'POST',
+          data: formData,
+          contentType: false,
+          processData: false,
+          success: completeHandler,
+          error: errorHandler,     
+        });
+    })
+
+    //tab2-发布房源
+    //基础设施选择
+    var SetLis = $("#tab2 .surrounding-facilities").find("li");
+    for(var i = 0;i < SetLis.length;i++){
+        $(SetLis[i]).click(function () {
+            var box = $(this).find('input');
+            if(box.attr('checked') === 'checked'){
+                box.removeAttr('checked');
+            }else{
+                box.attr('checked','true');
+            }
+        });
+    }
+    //增加卧室
+    var roomHeight = $('.bedroom').height();
+    $('.addBedroom').click(function () {
+        
+        var bedroom_obj = $('#bedroom_count')
+        var bedroom_count = parseInt(bedroom_obj.val())
+        bedroom_count = bedroom_count + 1
+        var newBedroom = document.createElement('div');
+        newBedroom.className = 'bedroom';
+        newBedroom.innerHTML = '<h5>卧室</h5>\
+                                <p><label>面积：</label>\
+                                    <input class="area" name="area' + bedroom_count + '" type="text">&nbsp m³\
+                                </p>\
+                                <p>房间配置：<label>飘窗 </label>\
+                                    <input type="checkbox" name="details' + bedroom_count + '" value="1">&nbsp;&nbsp;\
+                                    <label>空调 </label>\
+                                    <input type="checkbox" name="details' + bedroom_count + '" value="2">&nbsp;&nbsp;\
+                                    <label>床 </label>\
+                                    <input type="checkbox" name="details' + bedroom_count + '" value="3">&nbsp;&nbsp;\
+                                    <label>书桌 </label>\
+                                    <input type="checkbox" name="details' + bedroom_count + '" value="4">&nbsp;&nbsp;\
+                                    <label>衣柜 </label>\
+                                    <input type="checkbox" name="details' + bedroom_count + '" value="5">&nbsp;&nbsp;\
+                                    <label>沙发 </label>\
+                                    <input type="checkbox" name="details' + bedroom_count + '" value="6">&nbsp;&nbsp;\
+                                    <label>独立卫生间 </label>\
+                                    <input type="checkbox" name="details' + bedroom_count + '" value="7">\
+                                </p><span class="close">X</span>';
+        $('.addBedroom').before(newBedroom);
+        bedroom_obj.val(bedroom_count)
+
+        console.log($('.bedroom'));
+    });
+
+    //客厅
+    if($('#yes').checked){
+
+    }
+
+    //删除卧室
+    $(document).on('click','.house-release .bedroom .close',(function () {
+        this.parentNode.parentNode.removeChild(this.parentNode);
+        $(".tab_container").css("height",$(".tab_container").height() - roomHeight);
+        $(".tabs").css("height",$(".tab_container").height());
+    }));
+
+    //上传房产证 图片预览
+    var
+        fileInput = document.getElementById('test-image-file'),
+        preview = document.getElementById('test-image-preview');
+    // 监听change事件:
+    fileInput.addEventListener('change', function () {
+        // 清除背景图片:
+        preview.style.backgroundImage = '';
+        // 检查文件是否选择:
+        if (!fileInput.value) {
+            info.innerHTML = '没有选择文件';
+            return;
+        }
+        // 获取File引用:
+        var file = fileInput.files[0];
+        // 读取文件:
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            var
+                data = e.target.result; // 'data:image/jpeg;base64,/9j/4AAQSk...(base64编码)...'
+            preview.style.backgroundImage = 'url(' + data + ')';
+        };
+        // 以DataURL的形式读取文件:
+        reader.readAsDataURL(file);
+    });
+});
+</script>
+<script>
+    // 确认修改
+    document.querySelector(".modify").onclick = function () {
+        document.querySelector(".modify-success span").innerHTML = getNowFormatDate();
+        document.querySelector(".modify-success").style.display = "block";
+    };
+
+    function getNowFormatDate() {
+        var date = new Date();
+        var seperator1 = "-";
+        var seperator2 = ":";
+        var month = date.getMonth() + 1;
+        var strDate = date.getDate();
+        if (month >= 1 && month <= 9) {
+            month = "0" + month;
+        }
+        if (strDate >= 0 && strDate <= 9) {
+            strDate = "0" + strDate;
+        }
+        var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+            + " " + date.getHours() + seperator2 + date.getMinutes()
+            + seperator2 + date.getSeconds();
+        return currentdate;
+    }
+
+    $(".backToTop").click(function () {
+        console.log(11);
+        scrollTo(0,0);
+    });
+</script>
+<script>
+  $(function(){
+    // $('#selectDate').jHsDate();
+
+        //设置上传信息
+        var uploader1 = Qiniu.uploader({
+            runtimes: 'html5,flash,html4',    //上传模式,依次退化
+            browse_button: 'pickfiles1',       //上传选择的点选按钮，**必需**
+            uptoken_url: '/admin/uptoken/',            //Ajax请求upToken的Url，**强烈建议设置**（服务端提供）
+            // uptoken : '', //若未指定uptoken_url,则必须指定 uptoken ,uptoken由其他程序生成
+            unique_names: true, // 默认 false，key为文件名。若开启该选项，SDK为自动生成上传成功后的key（文件名）。
+            // save_key: true,   // 默认 false。若在服务端生成uptoken的上传策略中指定了 `sava_key`，则开启，SDK会忽略对key的处理
+            domain: 'http://{{qiniu_domain}}',   //bucket 域名，下载资源时用到，**必需**
+            get_new_uptoken: false,  //设置上传文件的时候是否每次都重新获取新的token
+            container: 'container1',           //上传区域DOM ID，默认是browser_button的父元素，
+            max_file_size: '500mb',           //最大文件体积限制
+            max_retries: 3,                   //上传失败最大重试次数
+            dragdrop: true,                   //开启可拖曳上传
+            drop_element: 'container1',        //拖曳上传区域元素的ID，拖曳文件或文件夹后可触发上传
+            chunk_size: '4mb',                //分块上传时，每片的体积
+            auto_start: true,                 //选择文件后自动上传，若关闭需要自己绑定事件触发上传
+            multi_selection: false,           //限制只能上传一个文件
+            filters : {
+                prevent_duplicates: true,
+                //Specify what files to browse for
+                 mime_types: [
+                  {title : "images files", extensions : "jpeg,png,jpg"},
+                 ]
+            },
+            init: {
+                'FilesAdded': function(up, files) {
+                    plupload.each(files, function(file) {
+                        // 文件添加进队列后,处理相关的事情
+                    });
+                },
+                'BeforeUpload': function(up, file) {
+                    // 每个文件上传前,处理相关的事情
+                    $('#pickfiles1').prev().val("");
+                },
+                'UploadProgress': function(up, file) {
+                   var percent = up.total.percent + '%';
+                   $("#upload_progress").css('width', percent);
+                   $("#upload_progress").text(percent);
+                },
+                'FileUploaded': function(up, file, info) {
+                    // 每个文件上传成功后,处理相关的事情
+                    var res = JSON.parse(info);
+                    key = res.key
+                    console.log(key)
+                    $('.avatar-pic').attr('src', 'http://{{ qiniu_domain }}/' + key)
+                    $('#pickfiles1').prev().val(key);
+                    // 更新用户的头像
+                    $.ajax({
+                        url:'/user/update_avatar',
+                        type: 'POST',
+                        data: {'avatar': key, 'c_user_id': {{ client.id }} },
+                    }).done(function(res){
+                        console.log(res)
+                        if (res.error_code == 0) {
+                            return;
+                        }
+                    }).fail(function(res){
+
+                    });
+                },
+                'Error': function(up, err, errTip) {
+                    //上传出错时,处理相关的事情
+                },
+                'UploadComplete': function() {
+                    //队列文件处理完毕后,处理相关的事情
+                },
+            }
+        });
+
+    });
+</script>
+{% endblock %}

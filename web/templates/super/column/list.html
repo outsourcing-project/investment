@@ -1,0 +1,88 @@
+{% extends 'super/base.html' %}
+
+{% block pageheader %}
+栏目管理
+{% endblock %}
+
+{% block mainbody %}
+<div class="box box-success">
+  <div class="box-header with-border">
+    <h3 class="box-title">
+      栏目管理
+    </h3>
+    <div class="box-tools">
+    </div>
+  </div><!-- /.box-header -->
+
+  <div class="box-body">
+    <div style="margin-bottom:15px;">
+      {% if edit_flag %}
+        <!-- <a href="{% url 'web:column_create' %}" class="btn btn-info">新建</a> -->
+      {% endif %}
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-bordered table-striped">
+          <tbody>
+            <tr>
+              <th style="width: 10px">#</th>
+              <th>栏目名称</th>
+              <th>slug</th>
+              <th>添加时间</th>
+              <th>排序</th>
+              {% if edit_flag %}
+                <!-- <th>操作</th> -->
+              {% endif %}
+            </tr>
+            {% for column in columns %}
+              <tr>
+                <td style="vertical-align: middle;"><a href="{% if edit_flag %}{% url 'web:column_edit' column.id %}{% endif %}">{{ column.id }}</a></td>
+                <td style="vertical-align: middle;"><a href="{% if edit_flag %}{% url 'web:column_edit' column.id %}{% endif %}">{{ column.name }}</a></td>
+                <td style="vertical-align: middle;">{{ column.slug }}</td>
+                <td style="vertical-align: middle;">{{ column.created }}</td>
+                <td style="vertical-align: middle;">
+                  <a href="{% url 'web:column_up' column.id %}"><i class="fa fa-fw fa-arrow-up"></i></a>
+                  <a href="{% url 'web:column_down' column.id %}"><i class="fa fa-fw fa-arrow-down"></i></a>
+                </td>
+                <!-- <td style="vertical-align: middle;"> -->
+                  {% if edit_flag %}
+                    {% if column.parent or flag %}
+                      <!-- <a class="btn btn-info" href="{% url 'web:column_edit' column.id %}">编辑</a> -->
+                      <!-- <a class="btn btn-danger" href="{% url 'web:column_delete' column.id %}" onclick="return confirm('确认删除栏目吗?')">删除</a> -->
+                    {% endif %}
+                  {% endif %}
+                <!-- </td> -->
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <center>
+        <ul class="pagination">
+          <li class={% if columns.has_previous %}"previous"{% else %}"previous disabled"{% endif %}>
+            <a {% if columns.has_previous %}href="?page={{columns.previous_page_number}}"{% endif %}>
+              <span aria-hidden="true">上一页</span>
+            </a>
+          </li>
+          <li class={% if columns.has_next %}"next"{% else %}"next disabled"{% endif %}>
+            <a {% if columns.has_next %}href="?page={{columns.next_page_number}}"{% endif %}>
+              <span aria-hidden="true">下一页</span>
+            </a>
+          </li>
+        </ul>
+      </center>
+    </div>
+
+    <div class="row">
+      <center>
+        <span>第{{columns.number}}页，</span>
+        <span>共{{columns.paginator.num_pages}}页/共{{columns.paginator.count}}条记录</span>        
+      </center>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,49 @@
+.mask-bg{
+    height: 862px;
+    min-width: 1200px;
+    background: url("../images/login-bg.jpg") top center no-repeat;
+    position: relative;
+}
+.mask-bg .login{
+    width: 400px;
+    height: 400px;
+    background-color: #fff;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    margin-left: -260px;
+    padding-top:60px;
+    box-shadow: 0 0 8px 0 rgba(00,00,00,0.3);
+}
+.mask-bg .login p,.register-code{
+    width: 350px;
+    margin: 20px auto;
+    font-size: 18px;
+}
+.mask-bg .login .user-name input,.pwd input{
+    width: 350px;
+    height: 40px;
+    border: 1px solid #ddd;
+    padding-left: 10px;
+}
+.mask-bg .login .user-name{
+    margin-top: 50px;
+}
+.mask-bg .login .register-code{
+    font-size: 14px;
+    color: #999;
+}
+.mask-bg .login .register-code input{
+    vertical-align: middle;
+}
+.mask-bg .login .register-code a{
+    color: #999;
+}
+.mask-bg .login .register-code a:hover{
+    color: orange;
+}
+.mask-bg .login .submit input{
+    width: 350px;
+    height: 40px;
+    background-color: orange;
+}

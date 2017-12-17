@@ -1,0 +1,105 @@
+{% extends 'super/base.html' %}
+
+{% block pageheader %}
+  {% if client.id %}
+  编辑APP首页弹出
+  {% else %}
+  新建APP首页弹出
+  {% endif %}
+{% endblock %}
+
+{% block mainbody %}
+<div class="box box-danger">
+  <div class="box-header with-border">
+    <h3 class="box-title">
+      {% if client.id %}
+      编辑APP首页弹出
+      {% else %}
+      新建APP首页弹出
+      {% endif %}
+    </h3>
+  </div><!-- /.box-header -->
+  <!-- form start -->
+
+  <div class="box-body">
+    <form role="form" method="POST"
+      {% if not client.id %}
+      action="{% url 'web:appadvertising_create' %}"
+      {% else %}
+      action="{% url 'web:appadvertising_edit' client.id %}"
+      {% endif %}
+      enctype="multipart/form-data">
+      {% csrf_token %}
+    <div class="form-group">
+      <label for="name">名称</label><br>
+      <input type="text" class="form-control" name="name"  value="{{ client.name }}"/>
+      {{ error.name_msg|safe }}
+    </div>
+    <div class="form-group">
+      <label for="cover">封面</label>
+      <input type="file" id="cover" name="cover" />
+      <p style="margin-top: 10px;">
+        {% if client.cover_url and client.id %}
+          <img src="{{ client.cover_url }}?imageView2/1/w/100/h/100" />
+        {% endif %}
+      </p>
+    </div>
+    <div class="form-group">
+      <label for="begin_date">发布时间</label><br>
+      <div class="input-group">
+        <input type="text" class="form-control" name="begin_date"  id="begin_date" value="{{ client.begin_date|date:'Y-m-d H:i' }}" />
+        <div class="input-group-addon">
+          <i class="fa fa-calendar"></i>
+        </div>
+      </div>
+      {{ error.start_time_msg|safe }}
+    </div>
+    <div class="form-group">
+      <label for="end_date">结束时间</label><br>
+      <div class="input-group">
+        <input type="text" class="form-control" name="end_date"  id="end_date" value="{{ client.end_date|date:'Y-m-d H:i' }}" />
+        <div class="input-group-addon">
+          <i class="fa fa-calendar"></i>
+        </div>
+      </div>
+      {{ error.end_time_msg|safe }}
+    </div>
+    <div class="form-group">
+      <label for="end_date">跳转类型</label><br>
+      <select class="form-control" name="jump_type">
+          <option value="0" {% if client.jump_type == 0 %} selected {% endif %}>H5</option>
+          <option value="1" {% if client.jump_type == 1 %} selected {% endif %}>礼物</option>
+          <option value="2" {% if client.jump_type == 2 %} selected {% endif %}>活动</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="content">文案</label><br>
+      <input type="text" class="form-control" name="content"  value="{{ client.content }}" placeholder="可填 H5地址/礼物ID/活动ID"/>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary pull-right">
+        {% if client.id %}
+          更新
+        {% else %}
+          创建
+        {% endif %}
+      </button>
+    </div>
+  </form>
+  </div><!-- /.box-body -->
+
+  <div class="box-footer">
+  </div>
+</div>
+{% endblock %}
+{% block script %}
+<script>
+  $(document).ready(function() {
+    $('#begin_date,#end_date').datetimepicker({
+      format: 'yyyy-mm-dd hh:ii',
+      autoclose: true,
+      todayBtn: true,
+    });
+  });
+</script>
+{% endblock %}

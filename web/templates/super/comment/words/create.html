@@ -1,0 +1,35 @@
+{% extends 'super/base.html' %}
+
+{% block pageheader %}
+  敏感词管理
+{% endblock %}
+
+{% block mainbody %}
+<div class="box box-danger">
+  <div class="box-header with-border">
+    <h3 class="box-title">
+      敏感词管理
+    </h3>
+    <p>多个请用英文逗号隔开敏感词</p>
+  </div><!-- /.box-header -->
+  <!-- form start -->
+
+  <div class="box-body">
+    <form role="form" method="POST"
+      action="{% url 'web:comment_words' %}">
+      {% csrf_token %}
+      <div class="form-group">
+        <textarea class="form-control" name="content" rows="18">{{ client.content }}</textarea>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary pull-right">
+          更新
+        </button>
+      </div>
+  </form>
+  </div><!-- /.box-body -->
+
+  <div class="box-footer">
+  </div>
+</div>
+{% endblock %}

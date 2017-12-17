@@ -1,0 +1,66 @@
+{% extends 'super/base.html' %}
+
+{% block pageheader %}
+  {% if client.id %}
+  编辑轮播
+  {% else %}
+  新建轮播
+  {% endif %}
+{% endblock %}
+
+{% block mainbody %}
+<div class="box box-success">
+  <div class="box-header with-border">
+    <h3 class="box-title">
+      {% if client.id %}
+      编辑轮播
+      {% else %}
+      新建轮播
+      {% endif %}
+    </h3>
+  </div><!-- /.box-header -->
+  <!-- form start -->
+
+  <div class="box-body">
+    <form role="form" method="POST"
+      {% if not client.id %}
+      action="{% url 'web:advertising_create' %}"
+      {% else %}
+      action="{% url 'web:advertising_edit' client.id %}"
+      {% endif %}
+      enctype="multipart/form-data">
+      {% csrf_token %}
+    <div class="form-group">
+      <label for="name">名称</label><br>
+      <input type="text" class="form-control" name="name"  value="{{ client.name }}"/>
+      {{ error.name_msg|safe }}
+    </div>
+    <div class="form-group" >
+      <label for="target_url">链接地址</label><br>
+      <input type="text" class="form-control" name="target_url"  value="{{ client.target_url }}"/>
+    </div>
+    <div class="form-group">
+      <label for="img">图片</label>
+      <input type="file" id="img" name="img" />
+      <p style="margin-top: 10px;">
+        {% if client.img_url and client.id %}
+          <img src="{{ client.img_url }}?imageView2/1/w/100/h/100" />
+        {% endif %}
+      </p>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary pull-right">
+        {% if client.id %}
+          更新
+        {% else %}
+          创建
+        {% endif %}
+      </button>
+    </div>
+  </form>
+  </div><!-- /.box-body -->
+
+  <div class="box-footer">
+  </div>
+</div>
+{% endblock %}

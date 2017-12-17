@@ -1,0 +1,265 @@
+{% extends 'frontend/base.html' %}
+
+{% block pageheader %}
+用户中心
+{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="/static/website/css/jquery.datetimepicker.css">
+    <link rel="stylesheet" href="/static/website/css/05-4-member.css">
+{% endblock %}
+
+{% block container %}
+
+<div class="user">
+    <img src="/static/website/images/member-bg.jpg" alt="">
+    <div class="user-info banxin clearfix">
+        <div class="user-face fl"></div>
+        <p class="user-name">
+            <span>{{client.user_name}}</span>,你好！
+        </p>
+        <p class="user-loginTime">您上次登录的时间为：
+            <span>{{client.updated|date:"Y-m-d H:i:s"}}</span>
+        </p>
+    </div>
+</div>
+
+<div class="container banxin clearfix">
+    <!--左边列表-->
+    <ul class="tabs fl">
+        <h4 align="center">账号管理</h4>
+        <li {% if sub_module == 'user_index' %} class="active" {% endif %}>
+            <a href="{% url 'website:user_index' %}">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-01jbxx"></use>
+                </svg> 基本信息
+            </a>
+        </li>
+        <li {% if sub_module == 'housing_resource_create' %} class="active" {% endif %}>
+            <a href="{% url 'website:housing_resource_create' %}">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-02fbfy"></use>
+                </svg> 房源发布
+            </a>
+        </li>
+        <li {% if sub_module == 'housing_resource' %} class="active" {% endif %}>
+            <a href="{% url 'website:housing_resources' %}">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-03fygl"></use>
+                </svg> 房源管理
+            </a>
+        </li>
+        <li {% if sub_module == 'rent_house_create' %} class="active" {% endif %}>
+            <a href="">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-04qzfb"></use>
+                </svg> 求租发布
+            </a>
+        </li>
+        <li {% if sub_module == 'rent_house' %} class="active" {% endif %}>
+            <a href="">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-05qzgl"></use>
+                </svg> 求租管理
+            </a>
+        </li>
+        <li {% if sub_module == 'look_house' %} class="active" {% endif %}>
+            <a href="">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-06kfgl"></use>
+                </svg> 看房管理
+            </a>
+        </li>
+        <li {% if sub_module == 'bill' %} class="active" {% endif %}>
+            <a href="">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-07zjgl"></use>
+                </svg> 资金管理
+            </a>
+        </li>
+    </ul>
+    <!--右边列表-->
+    <div class="tab_container fr">
+        <!--tab2 房源发布-->
+        <form role="form" method="POST" action="{% url 'website:housing_resource_create' %}" enctype="multipart/form-data">
+          {% csrf_token %}
+            <div id="tab2" class="tab_content house-release clearfix" style="display: none;">
+                <h4>房源描述</h4>
+                <br>
+                <textarea name="content" class="house-description" id="house-description" cols="50" rows="10" placeholder="请输入房源描述"></textarea><br><br>
+                <h4>房源详情</h4>
+                <p>
+                    <label>租赁方式：</label>
+                    <select name="lease" id="leasing-method">
+                        <option value="0">整租</option>
+                        <option value="1">合租</option>
+                    </select>
+                </p>
+                <p>
+                    <label>房屋类型：</label>
+                    <input class="category" type="text" placeholder="例如：2室1厅   独立卫生间   精装修">
+                </p>
+                <p>
+                    <label>押付方式：</label>
+                    <select name="howtopay" id="howtopay">
+                        <option value="0">押一付三</option>
+                        <option value="1">押一付一</option>
+                    </select>
+                </p>
+                <p>
+                    <label>楼层朝向：</label>
+                    <select name="direction" id="floor-orientation">
+                        <option value="0">东</option>
+                        <option value="1">南</option>
+                        <option value="2">西</option>
+                        <option value="3">北</option>
+                    </select>
+                    <label>楼层数</label>
+                    <input class="layer" type="text" placeholder="例如：1">
+                    <label>总层数</label>
+                    <input class="total_layer" type="text" placeholder="例如：1">
+                </p>
+                <p>
+                    <label>所在小区：</label>
+                    <input class="district" name="community" type="text" placeholder="输入小区名字">
+                </p>
+                <p class="address">
+                    <label>详细地址：</label>
+                    <input class="addr" name="address" type="text" placeholder="具体街道地址">
+                </p>
+                <h4>基础设施</h4>
+                <ul class="surrounding-facilities clearfix">
+                {% for i in infrastructures %}
+                    <li>
+                        <img src="{{ i.cover_url }}" alt="">
+                        <br>
+                        <label>{{ i.name }}</label>
+                        <br>
+                        <input type="checkbox" name="infrastructure" value="">
+                    </li>
+                {% endfor %}
+                </ul>
+                <h4>周边配套</h4>
+                <p><label>附近公交：</label>
+                    <input class="bus" type="text" name="bus" placeholder="公交站、公交路线"></p>
+                <p><label>附近地铁：</label>
+                    <input class="tube" type="text" name="subway" placeholder="地铁站、地铁路线"></p>
+                <p><label>餐饮购物：</label>
+                    <input class="mall" type="text" name="buy" placeholder="商场、超市等"></p>
+                <h4>客厅</h4>
+                <p>有无客厅：
+                    <input type="radio" name="sitting_room" id="yes" value="0"> 有 &nbs;p&nbsp;
+                    <input type="radio" name="sitting_room" id="no" value="1"> 无</p>
+                <p class="livingArea">
+                    <label>面积：</label>
+                    <input class="sitting_room_area" type="text">
+                &nbsp; m³</p>
+                <p class="livingSet">客厅配置：
+                    <label>阳台 </label><input type="checkbox" name="sitting_room_complete" value="1">&nbsp;&nbsp;
+                    <label>飘窗 </label><input type="checkbox" name="sitting_room_complete" value="2">&nbsp;&nbsp;
+                </p>
+                <h4>卧室</h4>
+                <div class="bedroom">
+                    <h5>卧室</h5>
+                    <p><label>面积：</label>
+                        <input class="area" type="text">&nbsp m³
+                    </p>
+                    <p>
+                        房间配置：
+                        <label>飘窗 </label><input type="checkbox" name="complete" value="1">&nbsp;&nbsp;
+                        <label>空调 </label><input type="checkbox" name="complete" value="2">&nbsp;&nbsp;
+                        <label>床 </label><input type="checkbox" name="complete" value="3">&nbsp;&nbsp;
+                        <label>书桌 </label><input type="checkbox" name="complete" value="4">&nbsp;&nbsp;
+                        <label>衣柜 </label><input type="checkbox" name="complete" value="5">&nbsp;&nbsp;
+                        <label>沙发 </label><input type="checkbox" name="complete" value="6">&nbsp;&nbsp;
+                        <label>卫生间 </label><input type="checkbox" name="complete" value="7">
+                    </p>
+                </div>
+                <button class="addBedroom">增加卧室</button>
+                <h4>上传房产证照片</h4>
+                <p><input type="file" class="deedPic" name="deedPic"></p>
+                <div class="photos">+增加图片</div>
+                <h4>上传照片</h4>
+                    <p><input type="file" class="deedPic" id="deedPic" name="deedPic"></p>
+                    <div class="photos">+增加图片</div>
+                    <ul class="upload_ul">
+                        <li class="upload_li upload_li_btn" id="container">
+                            <button id="pickfiles">
+                                <img src="/static/img/add_img.png"/>
+                                <span>添加图片</span>
+                            </button>
+                        </li>
+                    </ul>
+                <button class="release-pay" type="submit">确定发布并预付费用</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<!--footer end-->
+<script src="/static/website/js/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+<script type="text/javascript" src="/static/vendor/qiniu.min.js"></script>
+<script type="text/javascript" src="/static/vendor/plupload.full.min.js"></script>
+<script src="/static/website/js/05-4-member.js"></script>
+<script>
+  $(function(){
+    $('#user_info_submit').click(function(){
+
+
+    });
+
+
+    var uploader = Qiniu.uploader({
+        runtimes: 'html5,flash,html4',    //上传模式,依次退化
+        browse_button: 'pickfiles',       //上传选择的点选按钮，**必需**
+        uptoken_url: '/admin/uptoken/',            //Ajax请求upToken的Url，**强烈建议设置**（服务端提供）
+        // uptoken : '', //若未指定uptoken_url,则必须指定 uptoken ,uptoken由其他程序生成
+        unique_names: true, // 默认 false，key为文件名。若开启该选项，SDK为自动生成上传成功后的key（文件名）。
+        // save_key: true,   // 默认 false。若在服务端生成uptoken的上传策略中指定了 `sava_key`，则开启，SDK会忽略对key的处理
+        domain: 'http://{{qiniu_domain}}',   //bucket 域名，下载资源时用到，**必需**
+        get_new_uptoken: false,  //设置上传文件的时候是否每次都重新获取新的token
+        container: 'container',           //上传区域DOM ID，默认是browser_button的父元素，
+        max_file_size: '100mb',           //最大文件体积限制
+        max_retries: 3,                   //上传失败最大重试次数
+        dragdrop: true,                   //开启可拖曳上传
+        drop_element: 'container',        //拖曳上传区域元素的ID，拖曳文件或文件夹后可触发上传
+        chunk_size: '4mb',                //分块上传时，每片的体积
+        auto_start: true,                 //选择文件后自动上传，若关闭需要自己绑定事件触发上传
+        multi_selection: true,           //限制只能上传一个文件
+        init: {
+            'FilesAdded': function(up, files) {
+                plupload.each(files, function(file) {
+                    // 文件添加进队列后,处理相关的事情
+                });
+            },
+            'BeforeUpload': function(up, file) {
+                // 每个文件上传前,处理相关的事情
+            },
+            'UploadProgress': function(up, file) {
+
+            },
+            'FileUploaded': function(up, file, info) {
+                // 每个文件上传成功后,处理相关的事情
+                var res = JSON.parse(info);
+                var img_url = 'http://{{qiniu_domain}}/'+res.key;
+                html = '<li class="upload_li upload_li_img1"><img src="'+img_url+'?imageView2/1/w/160/h/160"/><div class="upload_speed"><span>正在上传</span></div><button type="button"><img src="/static/img/delete_icon.png"/></button><input type="text" class="imgs" name="imgs" style="display: none" value="'+res.key+'"></li>';
+                $('#container').before(html)
+                upload_over('.upload_li_img1')
+
+
+            },
+            'Error': function(up, err, errTip) {
+                //上传出错时,处理相关的事情
+            },
+            'UploadComplete': function() {
+                //队列文件处理完毕后,处理相关的事情
+            },
+        }
+    });
+
+
+  })
+</script>
+{% endblock %}

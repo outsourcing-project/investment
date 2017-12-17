@@ -1,0 +1,75 @@
+{% extends 'super/base.html' %}
+
+{% block pageheader %}
+管理员管理
+{% endblock %}
+
+{% block mainbody %}
+<div class="box box-danger">
+  <div class="box-header with-border">
+    <h3 class="box-title">
+      管理员管理
+    </h3>
+    <div class="box-tools">
+    </div>
+  </div><!-- /.box-header -->
+
+  <div class="box-body">
+    <div style="margin-bottom:15px;">
+      <a href="{% url 'web:manage_create' %}" class="btn btn-info">新建</a>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-bordered table-striped">
+          <tbody>
+            <tr>
+              <th style="width: 10px">#</th>
+              <th>账号</th>
+              <th>创建时间</th>
+              <th>操作</th>
+            </tr>
+            {% for client in clients %}
+              <tr>
+                <td style="vertical-align: middle;">{% if client.username != 'admin' %}<a href="{% url 'web:manage_edit' client.id %}">{% endif %}{{ client.id }}{% if client.username != 'admin' %}</a>{% endif %}</td>
+                <td style="vertical-align: middle;">{% if client.username != 'admin' %}<a href="{% url 'web:manage_edit' client.id %}">{% endif %}{{ client.username }}{% if client.username != 'admin' %}</a>{% endif %}</td>
+                <td style="vertical-align: middle;">{{ client.date_joined }}</td>
+                <td style="vertical-align: middle;">
+                  {% if client.username != 'admin' %}
+                    <a class="btn-xs btn-info" href="{% url 'web:manage_edit' client.id %}">编辑</a>
+                     {% if client.username != user.username %}<a class="btn btn-danger" href="{% url 'web:manage_delete' client.id %}" onclick="return confirm('确认删除管理员吗?')">删除</a>{% endif %}
+                  {% endif %}
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <center>
+        <ul class="pagination">
+          <li class={% if clients.has_previous %}"previous"{% else %}"previous disabled"{% endif %}>
+            <a {% if clients.has_previous %}href="?page={{clients.previous_page_number}}"{% endif %}>
+              <span aria-hidden="true">上一页</span>
+            </a>
+          </li>
+          <li class={% if clients.has_next %}"next"{% else %}"next disabled"{% endif %}>
+            <a {% if clients.has_next %}href="?page={{clients.next_page_number}}"{% endif %}>
+              <span aria-hidden="true">下一页</span>
+            </a>
+          </li>
+        </ul>
+      </center>
+    </div>
+
+    <div class="row">
+      <center>
+        <span>第{{clients.number}}页，</span>
+        <span>共{{clients.paginator.num_pages}}页/共{{clients.paginator.count}}条记录</span>        
+      </center>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,301 @@
+
+{% extends 'frontend/base.html' %}
+
+{% block pageheader %}
+首页
+{% endblock %}
+
+    {% block style %}
+    <link rel="stylesheet" href="/static/website/css/index.css">
+    <link rel="stylesheet" href="/static/website/css/swiper.min.css">
+    {% endblock %}
+
+{% block container %}
+    <!--banner begin-->
+    <div class="banner wrap">
+        <!--毛玻璃背景-->
+        <!--<div class="b_blur_back">-->
+            <!--<div class="blur_box">-->
+                <!--<div class="blur"></div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!-- Swiper banner图片部分-->
+        <div class="swiper-container clearfix">
+            <div class="swiper-wrapper">
+            {% for a in advertisings %}
+                <div class="swiper-slide">
+                    <a href="javascript:void(0)">
+                        <img src="{{a.img_url}}" alt="">
+                    </a>
+                </div>
+            {% endfor %}
+            </div>
+            <!-- Add Pagination -->
+            {% if advertising_count > 1 %}
+                <div class="swiper-pagination"></div>
+                <!-- Add Arrows -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            {% endif %}
+        </div>
+
+        <!--搜索-->
+        <div class="b_search banxin">
+            <div class="s_keyword">
+                <input type="search" class="keyword" placeholder="请输入您想要的房源地址或者小区"><button class="s_submit white">搜索</button>
+            </div>
+            <!--其他找房暂时隐藏-->
+            <!--<ul class="s_other">-->
+                <!--<li class="map white">地图找房</li>-->
+                <!--<li class="mobileP white">手机找房</li>-->
+                <!--<li class="QR white">公众号找房</li>-->
+            <!--</ul>-->
+            <div class="hot hotPlate white">
+                <h4>热门板块:</h4>
+                <ul class="autoList">
+                    <li><a href="javascript:void(0)">汉阳</a></li>
+                    <li><a href="javascript:void(0)">光谷雅丽</a></li>
+                    <li><a href="javascript:void(0)">汉口</a></li>
+                    <li><a href="javascript:void(0)">光谷</a></li>
+                    <li><a href="javascript:void(0)">汉口</a></li>
+                    <li><a href="javascript:void(0)">武昌</a></li>
+                    <li><a href="javascript:void(0)">汉口</a></li>
+                    <li><a href="javascript:void(0)">大兴</a></li>
+                    <li><a href="javascript:void(0)">汉口</a></li>
+                </ul>
+                <a href="#" class="more fr">MORE <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-open"></use>
+                </svg></a>
+            </div>
+            <div class="hot hotBlock white">
+                <h4>热门小区:</h4>
+                <ul class="autoList">
+                    <li><a href="javascript:void(0)">汉阳</a></li>
+                    <li><a href="javascript:void(0)">光谷雅丽</a></li>
+                    <li><a href="javascript:void(0)">汉口</a></li>
+                    <li><a href="javascript:void(0)">光谷</a></li>
+                    <li><a href="javascript:void(0)">汉口</a></li>
+                    <li><a href="javascript:void(0)">武昌</a></li>
+                    <li><a href="javascript:void(0)">汉口</a></li>
+                    <li><a href="javascript:void(0)">大兴</a></li>
+                    <li><a href="javascript:void(0)">汉口</a></li>
+                </ul>
+                <a href="#" class="more fr">MORE <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-open"></use>
+                </svg></a>
+            </div>
+        </div>
+    </div>
+    <!--banner end-->
+
+
+    <!--租客 提意见 begin-->
+    <div class="suggest banxin">
+        欢迎来到租客网!您是第 <b class="orange">8888</b> 位租客网服务的客户
+        <div class="s_submit">
+            <div class="sub_pic fl"><div class="picBorder"></div></div>
+            <div class="sub_write fr">
+                <h4>意见反馈</h4>
+                <textarea name="suggestion" id="suggestion" cols="30" rows="10"></textarea>
+                <button class="white">提 交</button>
+            </div>
+        </div>
+    </div>
+    <!--租客 提意见 end-->
+
+    <!--房源信息 begin-->
+    <div class="recommend wrap">
+        <div class="houseMess banxin">
+            <h5>The lastest housing</h5>
+            <h2>房源推荐</h2>
+            <ul class="mess_list">
+                <li class="active"><a href="">最新房源</a></li>
+                <li><a href="">品质房源</a></li>
+                <li><a href="">最热房源</a></li>
+            </ul>
+            <div class="tab-content newest active">
+                <div class="tabpanel">
+                    <a href="" class="trig">
+                        <img src="/static/website/images/houseMess.png" alt="">
+                        <div class="trig_txt">
+                            <div class="trig-price orange">1999 <span>元/月</span></div>
+                            <div class="trig-addr">洪山区-教师小区-五居室-西卧-RoomB-10.0㎡</div>
+                            <div class="trig-describe">位移徐东附近，可拎包入住</div>
+                        </div>
+                    </a>
+                    <a href="" class="trig">
+                        <img src="/static/website/images/houseMess.png" alt="">
+                        <div class="trig_txt">
+                            <div class="trig-price orange">1999 <span>元/月</span></div>
+                            <div class="trig-addr">洪山区-教师小区-五居室-西卧-RoomB-10.0㎡</div>
+                            <div class="trig-describe">位移徐东附近，可拎包入住</div>
+                        </div>
+                    </a>
+                    <a href="" class="trig">
+                        <img src="/static/website/images/houseMess.png" alt="">
+                        <div class="trig_txt">
+                            <div class="trig-price orange">1999 <span>元/月</span></div>
+                            <div class="trig-addr">洪山区-教师小区-五居室-西卧-RoomB-10.0㎡</div>
+                            <div class="trig-describe">位移徐东附近，可拎包入住</div>
+                        </div>
+                    </a>
+                    <a href="" class="trig">
+                        <img src="/static/website/images/houseMess.png" alt="">
+                        <div class="trig_txt">
+                            <div class="trig-price orange">1999 <span>元/月</span></div>
+                            <div class="trig-addr">洪山区-教师小区-五居室-西卧-RoomB-10.0㎡</div>
+                            <div class="trig-describe">位移徐东附近，可拎包入住</div>
+                        </div>
+                    </a>
+                    <a href="" class="trig">
+                        <img src="/static/website/images/houseMess.png" alt="">
+                        <div class="trig_txt">
+                            <div class="trig-price orange">1999 <span>元/月</span></div>
+                            <div class="trig-addr">洪山区-教师小区-五居室-西卧-RoomB-10.0㎡</div>
+                            <div class="trig-describe">位移徐东附近，可拎包入住</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="tab-content good">
+                <div class="tabpanel">
+                    <a href="" class="trig">
+                        <img src="/static/website/images/houseMess.png" alt="">
+                        <div class="trig_txt">
+                            <div class="trig-price orange">1999 <span>元/月</span></div>
+                            <div class="trig-addr">洪山区-教师小区-五居室-西卧-RoomB-10.0㎡</div>
+                            <div class="trig-describe">位移徐东附近，可拎包入住</div>
+                        </div>
+                    </a>
+                    <a href="" class="trig">
+                        <img src="/static/website/images/houseMess.png" alt="">
+                        <div class="trig_txt">
+                            <div class="trig-price orange">1999 <span>元/月</span></div>
+                            <div class="trig-addr">洪山区-教师小区-五居室-西卧-RoomB-10.0㎡</div>
+                            <div class="trig-describe">位移徐东附近，可拎包入住</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="tab-content hotest">
+                <div class="tabpanel">
+                    <a href="" class="trig">
+                        <img src="/static/website/images/houseMess.png" alt="">
+                        <div class="trig_txt">
+                            <div class="trig-price orange">1999 <span>元/月</span></div>
+                            <div class="trig-addr">洪山区-教师小区-五居室-西卧-RoomB-10.0㎡</div>
+                            <div class="trig-describe">位移徐东附近，可拎包入住</div>
+                        </div>
+                    </a>
+                    <a href="" class="trig">
+                        <img src="/static/website/images/houseMess.png" alt="">
+                        <div class="trig_txt">
+                            <div class="trig-price orange">1999 <span>元/月</span></div>
+                            <div class="trig-addr">洪山区-教师小区-五居室-西卧-RoomB-10.0㎡</div>
+                            <div class="trig-describe">位移徐东附近，可拎包入住</div>
+                        </div>
+                    </a>
+                    <a href="" class="trig">
+                        <img src="/static/website/images/houseMess.png" alt="">
+                        <div class="trig_txt">
+                            <div class="trig-price orange">1999 <span>元/月</span></div>
+                            <div class="trig-addr">洪山区-教师小区-五居室-西卧-RoomB-10.0㎡</div>
+                            <div class="trig-describe">位移徐东附近，可拎包入住</div>
+                        </div>
+                    </a>
+                    <a href="" class="trig">
+                        <img src="/static/website/images/houseMess.png" alt="">
+                        <div class="trig_txt">
+                            <div class="trig-price orange">1999 <span>元/月</span></div>
+                            <div class="trig-addr">洪山区-教师小区-五居室-西卧-RoomB-10.0㎡</div>
+                            <div class="trig-describe">位移徐东附近，可拎包入住</div>
+                        </div>
+                    </a>
+                    <a href="" class="trig">
+                        <img src="/static/website/images/houseMess.png" alt="">
+                        <div class="trig_txt">
+                            <div class="trig-price orange">1999 <span>元/月</span></div>
+                            <div class="trig-addr">洪山区-教师小区-五居室-西卧-RoomB-10.0㎡</div>
+                            <div class="trig-describe">位移徐东附近，可拎包入住</div>
+                        </div>
+                    </a>
+                    <a href="" class="trig">
+                        <img src="/static/website/images/houseMess.png" alt="">
+                        <div class="trig_txt">
+                            <div class="trig-price orange">1999 <span>元/月</span></div>
+                            <div class="trig-addr">洪山区-教师小区-五居室-西卧-RoomB-10.0㎡</div>
+                            <div class="trig-describe">位移徐东附近，可拎包入住</div>
+                        </div>
+                    </a>
+                    <a href="" class="trig">
+                        <img src="/static/website/images/houseMess.png" alt="">
+                        <div class="trig_txt">
+                            <div class="trig-price orange">1999 <span>元/月</span></div>
+                            <div class="trig-addr">洪山区-教师小区-五居室-西卧-RoomB-10.0㎡</div>
+                            <div class="trig-describe">位移徐东附近，可拎包入住</div>
+                        </div>
+                    </a>
+                    <a href="" class="trig">
+                        <img src="/static/website/images/houseMess.png" alt="">
+                        <div class="trig_txt">
+                            <div class="trig-price orange">1999 <span>元/月</span></div>
+                            <div class="trig-addr">洪山区-教师小区-五居室-西卧-RoomB-10.0㎡</div>
+                            <div class="trig-describe">位移徐东附近，可拎包入住</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--房源信息 end-->
+
+    <!--关注租客 begin-->
+    <div class="tenant banxin">
+        <h5>Pay attention to tenant</h5>
+        <h2>关注租客</h2>
+        <ul>
+            <li>
+                <div class="pic"><img src="/static/website/images/tenant1.png" alt=""></div>
+                <div class="txt">信息发布</div>
+            </li>
+            <li>
+                <div class="pic"><img src="/static/website/images/tenant2.png" alt=""></div>
+                <div class="txt">诚信金</div>
+            </li>
+            <li>
+                <div class="pic"><img src="/static/website/images/tenant3.png" alt=""></div>
+                <div class="txt">挑选房屋</div>
+            </li>
+            <li>
+                <div class="pic"><img src="/static/website/images/tenant4.png" alt=""></div>
+                <div class="txt">邀约看房</div>
+            </li>
+            <li>
+                <div class="pic"><img src="/static/website/images/tenant5.png" alt=""></div>
+                <div class="txt">签约付款</div>
+            </li>
+
+        </ul>
+    </div>
+    <!--关注租客 end-->
+{% endblock %}
+
+{% block script %}
+<script src="/static/website/js/swiper.min.js"></script>
+<!-- Initialize Swiper -->
+<script>
+//    banner autoplay
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+        paginationClickable: true,
+        spaceBetween: 1000,
+        centeredSlides: true,
+        autoplay: 4000,
+        autoplayDisableOnInteraction: false,
+        effect: 'fade',
+        loop: true
+    });
+</script>
+{% endblock %}

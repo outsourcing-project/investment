@@ -1,0 +1,10 @@
+{% extends 'super/base.html' %}
+
+{% block mainbody %}
+    <br/>
+    {% if not error %}
+    	<h1>刷新成功</h1>
+    {% else %}
+    	<h3>{{ error }}</h3>
+    {% endif %}
+{% endblock %}

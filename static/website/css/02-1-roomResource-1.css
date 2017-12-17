@@ -1,0 +1,116 @@
+.user{
+    width: 100%;
+    min-width: 1200px;
+    height: 220px;
+    box-shadow: 0 0 10px #ccc;
+    position: relative;
+}
+.user img{
+    width: 100%;
+    min-width: 1200px;
+    position: absolute;
+    bottom: 0;
+}
+
+/* 房源查找方式切换  筛选/地图 begin  */
+.howToFind{
+    padding-top: 30px;
+}
+.howToFind ul{
+    width: 100%;
+    margin-bottom: 20px;
+}
+.howToFind ul li{
+    width: 100px;
+    height: 40px;
+    float: left;
+    line-height: 40px;
+    text-align: center;
+}
+.howToFind ul li a{
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: #000;
+}
+.howToFind ul li:hover{
+    border-bottom: 4px solid orange;
+}
+.howToFind ul li.active{
+    border-bottom: 4px solid orange;
+}
+.howToFind ul li:hover a{
+    color: orange;
+}
+.howToFind ul li.active a{
+    color: orange;
+}
+
+
+/* 筛选结果列表  begin*/
+
+.tabpanel{
+    padding: 30px 0;
+    font-size: 0;
+    height: 100%;
+}
+.tabpanel a{
+    width: 282px;
+    height: 282px;
+    display: inline-block;
+    border: 1px solid #ddd;
+    /*border-radius: 4px;*/
+    overflow: hidden;
+    margin: 0 24px 24px 0;
+    background-color: #fff;
+    transition: all .3s ease-in-out;
+}
+.tabpanel a:hover{
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+}
+.tabpanel a:nth-child(4n){
+    margin: 0 0 24px 0;
+}
+.tabpanel a img{
+    width: 282px;
+    height: 178px;
+}
+.trig p{
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    margin-bottom: 5px;
+}
+.tabpanel .trig .trig_txt{
+    padding:15px 10px;
+}
+.tabpanel .trig-price{
+    font:normal normal 18px "微软雅黑";
+}
+.tabpanel .trig-price span,.tabpanel .trig-realInfo span.confirmed{
+    font-size: 14px;
+    color: #333;
+}
+.tabpanel .trig-realInfo span.notConfirm{
+    font-size: 14px;
+    color:#999;
+}
+.tabpanel .trig-realInfo{
+    font-size: 18px;
+    color: #000;
+    vertical-align: bottom;
+}
+.tabpanel .trig-describe{
+    font-size: 14px;
+    color: #333;
+}
+/*筛选结果列表 end*/
+
+.roomlist{
+    background: url("../images/map.png") top left no-repeat;
+    height: 100%;
+    width: 100%;
+    min-height: 600px;
+    min-width: 1200px;
+    margin-bottom: 100px;
+}

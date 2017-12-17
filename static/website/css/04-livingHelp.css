@@ -1,0 +1,124 @@
+.living-bg{
+    height: 540px;
+    min-width: 1200px;
+    background: url("../images/shg-bg.jpg") top center no-repeat;
+}
+.pageTitleE{
+    font: 24px 微软雅黑;
+    margin: 60px 0 20px;
+}
+.pageTitleC{
+    font: 30px 微软雅黑;
+}
+.pageTitleC b{
+    display: inline-block;
+    width: 40px;
+    height: 38px;
+    background: url(../images/sprite.png) -160px -71px no-repeat;
+    vertical-align: text-top;
+
+}
+.container{
+    height: auto;
+    border: 1px solid #ddd;
+    padding: 0 20px;
+    margin: 30px auto;
+}
+.container .tabs,.tab_content .service_tabs{
+    height: 60px;
+    border-bottom: 1px solid #ddd;
+    padding-top: 20px;
+}
+.container .tabs li,.tab_content .service_tabs li{
+    float: left;
+    margin-left: 8px;
+}
+.container .tabs li a,.tab_content .service_tabs li a{
+    color: #000;
+}
+.container .tabs li a:hover,.tab_content .service_tabs li a:hover{
+    color: #0bb8a5;
+}
+.container .tabs li.active a,.tab_content .service_tabs li.active a{
+    color: #fff;
+    background-color: #0bb8a5;
+}
+.tab_container{
+    width: 100px;
+    height: 50px;
+    background-color: #0bb8a5;
+}
+.service_container{
+    width: 100%;
+    height: 1710px;
+    padding-top: 20px;
+}
+.service_container .service-list{
+    width: 100%;
+    height: 400px;
+    border:1px solid #ddd;
+    margin-bottom: 20px;
+    display: flex;
+}
+.service_container .service-list .service-name,.service-contact{
+    width: 40%;
+}
+.service_container .service-name{
+    padding: 40px 60px;
+}
+.service-name p:nth-child(2) button{
+    width: 150px;
+    height: 40px;
+    background-color: orange;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 4px;
+    margin: 20px 0 20px;
+    cursor: pointer;
+}
+.service-name p:nth-child(3){
+    font-size: 24px;
+}
+.service_container .service-list .service-pic{
+    width: 20%;
+}
+
+.service-pic ul li{
+    width: 140px;
+    height: 100px;
+    margin: 24px auto;
+}
+.service-pic ul li img{
+    width: 100%;
+}
+.service-contact{
+    padding: 40px 40px;
+}
+.service-contact p:nth-child(1){
+    width: 100px;
+    height: 4px;
+    background-color: orange;
+}
+.service-contact p:nth-child(2){
+    line-height: 26px;
+    margin: 30px 0;
+}
+.service-contact .shg-phone{
+    width: 300px;
+    height: 60px;
+    font-size: 25px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+}
+.service-contact .shg-phone span{
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background: url("../images/shg-phone.jpg");
+    background-size: 25px 25px ;
+    vertical-align: text-bottom;
+}
+
+
+

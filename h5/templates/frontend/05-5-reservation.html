@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>05-5-reservation</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/05-5-reservation.css">
+    <link type="text/css" rel="stylesheet" href="js/jquery-ui-1.12.1.custom/jquery-ui.css"/>
+    <link type="text/css" rel="stylesheet" href="js/jquery-ui-1.12.1.custom/jquery-ui.structure.css"/>
+    <link type="text/css" rel="stylesheet" href="js/jquery-ui-1.12.1.custom/jquery-ui.theme.css"/>
+    <script src="//at.alicdn.com/t/font_pgikhqa26vtpgb9.js"></script>
+</head>
+<body>
+<!--通用top begin -->
+
+<!--header begin-->
+<header class="wrap">
+    <div class="banxin welcome clearfix">
+        <div class="wel_left fl">
+            <span class="white">欢迎来到租房网！更多房源选择任您挑选！请选择您的位置：</span>
+            <select class="city white" name="city" id="">
+                <option value="武汉" selected>武汉</option>
+            </select>
+
+        </div>
+        <div class="wel_right fr">
+            <a class="white" href="javascript:void(0)">收藏本站 |</a>
+            <a class="white" href="javascript:void(0)">设为首页 |</a>
+            <a class="white" href="javascript:void(0)">登录 |</a>
+            <a class="white" href="javascript:void(0)">注册 </a>
+        </div>
+    </div>
+</header>
+<!--header end-->
+
+<!--nav begin-->
+<nav class="wrap">
+    <div class="banxin nav  clearfix">
+        <a class="logo" href="javascript:void(0)"></a>
+        <ul class="nav_items fl clearfix">
+            <li class="fl"><a href="javascript:void(0)">首页</a></li>
+            <li class="fl"><a href="javascript:void(0)">房源信息</a></li>
+            <li class="fl"><a href="javascript:void(0)">求租信息</a></li>
+            <li class="fl"><a href="javascript:void(0)">生活馆</a></li>
+            <li class="fl"><a href="javascript:void(0)">注册登录</a></li>
+        </ul>
+        <div class="hot-line fr clearfix">
+            <p class="p_number green"><b></b>400-6789-888</p>
+            <p class="p_time" align="right">看房热线：<span class="green">08:00 - 21:00</span></p>
+        </div>
+    </div>
+</nav>
+<!--nav end-->
+<!--通用top end -->
+
+<div class="user">
+    <img src="images/member-bg.jpg" alt="">
+    <div class="user-info banxin clearfix">
+        <div class="user-face fl"></div>
+        <p class="user-name"><span>XXX</span>,你好！</p>
+        <p class="user-loginTime">您上次登录的时间为：<span>2017-06-22  11:52:00</span></p>
+    </div>
+</div>
+<div class="container banxin clearfix">
+    <!--左边列表-->
+    <ul class="tabs fl">
+        <h4 align="center">账号管理</h4>
+        <li><a href="#tab1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-01jbxx"></use></svg> 基本信息</a></li>
+        <li><a href="#tab2"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-02fbfy"></use></svg> 房源发布</a></li>
+        <li><a href="#tab3"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-03fygl"></use></svg> 房源管理</a></li>
+        <li><a href="#tab4"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-04qzfb"></use></svg> 求租发布</a></li>
+        <li><a href="#tab5"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-05qzgl"></use></svg> 求租管理</a></li>
+        <li><a href="#tab6"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-06kfgl"></use></svg> 看房管理</a></li>
+        <li><a href="#tab7"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-07zjgl"></use></svg> 资金管理</a></li>
+    </ul>
+    <!--右边列表-->
+    <div class="tab_container fr">
+        <!--tab1 基本信息-->
+        <div id="tab1" class="tab_content baseinfo" style="display: block;">
+            <h4 class="baseinfo">基本信息</h4>
+            <form action="" method="POST" target="_blank" accept-charset="UTF-8"
+                  ectype="application/x-www-form-urlencoded" autocomplete="off" novalidate>
+                <div class="top">
+                    <p><label>姓名：</label><input type="text" class="user-name" name="userName"></p>
+                    <p><label>性别：</label>
+                        <label for="gender1" class="gender"><input type="radio" id="gender1" name="gender" checked>男</label>
+                        <label for="gender2" class="gender"><input type="radio" id="gender2" name="gender">女</label>
+                    </p>
+                    <p><label>生日：</label>
+                        <select name="u-b-y" id="u-b-y">
+                            <option value="year" selected>年</option>
+                            <option value="1940">1940</option>
+                            <option value="1941">1941</option>
+                            <option value="1942">1942</option>
+                            <option value="1943">1943</option>
+                            <option value="1944">1944</option>
+                            <option value="1945">1945</option>
+                            <option value="1946">1946</option>
+                            <option value="1947">1947</option>
+                            <option value="1948">1948</option>
+                            <option value="1949">1949</option>
+                            <option value="1950">1950</option>
+                            <option value="1951">1951</option>
+                            <option value="1952">1952</option>
+                            <option value="1953">1953</option>
+                            <option value="1954">1954</option>
+                            <option value="1955">1955</option>
+                            <option value="1956">1956</option>
+                            <option value="1957">1957</option>
+                            <option value="1958">1958</option>
+                            <option value="1959">1959</option>
+                            <option value="1960">1960</option>
+                            <option value="1961">1961</option>
+                            <option value="1962">1962</option>
+                            <option value="1963">1963</option>
+                            <option value="1964">1964</option>
+                            <option value="1965">1965</option>
+                            <option value="1966">1966</option>
+                            <option value="1967">1967</option>
+                            <option value="1968">1968</option>
+                            <option value="1969">1969</option>
+                            <option value="1970">1970</option>
+                            <option value="1971">1971</option>
+                            <option value="1972">1972</option>
+                            <option value="1973">1973</option>
+                            <option value="1974">1974</option>
+                            <option value="1975">1975</option>
+                            <option value="1976">1976</option>
+                            <option value="1977">1977</option>
+                            <option value="1978">1978</option>
+                            <option value="1979">1979</option>
+                            <option value="1980">1980</option>
+                            <option value="1981">1981</option>
+                            <option value="1982">1982</option>
+                            <option value="1983">1983</option>
+                            <option value="1984">1984</option>
+                            <option value="1985">1985</option>
+                            <option value="1986">1986</option>
+                            <option value="1987">1987</option>
+                            <option value="1988">1988</option>
+                            <option value="1989">1989</option>
+                            <option value="1990">1990</option>
+                            <option value="1991">1991</option>
+                            <option value="1992">1992</option>
+                            <option value="1993">1993</option>
+                            <option value="1994">1994</option>
+                            <option value="1995">1995</option>
+                            <option value="1996">1996</option>
+                            <option value="1997">1997</option>
+                            <option value="1998">1998</option>
+                            <option value="1999">1999</option>
+                            <option value="2000">2000</option>
+                            <option value="2001">2001</option>
+                            <option value="2002">2002</option>
+                            <option value="2003">2003</option>
+                            <option value="2004">2004</option>
+                            <option value="2005">2005</option>
+                            <option value="2006">2006</option>
+                            <option value="2007">2007</option>
+                            <option value="2008">2008</option>
+                            <option value="2009">2009</option>
+                            <option value="2010">2010</option>
+                            <option value="2011">2011</option>
+                            <option value="2012">2012</option>
+                            <option value="2013">2013</option>
+                            <option value="2014">2014</option>
+                            <option value="2015">2015</option>
+                            <option value="2016">2016</option>
+                            <option value="2016">2017</option>
+                        </select>
+                        <select name="u-b-m" id="u-b-m">
+                            <option value="month" selected>月</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                        </select>
+                        <select name="u-b-d" id="u-b-d">
+                            <option value="day">日</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                        </select>
+                    </p>
+                    <p><label>联系方式：</label><input class="contact" name="phoneNumber" type="text" value="13399994444"></p>
+                    <p><label>工作单位：</label><input class="employe" name="employe" type="text" placeholder="请填写您的工作单位"></p>
+                    <p><label>动态码：</label><input class="promoCode" name="promoCode" type="text" placeholder="输入优惠码"></p>
+                    <button type="submit">确认修改</button>
+                </div>
+                <div class="bottom">
+                    <p><lable>身份证认证：</lable>654325198501295842/未认证</p>
+                    <br><input type="file" id="test-image-file" value="上传身份证正反照片" size="2"><br><br>
+                    <div id="test-image-preview">图片预览</div>
+                    <br>
+                    <button type="submit">确认上传</button>
+                </div>
+            </form>
+        </div>
+
+        <!--tab2 房源发布-->
+        <div id="tab2" class="tab_content house-release clearfix" style="display: none;">
+            <h4>房源描述</h4><br>
+            <form action="" method="POST" target="_blank" accept-charset="UTF-8"
+                  ectype="application/x-www-form-urlencoded" autocomplete="off" novalidate>
+                <textarea class="house-description" name="house-description" id="house-description" cols="50" rows="10" placeholder="请输入房源描述"></textarea><br><br>
+                <h4>房源详情</h4>
+                <p>
+                    <label>租赁方式：</label>
+                    <select name="leasing-method" id="leasing-method">
+                        <option value="整租">整租</option>
+                        <option value="合租">合租</option>
+                    </select>
+                </p>
+                <p>
+                    <label>房屋类型：</label>
+                    <input class="house-type" name="house-type" id="house-type" type="text" placeholder="例如：2室1厅   独立卫生间   精装修">
+                </p>
+                <p>
+                    <label>押付方式：</label>
+                    押 <select name="cashPledge" id="cashPledge">
+                    <option value="1">0.5</option>
+                    <option value="1">1</option>
+                    <option value="1">1.5</option>
+                    <option value="1">2</option>
+                    <option value="1">2.5</option>
+                    <option value="1">3</option>
+                </select>
+                    付 <select name="cashRent" id="cashRent">
+                    <option value="1">0.5</option>
+                    <option value="1">1</option>
+                    <option value="1">1.5</option>
+                    <option value="1">2</option>
+                    <option value="1">2.5</option>
+                    <option value="1">3</option>
+                </select> (月份)
+                </p>
+                <p>
+                    <label>楼层朝向：</label>
+                    <select name="floor-orientation" id="floor-orientation">
+                        <option value="1">东</option>
+                        <option value="1">南</option>
+                        <option value="1">西</option>
+                        <option value="1">北</option>
+                    </select>
+                    <label>楼层数</label>
+                    <select name="floor-number" id="floor-number">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+                        <option value="26">26</option>
+                        <option value="27">27</option>
+                        <option value="28">28</option>
+                        <option value="29">29</option>
+                        <option value="30">30</option>
+                        <option value="31">31</option>
+                        <option value="32">32</option>
+                    </select>
+                    <label>总层数</label>
+                    <select name="total-floors" id="total-floors">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+                        <option value="26">26</option>
+                        <option value="27">27</option>
+                        <option value="28">28</option>
+                        <option value="29">29</option>
+                        <option value="30">30</option>
+                        <option value="31">31</option>
+                        <option value="32">32</option>
+                    </select>
+                </p>
+                <p>
+                    <label>所在小区：</label>
+                    <input class="district" name="district" id="district" type="text" placeholder="输入小区名字">
+                </p>
+                <p class="address">
+                    <label>详细地址：</label>
+                    <input class="addr" name="addr" id="addr" type="text" placeholder="具体街道地址">
+                </p>
+                <h4>基础设施</h4>
+                <ul class="surrounding-facilities clearfix">
+                    <li><img src="images/01bingxiang.jpg" alt=""><br><label>冰箱</label><br><input type="checkbox" name="surrounding-facilities" value="冰箱" ></li>
+                    <li><img src="images/02reshuiqi.jpg" alt=""><br><label>热水器</label><br><input type="checkbox" name="surrounding-facilities" value="热水器"></li>
+                    <li><img src="images/03-dianshi.jpg" alt=""><br><label>电视</label><br><input type="checkbox" name="surrounding-facilities" value="电视"></li>
+                    <li><img src="images/05wifi.jpg" alt=""><br><label>无线网</label><br><input type="checkbox" name="surrounding-facilities" value="无线网"></li>
+                    <li><img src="images/07shafa.jpg" alt=""><br><label>沙发</label><br><input type="checkbox" name="surrounding-facilities" value="沙发"></li>
+                    <li><img src="images/09chufang.jpg" alt=""><br><label>厨房</label><br><input type="checkbox" name="surrounding-facilities" value="厨房"></li>
+                    <li><img src="images/10nuanqi.jpg" alt=""><br><label>暖气</label><br><input type="checkbox" name="surrounding-facilities" value="暖气"></li>
+                </ul>
+                <h4>周边配套</h4>
+                <p><label>附近公交：</label><input class="bus" type="text" placeholder="公交站、公交路线"></p>
+                <p><label>附近地铁：</label><input class="tube" type="text" placeholder="地铁站、地铁路线"></p>
+                <p><label>餐饮购物：</label><input class="mall" type="text" placeholder="商场、超市等"></p>
+                <h4>客厅</h4>
+                <p>有无客厅：<input type="radio" name="livingroom" id="yes"> 有 &nbsp&nbsp<input type="radio" name="livingroom" id="no"> 无</p>
+                <p class="livingArea"><label>面积：</label><input class="area" type="text">&nbsp m³</p>
+                <p class="livingSet">客厅配置：
+                    <label>阳台 </label><input type="checkbox" name="details">&nbsp&nbsp
+                    <label>飘窗 </label><input type="checkbox" name="details">&nbsp&nbsp
+                </p>
+                <h4>卧室</h4>
+                <div class="bedroom">
+                    <h5>卧室</h5>
+                    <p><label>面积：</label><input class="area" type="text">&nbsp m³</p>
+                    <p>房间配置：
+                        <label>飘窗 </label><input type="checkbox" name="details">&nbsp&nbsp
+                        <label>空调 </label><input type="checkbox" name="details">&nbsp&nbsp
+                        <label>床 </label><input type="checkbox" name="details">&nbsp&nbsp
+                        <label>书桌 </label><input type="checkbox" name="details">&nbsp&nbsp
+                        <label>衣柜 </label><input type="checkbox" name="details">&nbsp&nbsp
+                        <label>沙发 </label><input type="checkbox" name="details">&nbsp&nbsp
+                        <label>卫生间 </label><input type="checkbox" name="details">
+                    </p>
+                </div>
+                <button class="addBedroom">增加卧室</button>
+                <h4>上传房产证照片</h4>
+                <p><input type="file" class="deedPic" name="deedPic"></p>
+                <div class="photos">+增加图片</div>
+                <h4>上传照片</h4>
+                <p><input type="file" class="deedPic" id="deedPic" name="deedPic"></p>
+                <div class="photos">+增加图片</div>
+                <button class="release-pay" type="submit">确定发布并预付费用</button>
+            </form>
+        </div>
+
+        <!--tab3 房源管理-->
+        <div id="tab3" class="tab_content house-manage" style="display: none;">
+            <h4 class="house-online">已上架房源</h4>
+            <ul class="items-on clearfix">
+                <li class="item">
+                    <img src="images/houseMess.png" alt="">
+                    <p>租金：<strong class="orange">5000-10000</strong></p>
+                    <p>地理位置：<span>洪山区</span></p>
+                    <p align="center"><a class="orange" href="#">编辑</a> &nbsp&nbsp&nbsp <a class="orange" href="#">下架</a></p>
+                </li>
+                <li class="item">
+                    <img src="images/houseMess.png" alt="">
+                    <p>租金：<strong class="orange">5000-10000</strong></p>
+                    <p>地理位置：<span>洪山区</span></p>
+                    <p align="center"><a class="orange" href="#">编辑</a> &nbsp&nbsp&nbsp <a class="orange" href="#">下架</a></p>
+                </li>
+                <li class="item">
+                    <img src="images/houseMess.png" alt="">
+                    <p>租金：<strong class="orange">5000-10000</strong></p>
+                    <p>地理位置：<span>洪山区</span></p>
+                    <p align="center"><a class="orange" href="#">编辑</a> &nbsp&nbsp&nbsp <a class="orange" href="#">下架</a></p>
+                </li>
+                <li class="item">
+                    <img src="images/houseMess.png" alt="">
+                    <p>租金：<strong class="orange">5000-10000</strong></p>
+                    <p>地理位置：<span>洪山区</span></p>
+                    <p align="center"><a class="orange" href="#">编辑</a> &nbsp&nbsp&nbsp <a class="orange" href="#">下架</a></p>
+                </li>
+                <li class="item">
+                    <img src="images/houseMess.png" alt="">
+                    <p>租金：<strong class="orange">5000-10000</strong></p>
+                    <p>地理位置：<span>洪山区</span></p>
+                    <p align="center"><a class="orange" href="#">编辑</a> &nbsp&nbsp&nbsp <a class="orange" href="#">下架</a></p>
+                </li>
+                <li class="item">
+                    <img src="images/houseMess.png" alt="">
+                    <p>租金：<strong class="orange">5000-10000</strong></p>
+                    <p>地理位置：<span>洪山区</span></p>
+                    <p align="center"><a class="orange" href="#">编辑</a> &nbsp&nbsp&nbsp <a class="orange" href="#">下架</a></p>
+                </li>
+            </ul>
+            <h4 class="house-online">已下架房源</h4>
+            <ul class="items-off clearfix">
+                <li class="item">
+                    <img src="images/houseMess.png" alt="">
+                    <p>房租预算 <strong class="orange">5000-10000</strong></p>
+                    <p>地理位置：<span>洪山区</span></p>
+                    <p align="center"><a class="orange" href="#">编辑</a> &nbsp&nbsp&nbsp <a class="orange" href="#">上架</a></p>
+                </li>
+                <li class="item">
+                    <img src="images/houseMess.png" alt="">
+                    <p>房租预算 <strong class="orange">5000-10000</strong></p>
+                    <p>地理位置：<span>洪山区</span></p>
+                    <p align="center"><a class="orange" href="#">编辑</a> &nbsp&nbsp&nbsp <a class="orange" href="#">上架</a></p>
+                </li>
+                <li class="item">
+                    <img src="images/houseMess.png" alt="">
+                    <p>房租预算 <strong class="orange">5000-10000</strong></p>
+                    <p>地理位置：<span>洪山区</span></p>
+                    <p align="center"><a class="orange" href="#">编辑</a> &nbsp&nbsp&nbsp <a class="orange" href="#">上架</a></p>
+                </li>
+                <li class="item">
+                    <img src="images/houseMess.png" alt="">
+                    <p>房租预算 <strong class="orange">5000-10000</strong></p>
+                    <p>地理位置：<span>洪山区</span></p>
+                    <p align="center"><a class="orange" href="#">编辑</a> &nbsp&nbsp&nbsp <a class="orange" href="#">上架</a></p>
+                </li>
+                <li class="item">
+                    <img src="images/houseMess.png" alt="">
+                    <p>房租预算 <strong class="orange">5000-10000</strong></p>
+                    <p>地理位置：<span>洪山区</span></p>
+                    <p align="center"><a class="orange" href="#">编辑</a> &nbsp&nbsp&nbsp <a class="orange" href="#">上架</a></p>
+                </li>
+                <li class="item">
+                    <img src="images/houseMess.png" alt="">
+                    <p>房租预算 <strong class="orange">5000-10000</strong></p>
+                    <p>地理位置：<span>洪山区</span></p>
+                    <p align="center"><a class="orange" href="#">编辑</a> &nbsp&nbsp&nbsp <a class="orange" href="#">上架</a></p>
+                </li>
+            </ul>
+        </div>
+
+        <!--tab4 求租发布-->
+        <div id="tab4" class="tab_content seekRent" style="display: none;">
+            <h4 class="house-online">基础信息</h4>
+            <form action="" method="POST" target="_blank" accept-charset="UTF-8"
+                  ectype="application/x-www-form-urlencoded" autocomplete="off">
+                <p><label><span class="orange ">*</span>求租地段：</label><select name="rentArea" id="rentArea" required>
+                    <option value="请选择区域" selected>请选择区域</option>
+                    <option value="hk">汉口</option>
+                    <option value="hs">洪山</option>
+                    <option value="gg">光谷</option>
+                    <option value="hy">汉阳</option>
+                </select>&nbsp&nbsp
+                    <select name="rentBlock" id="rentBlock" required>
+                        <option value="请选择地段">请选择地段</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </p>
+                <p><label><span class="orange">*</span>租金：</label><select name="rent" id="rent" required>
+                    <option value="请选择租金">请选择租金</option>
+                    <option value="0-500">0-500</option>
+                    <option value="500-1000">500-1000</option>
+                    <option value="1000-1500">1000-1500</option>
+                    <option value="1500-2000">1500-2000</option>
+                    <option value="2000-2500">2000-2500</option>
+                    <option value="2000-2500">2000-2500</option>
+                    <option value="2500-3000">2500-3000</option>
+                    <option value="3000-3500">3000-3500</option>
+                    <option value="3500-4000">3500-4000</option>
+                    <option value="4000以上">4000以上</option>
+                    <option value="不限">不限</option>
+                </select>
+                </p>
+                <p class="checkinDay"><label><span class="orange">*</span>最迟入住时间：</label><input type="text" id="selectDate" readonly="readonly" placeholder="请选择日期" required/></p>
+                <p class="extraInfo"><label><span class="orange">*</span>补充说明：</label><textarea name="extraInfo" id="extraInfo" cols="30" rows="10" placeholder="凡本站会员不限制查看联系方式，请勿在此处添加任何联系方式或地址信息，如若添加信息审核将无法通过。" required></textarea></p>
+                <h4 class="house-online">基础设施</h4>
+                <ul class="surrounding-facilities clearfix">
+                    <li><img src="images/01bingxiang.jpg" alt=""><br><label>冰箱</label><br><input type="checkbox" name="surrounding-facilities" value="冰箱" ></li>
+                    <li><img src="images/02reshuiqi.jpg" alt=""><br><label>热水器</label><br><input type="checkbox" name="surrounding-facilities" value="热水器"></li>
+                    <li><img src="images/03-dianshi.jpg" alt=""><br><label>电视</label><br><input type="checkbox" name="surrounding-facilities" value="电视"></li>
+                    <li><img src="images/04-kongtiao.jpg" alt=""><br><label>空调</label><br><input type="checkbox" name="surrounding-facilities" value="空调"></li>
+                    <li><img src="images/05wifi.jpg" alt=""><br><label>无线网</label><br><input type="checkbox" name="surrounding-facilities" value="无线网"></li>
+                    <li><img src="images/06chuang.jpg" alt=""><br><label>床</label><br><input type="checkbox" name="surrounding-facilities" value="床"></li>
+                    <li><img src="images/07shafa.jpg" alt=""><br><label>沙发</label><br><input type="checkbox" name="surrounding-facilities" value="沙发"></li>
+                    <li><img src="images/08yigui.jpg" alt=""><br><label>衣柜</label><br><input type="checkbox" name="surrounding-facilities" value="衣柜"></li>
+                    <li><img src="images/09chufang.jpg" alt=""><br><label>厨房</label><br><input type="checkbox" name="surrounding-facilities" value="厨房"></li>
+                    <li><img src="images/10nuanqi.jpg" alt=""><br><label>暖气</label><br><input type="checkbox" name="surrounding-facilities" value="暖气"></li>
+                </ul>
+                <p class="rentAll"><label><input type="radio" name="rentType"><span class="orange">*</span>整租</label><select name="males" id="males">
+                    <option value="男性人数" selected>男性人数</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+                    <select name="males" id="females">
+                        <option value="女性人数" selected>女性人数</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                    <select name="relationship" id="relationship">
+                        <option value="关系" selected>关系</option>
+                        <option value="1">朋友</option>
+                        <option value="2">情侣</option>
+                        <option value="3">同学</option>
+                        <option value="3">亲戚</option>
+                        <option value="4">陌生人</option>
+                        <option value="4">其他</option>
+                    </select>
+                </p>
+                <p class="rentPart"><label><input type="radio" name="rentType"><span class="orange">*</span>合租</label><select name="totalPeople" id="totalPeople">人数
+                    <option value="总人数" selected>总人数</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                </select>
+                    <select name="relationship" id="relationship2">
+                        <option value="关系" selected>关系</option>
+                        <option value="1">朋友</option>
+                        <option value="2">情侣</option>
+                        <option value="3">同学</option>
+                        <option value="3">亲戚</option>
+                        <option value="4">陌生人</option>
+                        <option value="4">其他</option>
+                    </select>
+                    <select name="males" id="acceptable">
+                        <option value="能接受的合租对象" selected>能接受的合租对象</option>
+                        <option value="1">学生</option>
+                        <option value="2">白领</option>
+                        <option value="3">不限</option>
+                    </select>
+                </p>
+                <p class="userName"><label><span class="orange">*</span>姓名</label><input type="text" placeholder="请输入您的名字" required></p>
+                <p class="phoneNum"><label><span class="orange">*</span>手机</label><input id="phoneNum" type="text" placeholder="请输入您的手机" required><button>获取验证码</button></p>
+                <button class="submit" type="submit">发布并预付费用</button>
+            </form>
+        </div>
+
+        <!--tab5 求租管理-->
+        <div id="tab5" class="tab_content house-manage" style="display: none;">
+            <h4 class="house-online">求租</h4>
+            <ul class="items-on clearfix">
+                <li class="item">
+                    <img src="images/houseMess.png" alt="">
+                    <p>房租预算 <strong class="orange">5000-10000</strong></p>
+                    <p>地理位置：<span>洪山区</span></p>
+                    <p align="center"><a class="orange" href="#">编辑</a> &nbsp&nbsp&nbsp <a class="orange" href="#">下架</a></p>
+                </li>
+                <li class="item">
+                    <img src="images/houseMess.png" alt="">
+                    <p>房租预算 <strong class="orange">5000-10000</strong></p>
+                    <p>地理位置：<span>洪山区</span></p>
+                    <p align="center"><a class="orange" href="#">编辑</a> &nbsp&nbsp&nbsp <a class="orange" href="#">下架</a></p>
+                </li>
+                <li class="item">
+                    <img src="images/houseMess.png" alt="">
+                    <p>房租预算 <strong class="orange">5000-10000</strong></p>
+                    <p>地理位置：<span>洪山区</span></p>
+                    <p align="center"><a class="orange" href="#">编辑</a> &nbsp&nbsp&nbsp <a class="orange" href="#">下架</a></p>
+                </li>
+                <li class="item">
+                    <img src="images/houseMess.png" alt="">
+                    <p>房租预算 <strong class="orange">5000-10000</strong></p>
+                    <p>地理位置：<span>洪山区</span></p>
+                    <p align="center"><a class="orange" href="#">编辑</a> &nbsp&nbsp&nbsp <a class="orange" href="#">下架</a></p>
+                </li>
+                <li class="item">
+                    <img src="images/houseMess.png" alt="">
+                    <p>房租预算 <strong class="orange">5000-10000</strong></p>
+                    <p>地理位置：<span>洪山区</span></p>
+                    <p align="center"><a class="orange" href="#">编辑</a> &nbsp&nbsp&nbsp <a class="orange" href="#">下架</a></p>
+                </li>
+                <li class="item">
+                    <img src="images/houseMess.png" alt="">
+                    <p>房租预算 <strong class="orange">5000-10000</strong></p>
+                    <p>地理位置：<span>洪山区</span></p>
+                    <p align="center"><a class="orange" href="#">编辑</a> &nbsp&nbsp&nbsp <a class="orange" href="#">下架</a></p>
+                </li>
+            </ul>
+            <h4 class="house-online">已下架求租</h4>
+            <ul class="items-off clearfix">
+                <li class="item">
+                    <img src="images/houseMess.png" alt="">
+                    <p>房租预算 <strong class="orange">5000-10000</strong></p>
+                    <p>地理位置：<span>洪山区</span></p>
+                    <p align="center"><a class="orange" href="#">编辑</a> &nbsp&nbsp&nbsp <a class="orange" href="#">上架</a></p>
+                </li>
+                <li class="item">
+                    <img src="images/houseMess.png" alt="">
+                    <p>房租预算 <strong class="orange">5000-10000</strong></p>
+                    <p>地理位置：<span>洪山区</span></p>
+                    <p align="center"><a class="orange" href="#">编辑</a> &nbsp&nbsp&nbsp <a class="orange" href="#">上架</a></p>
+                </li>
+                <li class="item">
+                    <img src="images/houseMess.png" alt="">
+                    <p>房租预算 <strong class="orange">5000-10000</strong></p>
+                    <p>地理位置：<span>洪山区</span></p>
+                    <p align="center"><a class="orange" href="#">编辑</a> &nbsp&nbsp&nbsp <a class="orange" href="#">上架</a></p>
+                </li>
+                <li class="item">
+                    <img src="images/houseMess.png" alt="">
+                    <p>房租预算 <strong class="orange">5000-10000</strong></p>
+                    <p>地理位置：<span>洪山区</span></p>
+                    <p align="center"><a class="orange" href="#">编辑</a> &nbsp&nbsp&nbsp <a class="orange" href="#">上架</a></p>
+                </li>
+                <li class="item">
+                    <img src="images/houseMess.png" alt="">
+                    <p>房租预算 <strong class="orange">5000-10000</strong></p>
+                    <p>地理位置：<span>洪山区</span></p>
+                    <p align="center"><a class="orange" href="#">编辑</a> &nbsp&nbsp&nbsp <a class="orange" href="#">上架</a></p>
+                </li>
+                <li class="item">
+                    <img src="images/houseMess.png" alt="">
+                    <p>房租预算 <strong class="orange">5000-10000</strong></p>
+                    <p>地理位置：<span>洪山区</span></p>
+                    <p align="center"><a class="orange" href="#">编辑</a> &nbsp&nbsp&nbsp <a class="orange" href="#">上架</a></p>
+                </li>
+            </ul>
+        </div>
+
+        <!--tab6 看房管理-->
+        <div id="tab6" class="tab_content house-apply" style="display: none;">
+            <h4>已预约 - <span class="orange">待看房</span></h4>
+            <ul class="applyToSee">
+                <li class="item clearfix">
+                    <div class="left fl">
+                        <p><img src="images/commentpic.png" alt=""></p>
+                        <p>租金：<strong class="orange">1200</strong></p>
+                        <p>位置：<span>汉阳区</span></p>
+                        <p>电话：<span>133-4444-5555</span></p>
+                    </div>
+                    <div class="right fr">
+                        <div class="message  clearfix">
+                            <div class="message-l fl">
+                                <p><label for="">租赁方式：</label>整租</p>
+                                <p><label for="">押付方式：</label>押一付三</p>
+                                <p><label for="">房屋类型：</label>三房一厅</p>
+                            </div>
+                            <div class="message-r fr">
+                                <p><label for="">楼层朝向：</label>南</p>
+                                <p><label for="">基础设施：</label>空调、热水器、厨房、阳台、暖气、沙发</p>
+                            </div>
+                        </div>
+
+                        <p><svg class="icon" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-didian"></use></svg>
+                            <label for="">所在小区：</label>中央保利茉莉公馆 （在租 5）</p>
+                        <p><svg class="icon" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-1-part"></use></svg>
+                            <label for="">详细地址：</label>武汉市汉阳区芳草路特1号墨水湖小区2单元3栋405 （在租 5）</p>
+                        <p><label for="">预约看房时间：</label><strong class="orange">2017-2-9</strong></p>
+                        <p><button>取消看房</button></p>
+                    </div>
+                </li>
+                <li class="item clearfix">
+                    <div class="left fl">
+                        <p><img src="images/commentpic.png" alt=""></p>
+                        <p>租金：<strong class="orange">1200</strong></p>
+                        <p>位置：<span>汉阳区</span></p>
+                        <p>电话：<span>133-4444-5555</span></p>
+                    </div>
+                    <div class="right fr">
+                        <div class="message  clearfix">
+                            <div class="message-l fl">
+                                <p><label for="">租赁方式：</label>整租</p>
+                                <p><label for="">押付方式：</label>押一付三</p>
+                                <p><label for="">房屋类型：</label>三房一厅</p>
+                            </div>
+                            <div class="message-r fr">
+                                <p><label for="">楼层朝向：</label>南</p>
+                                <p><label for="">基础设施：</label>空调、热水器、厨房、阳台、暖气、沙发</p>
+                            </div>
+                        </div>
+
+                        <p><svg class="icon" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-didian"></use></svg>
+                            <label for="">所在小区：</label>中央保利茉莉公馆 （在租 5）</p>
+                        <p><svg class="icon" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-1-part"></use></svg>
+                            <label for="">详细地址：</label>武汉市汉阳区芳草路特1号墨水湖小区2单元3栋405 （在租 5）</p>
+                        <p><label for="">预约看房时间：</label><strong class="orange">2017-2-9</strong></p>
+                        <p><button>取消看房</button></p>
+                    </div>
+                </li>
+                <li class="item clearfix">
+                    <div class="left fl">
+                        <p><img src="images/commentpic.png" alt=""></p>
+                        <p>租金：<strong class="orange">1200</strong></p>
+                        <p>位置：<span>汉阳区</span></p>
+                        <p>电话：<span>133-4444-5555</span></p>
+                    </div>
+                    <div class="right fr">
+                        <div class="message  clearfix">
+                            <div class="message-l fl">
+                                <p><label for="">租赁方式：</label>整租</p>
+                                <p><label for="">押付方式：</label>押一付三</p>
+                                <p><label for="">房屋类型：</label>三房一厅</p>
+                            </div>
+                            <div class="message-r fr">
+                                <p><label for="">楼层朝向：</label>南</p>
+                                <p><label for="">基础设施：</label>空调、热水器、厨房、阳台、暖气、沙发</p>
+                            </div>
+                        </div>
+
+                        <p><svg class="icon" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-didian"></use></svg>
+                            <label for="">所在小区：</label>中央保利茉莉公馆 （在租 5）</p>
+                        <p><svg class="icon" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-1-part"></use></svg>
+                            <label for="">详细地址：</label>武汉市汉阳区芳草路特1号墨水湖小区2单元3栋405 （在租 5）</p>
+                        <p><label for="">预约看房时间：</label><strong class="orange">2017-2-9</strong></p>
+                        <p><button>取消看房</button></p>
+                    </div>
+                </li>
+            </ul>
+            <h4>已看房 - <span class="green">待评价</span></h4>
+            <ul class="applyToSee">
+                <li class="item clearfix">
+                    <div class="left fl">
+                        <p><img src="images/commentpic.png" alt=""></p>
+                        <p>租金：<strong class="orange">1200</strong></p>
+                        <p>位置：<span>汉阳区</span></p>
+                        <p>电话：<span>133-4444-5555</span></p>
+                    </div>
+                    <div class="right fr">
+                        <div class="message  clearfix">
+                            <div class="message-l fl">
+                                <p><label for="">租赁方式：</label>整租</p>
+                                <p><label for="">押付方式：</label>押一付三</p>
+                                <p><label for="">房屋类型：</label>三房一厅</p>
+                            </div>
+                            <div class="message-r fr">
+                                <p><label for="">楼层朝向：</label>南</p>
+                                <p><label for="">基础设施：</label>空调、热水器、厨房、阳台、暖气、沙发</p>
+                            </div>
+                        </div>
+
+                        <p><svg class="icon" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-didian"></use></svg>
+                            <label for="">所在小区：</label>中央保利茉莉公馆 （在租 5）</p>
+                        <p><svg class="icon" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-1-part"></use></svg>
+                            <label for="">详细地址：</label>武汉市汉阳区芳草路特1号墨水湖小区2单元3栋405 （在租 5）</p>
+                        <p><label for="">预约看房时间：</label><strong class="orange">2017-2-9</strong></p>
+                        <p><button>去评价</button></p>
+                    </div>
+                </li>
+                <li class="item clearfix">
+                    <div class="left fl">
+                        <p><img src="images/commentpic.png" alt=""></p>
+                        <p>租金：<strong class="orange">1200</strong></p>
+                        <p>位置：<span>汉阳区</span></p>
+                        <p>电话：<span>133-4444-5555</span></p>
+                    </div>
+                    <div class="right fr">
+                        <div class="message  clearfix">
+                            <div class="message-l fl">
+                                <p><label for="">租赁方式：</label>整租</p>
+                                <p><label for="">押付方式：</label>押一付三</p>
+                                <p><label for="">房屋类型：</label>三房一厅</p>
+                            </div>
+                            <div class="message-r fr">
+                                <p><label for="">楼层朝向：</label>南</p>
+                                <p><label for="">基础设施：</label>空调、热水器、厨房、阳台、暖气、沙发</p>
+                            </div>
+                        </div>
+
+                        <p><svg class="icon" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-didian"></use></svg>
+                            <label for="">所在小区：</label>中央保利茉莉公馆 （在租 5）</p>
+                        <p><svg class="icon" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-1-part"></use></svg>
+                            <label for="">详细地址：</label>武汉市汉阳区芳草路特1号墨水湖小区2单元3栋405 （在租 5）</p>
+                        <p><label for="">预约看房时间：</label><strong class="orange">2017-2-9</strong></p>
+                        <p><button>去评价</button></p>
+                    </div>
+                </li>
+            </ul>
+            <h4>已过期 - <span class="grey">未看房</span></h4>
+            <ul class="applyToSee">
+                <li class="item clearfix">
+                    <div class="left fl">
+                        <p><img src="images/commentpic.png" alt=""></p>
+                        <p>租金：<strong class="orange">1200</strong></p>
+                        <p>位置：<span>汉阳区</span></p>
+                        <p>电话：<span>133-4444-5555</span></p>
+                    </div>
+                    <div class="right fr">
+                        <div class="message  clearfix">
+                            <div class="message-l fl">
+                                <p><label for="">租赁方式：</label>整租</p>
+                                <p><label for="">押付方式：</label>押一付三</p>
+                                <p><label for="">房屋类型：</label>三房一厅</p>
+                            </div>
+                            <div class="message-r fr">
+                                <p><label for="">楼层朝向：</label>南</p>
+                                <p><label for="">基础设施：</label>空调、热水器、厨房、阳台、暖气、沙发</p>
+                            </div>
+                        </div>
+
+                        <p><svg class="icon" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-didian"></use></svg>
+                            <label for="">所在小区：</label>中央保利茉莉公馆 （在租 5）</p>
+                        <p><svg class="icon" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-1-part"></use></svg>
+                            <label for="">详细地址：</label>武汉市汉阳区芳草路特1号墨水湖小区2单元3栋405 （在租 5）</p>
+                        <p><label for="">预约看房时间：</label><strong class="orange">2017-2-9</strong></p>
+                        <p><button>重新预约</button></p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!--tab7 资金管理-->
+        <div id="tab7" class="tab_content money-manage">
+            <h4>冻结中的资金</h4>
+            <p>xxx</p>
+            <h4>可提现的资金</h4>
+            <p>xxx</p>
+            <h4>资金明细</h4>
+            <p>xxx</p>
+            <h4>体现</h4>
+            <p>xxx</p>
+        </div>
+
+    </div>
+</div>
+
+<div class="backToTop">↑<p>Top</p></div>
+
+<!--footer begin-->
+<div class="footer wrap">
+    <img src="images/footer.png" alt="">
+    <div class="company banxin">
+        <span class="service">SERVICE</span>
+        电话咨询服务电话：<span class="number green">400-1371-365</span>
+        <span class="right">&reg 2017 Zuke</span>
+    </div>
+</div>
+<!--footer end-->
+<script src="js/jquery-3.2.1.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/05-4-member.js"></script>
+<script src="js/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+<script>
+    $(".backToTop").click(function () {
+        console.log(11);
+        scrollTo(0,0);
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,678 @@
+.user{
+    width: 100%;
+    min-width: 1200px;
+    height: 280px;
+    box-shadow: 0 0 10px #ccc;
+    position: relative;
+}
+.user img{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+.user-info{
+    height: auto;
+    padding-top: 50px;
+    padding-left: 260px;
+}
+.user-info .user-face{
+    width: 110px;
+    height: 110px;
+    border:1px solid #eee;
+    border-radius: 50%;
+    margin-right: 20px;
+    position: relative;
+}
+.user-info .user-face img.avatar-pic{
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+}
+.user-info .user-face .avatar{
+    position: absolute;
+    bottom: -30px;
+    display:inline-block;
+    width:110px;
+    text-align: center;
+    height:22px;
+    overflow:hidden;
+    color: #0bb8a5;
+}
+.user-info .user-face .avatar:hover{
+    color: orange;
+}
+.user-info .user-face input{
+    position:absolute;
+    right:0;
+    top:0;
+    font-size:100px;
+    opacity:0;
+    filter:alpha(opacity=0);
+    cursor: pointer;
+}
+.user-info p{
+    margin-top: 15px;
+}
+.user-info p span{
+    color: #000;
+}
+
+/*列表左侧 begin*/
+.container {
+    padding-top: 30px;
+    padding-bottom: 100px;
+}
+.container .tabs{
+    width: 380px;
+    height: auto;
+    min-height: 750px;
+    border: 1px solid #eee;
+    box-shadow: 0 0 10px #ccc;
+}
+.container .tabs h4{
+    background-color: #ddd;
+    height: 40px;
+    line-height: 40px;
+}
+.container .tabs li{
+    height: 50px;
+    line-height: 50px;
+    padding-left: 130px;
+    cursor: pointer;
+}
+.container .tabs li a{
+    color: #666;
+    font-size: 18px;
+}
+.container .tabs li:hover a{
+    color : orange;
+}
+.container .tabs li.active a{
+    color: orange;
+}
+.container .tabs li a svg{
+    font-size: 22px;
+}
+/*列表左侧 end*/
+
+/*列表右侧 begin*/
+.tab_container{
+    width: 790px;
+    min-height: 750px;
+    height: auto;
+    border: 1px solid #eee;
+    box-shadow: 0 0 10px #ccc;
+}
+.tab_container .tab_content h4{
+    background-color: #ddd;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 15px;
+}
+
+/*tab1 基本信息 begin*/
+.tab_container .tab_content .top p{
+    margin-top: 30px;
+    margin-left: 30px;
+}
+.tab_container .tab_content .top p>label:nth-child(1){
+    display: inline-block;
+    width: 100px;
+    text-align: right;
+}
+.tab_container .tab_content .top .user-name,.contact,.employe,.promoCode{
+    display: inline-block;
+    width: 200px;
+    height: 24px;
+    line-height: 26px;
+    border: 1px solid #ddd;
+    padding-left: 5px;
+}
+.tab_container .tab_content .top button{
+    width: 120px;
+    height: 32px;
+    font-size: 16px;
+    line-height: 32px;
+    text-align: center;
+    background-color: orange;
+    color: #fff;
+    border-radius: 4px;
+    margin-left: 130px;
+    margin-top: 30px;
+    cursor: pointer;
+}
+
+.tab_container .tab_content .bottom{
+    /*border-top: 1px solid #eee;*/
+    padding-left: 36px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.tab_container .tab_content .bottom p label{
+    font-weight: 700;
+}
+.tab_container .tab_content .bottom .modify{
+    width: 120px;
+    height: 32px;
+    font-size: 16px;
+    line-height: 32px;
+    text-align: center;
+    background-color: orange;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.modify-success{
+    width: 700px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 10px;
+    background-color: #dceed8;
+    color: darkgreen;
+    text-align: center;
+    margin: 30px auto;
+    display: none;
+}
+/*tab1 基本信息 end*/
+
+/*tab2 发布房源 begin*/
+.house-release{
+    height: auto;
+}
+.house-release .house-description{
+    margin-left: 30px;
+}
+.house-release p{
+    margin-top: 20px;
+    margin-left: 30px;
+}
+.house-release .address{
+    margin-bottom: 20px;
+}
+.house-release .livingArea input{
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+    line-height: 26px;
+    border: 1px solid #ddd;
+    padding-left: 5px;
+}
+.house-release .livingSet{
+    margin-bottom: 30px;
+}
+.house-release .house-type,.district,.addr,.bus,.tube,.mall,.house-payment{
+    display: inline-block;
+    width: 400px;
+    height: 24px;
+    line-height: 26px;
+    border: 1px solid #ddd;
+    padding-left: 5px;
+}
+.house-release .house-payment{
+    width: 100px;
+}
+.house-release .surrounding-facilities{
+    width: 100%;
+    padding: 30px 0 0 30px;
+}
+.house-release .surrounding-facilities li{
+    float: left;
+    text-align: center;
+    width: 80px;
+    margin-bottom: 30px;
+}
+.house-release .surrounding-facilities li img{
+    height: 30px;
+    width: 30px;
+}
+.house-release p .mall{
+    margin-bottom: 30px;
+}
+.house-release .bedroom{
+    width: 700px;
+    height: 140px;
+    margin: 30px auto 0;
+    border: 1px solid #ddd;
+    position: relative;
+}
+.house-release .bedroom .area{
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+    line-height: 26px;
+    border: 1px solid #ddd;
+    padding-left: 5px;
+}
+.house-release .bedroom h5{
+    height: 26px;
+    line-height: 26px;
+    padding-left: 15px;
+    background-color: #eee;
+}
+.house-release .bedroom .close{
+    display:inline-block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    font-size: 12px;
+    background-color: #fff;
+    color: #999;
+    position: absolute;
+    top: 3px;
+    right: 5px;
+    cursor: pointer;
+}
+.house-release .bedroom .close:hover{
+    background-color: orange;
+    color: #fff;
+}
+.house-release .addBedroom{
+    width: 120px;
+    height: 32px;
+    font-size: 16px;
+    line-height: 32px;
+    text-align: center;
+    background-color: orange;
+    color: #fff;
+    border-radius: 4px;
+    margin: 30px;
+    margin-left: 46px;
+    cursor: pointer;
+}
+.house-release .photos{
+    margin: 30px;
+    width: 200px;
+    height: 150px;
+    line-height: 150px;
+    text-align: center;
+    border: 1px solid #ddd;
+    cursor: pointer;
+}
+.release-pay,.release-reserve{
+    width: 100px;
+    height: 32px;
+    font-size: 16px;
+    line-height: 32px;
+    text-align: center;
+    background-color: orange;
+    color: #fff;
+    border-radius: 4px;
+}
+.release-ways{
+    width: 250px;
+    margin: 30px auto 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.release-reserve{
+    background-color: #0bb8a5;
+}
+#test-image-preview{
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+/*tab2 发布房源 end*/
+
+/*tab3 发布管理 begin*/
+.house-manage{
+    height: auto;
+}
+.items-on,.items-off{
+    width: 620px;
+    padding: 30px 0;
+    margin: 0 auto;
+}
+.items-on li,.items-off li{
+    width: 186px;
+    height: 208px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    margin: 0 30px 30px 0;
+    padding: 10px;
+    float: left;
+}
+.items-on li:nth-child(3n),.items-off li:nth-child(3n){
+    margin-right: 0;
+}
+.items-on li img,.items-off li img{
+    width: 100%;
+}
+.items-on li p,.items-off li p{
+    margin-bottom: 5px;
+}
+/*tab3 发布管理 end*/
+
+
+/*tab4 求租发布 begin*/
+.seekRent{
+    height: 900px;
+}
+.seekRent p{
+    margin: 20px 0;
+}
+.seekRent p.checkinDay input{
+    display: inline-block;
+    width: 110px;
+    height: 24px;
+    background-color: #ddd;
+    line-height: 26px;
+    padding-left: 20px;
+}
+.seekRent p.extraInfo textarea{
+    padding:10px;
+    vertical-align: text-top;
+}
+.seekRent p label{
+    display: inline-block;
+    width: 200px;
+    text-align: right;
+    padding-right: 20px;
+}
+.seekRent .surrounding-facilities{
+    padding: 30px 0 0 30px;
+    margin: 0 auto 30px;
+
+}
+.seekRent .surrounding-facilities li{
+    float: left;
+    text-align: center;
+    width: 70px;
+    height: 100px;
+    border-bottom: 1px solid #ddd;
+}
+.seekRent .surrounding-facilities li img{
+    height: 25px;
+}
+.seekRent .userName input,.phoneNum input{
+    display: inline-block;
+    width: 200px;
+    height: 24px;
+    line-height: 26px;
+    border: 1px solid #ddd;
+    padding-left: 5px;
+}
+.seekRent .phoneNum button{
+    width: 120px;
+    height: 32px;
+    font-size: 16px;
+    line-height: 32px;
+    text-align: center;
+    background-color: orange;
+    color: #fff;
+    border-radius: 4px;
+    margin-left: 20px;
+}
+.seekRent .submit{
+    width: 300px;
+    height: 32px;
+    font-size: 16px;
+    line-height: 32px;
+    text-align: center;
+    background-color: orange;
+    color: #fff;
+    border-radius: 4px;
+    margin-top: 30px;
+    margin-left: 244px;
+}
+/*tab4 求租发布 end*/
+
+
+/*tab7 看房管理 begin*/
+/* 预约列表页面 */
+.items{
+    padding: 30px;
+}
+.reservation-item{
+    width: 730px;
+    height: 340px;
+    padding: 20px;
+    margin-bottom: 30px;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 5px #e8e8e8;;
+}
+.reservation-item .left{
+    width: 200px;
+    height: 300px;
+    font-size: 16px;
+    border-right: none;
+    padding: 10px;
+    background-color: #e9e9e9;
+    border-radius: 2px;
+}
+.reservation-item .left img{
+    width: 180px;
+    height: 180px;
+    display: block;
+}
+.reservation-item .left p{
+    text-align: center;
+    margin-top: 10px;
+}
+.reservation-item .right{
+    padding: 0 10px;
+    height: 300px;
+}
+.reservation-item .right ul{
+    width: 460px;
+}
+.reservation-item .right ul li{
+    /*height: 40px;*/
+    width: 50%;
+    line-height: 40px;
+    float: left;
+    color: #999;
+}
+.reservation-item .right ul li:nth-child(n+5){
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.reservation-item .right ul li span{
+    color: #000;
+}
+.reservation-item .right button{
+    width: 120px;
+    height: 32px;
+    font-size: 16px;
+    color: orange;
+    line-height: 32px;
+    text-align: center;
+    margin-top:10px;
+    background-color: transparent;
+    border: 1px solid orange;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.reservation-item .right button:hover{
+    background-color: orange;
+    color: #fff;
+}
+.reservation-item .right button:nth-child(3){
+    border: 1px solid #999;
+    color:#999;
+}
+.reservation-item .right button:nth-child(3):hover{
+    background-color: red;
+    border: none;
+    color: #fff;
+}
+
+/* 评价页面 */
+.house-apply{
+    height: 1000px;
+}
+.house-apply .applyToSee{
+    padding: 30px 0 0 30px;
+}
+.house-apply .applyToSee .item{
+    width: 730px;
+    padding: 10px;
+    margin-bottom: 30px;
+    border: 1px solid #ddd;
+}
+.house-apply .applyToSee .item .left{
+    width: 186px;
+    height: 100%;
+    font-size: 16px;
+    border-right: none;
+    padding: 10px;
+    text-align: center;
+    background-color: #e9e9e9;
+}
+.applyToSee .item .left img.house-pic{
+    width: 100%;
+}
+.applyToSee .item .left img.user-avatar{
+    width: 110px;
+    height: 110px;
+    border: 1px solid #fff;
+    border-radius: 50%;
+}
+.applyToSee .item .left p{
+    margin-top: 10px;
+}
+/*.applyToSee .item .left .contactNum{*/
+    /*width: 150px;*/
+    /*height: 22px;*/
+    /*padding-left:5px;*/
+    /*background-color: #ddd;*/
+    /*border-radius: 4px;*/
+    /*line-height: 22px;*/
+/*}*/
+.applyToSee .item .right{
+    padding: 10px;
+}
+.applyToSee .item .right h5{
+    width: 450px;
+    height: 30px;
+    line-height: 20px;
+    position: relative;
+}
+.applyToSee .item .right .comment{
+    position: absolute;
+    top: 0;
+    left: 40px;
+}
+.applyToSee .item .right .comment li{
+    font-size: 20px;
+    color: orange;
+    list-style: none;
+    float: left;
+    margin-right: 5px;
+    cursor: pointer;
+}
+.applyToSee .item .right .pic-upload-wrap{
+    width: 70px;
+    height: 26px;
+    font-size: 12px;
+    line-height: 26px;
+    text-align: center;
+    background-color: orange;
+    color: #fff;
+    border-radius: 4px;
+    position: relative;
+    margin-bottom: 12px;
+}
+.applyToSee .item .right .pic-upload-wrap input{
+    width: 70px;
+    opacity: 0;
+}
+.applyToSee .item .right .pic-upload-wrap span{
+    display: inline-block;
+    position: absolute;
+    left: 10px;
+}
+.applyToSee .item .right .submit{
+    width: 200px;
+    height: 32px;
+    font-size: 16px;
+    line-height: 32px;
+    text-align: center;
+    background-color: orange;
+    color: #fff;
+    border-radius: 4px;
+    margin-top: 12px;
+}
+/*tab6 看房管理 end*/
+
+/*tab8 资金管理 begin*/
+.money-manage{
+    height: 600px;
+}
+.money-manage p,.money-manage button{
+    margin-left: 30px;
+}
+.money-manage p{
+    height: 40px;
+    line-height: 40px;
+}
+.money-manage button{
+    width: 120px;
+    height: 32px;
+    font-size: 16px;
+    line-height: 32px;
+    text-align: center;
+    background-color: orange;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+/*tab7 资金管理 end*/
+
+/*tab9 系统消息 begin*/
+.systems{
+    width: 700px;
+    height: auto;
+    margin: 30px auto;
+}
+.systInfoTitle{
+    margin-bottom: 5px;
+    font-weight: normal;
+}
+.systInfoTitle:hover{
+    color: orange;
+    cursor: pointer;
+}
+.systInfoTitle span{
+    font: normal normal 14px "微软雅黑";
+}
+.systInfo{
+    text-indent: 2em;
+    margin-bottom: 40px;
+    display: none;
+}
+
+/*tab9 系统消息 begin*/
+
+
+.backToTop{
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    color: #999;
+    line-height: 25px;
+    text-align: center;
+    background-color: rgba(221,221,221,0.7);
+    position: fixed;
+    right: 100px;
+    bottom:100px;
+    z-index: 1000;
+    cursor: pointer;
+}
+.backToTop:hover{
+    color: #fff;
+    background-color: orange;
+}
+.backToTop p{
+    font-size: 14px;
+}
+/*列表右侧 end*/
+
+
+

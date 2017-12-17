@@ -1,0 +1,258 @@
+{% extends 'frontend/base.html' %}
+
+{% block pageheader %}
+用户中心
+{% endblock %}
+
+{% block style %}
+
+    <!--图片上传 end-->
+    <!-- <link rel="stylesheet" href="/static/website/css/base.css"> -->
+    <link rel="stylesheet" href="/static/website/css/05-4-member.css">
+    <link type="text/css" rel="stylesheet" href="/static/website/js/jquery-ui-1.12.1.custom/jquery-ui.css"/>
+    <link type="text/css" rel="stylesheet" href="/static/website/js/jquery-ui-1.12.1.custom/jquery-ui.structure.css"/>
+    <link type="text/css" rel="stylesheet" href="/static/website/js/jquery-ui-1.12.1.custom/jquery-ui.theme.css"/>
+    <script src="//at.alicdn.com/t/font_344262_t15uvgtl6elmobt9.js"></script>
+{% endblock %}
+
+{% block container %}
+
+<div class="user">
+    <img src="/static/website/images/member-bg.jpg" alt="" id="user_avatar">
+    <div class="user-info banxin clearfix">
+        <div class="user-face fl" id="container1" >
+            <img class="avatar-pic" src="{{ client.avatar_url }}" alt="">
+            <a class="avatar"><input type="file" id="pickfiles1">修改头像</a>
+        </div>
+        <p class="user-name grey">你好，<span>{{ client.user_name }}</span>！</p>
+        <p class="user-loginTime grey">上次登录：<span>{{client.updated|date:"Y-m-d H:i:s"}}</span></p>
+        <p class="user-credit grey">租客信用：<span class="green">900/1000</span> <strong class="green">优</strong></p>
+    </div>
+</div>
+<div class="container banxin clearfix">
+    <!--左边列表-->
+    <ul class="tabs fl">
+        <h4 align="center">账号管理</h4>
+        <li {% if sub_module == 'user_index' %} class="active" {% endif %}>
+            <a href="{% url 'website:user_index' %}">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-01jbxx"></use>
+                </svg> 基本信息
+            </a>
+        </li>
+        <li {% if sub_module == 'housing_resource_create' %} class="active" {% endif %}>
+            <a href="{% url 'website:housing_resource_create' %}">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-02fbfy"></use>
+                </svg> 房源发布
+            </a>
+        </li>
+        <li {% if sub_module == 'housing_resource' %} class="active" {% endif %}>
+            <a href="{% url 'website:housing_resources' %}">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-03fygl"></use>
+                </svg> 房源管理
+            </a>
+        </li>
+        <li {% if sub_module == 'rent_house_create' %} class="active" {% endif %}>
+            <a href="">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-04qzfb"></use>
+                </svg> 求租发布
+            </a>
+        </li>
+        <li {% if sub_module == 'rent_house' %} class="active" {% endif %}>
+            <a href="">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-05qzgl"></use>
+                </svg> 求租管理
+            </a>
+        </li>
+        <li {% if sub_module == 'look_house' %} class="active" {% endif %}>
+            <a href="">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-06kfgl"></use>
+                </svg> 看房管理
+            </a>
+        </li>
+        <li {% if sub_module == 'bill' %} class="active" {% endif %}>
+            <a href="">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-07zjgl"></use>
+                </svg> 资金管理
+            </a>
+        </li>
+        <li>
+            <a href="">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-07zjgl"></use>
+                </svg> 系统消息
+            </a>
+        </li>
+    </ul>
+
+    <!--右边列表-->
+    <div class="tab_container fr">
+        <!--tab1 基本信息-->
+        <!--修改资料反馈-->
+        <div id="tab1" class="tab_content baseinfo" style="display: block;">
+            <h4 class="baseinfo">基本信息</h4>
+            <div class="modify-success">资料于 <span></span> 修改成功!</div>
+            <form action="{% url 'website:user_index' %}" method="POST" target="" accept-charset="UTF-8"
+                  ectype="application/x-www-form-urlencoded" autocomplete="off" novalidate>
+            <div class="top">
+                <p>
+                    <label>姓名：</label>
+                    <input type="text" name="user_name" class="user-name" value="{{ client.user_name }}">
+                </p>
+                <p>
+                    <label>性别：</label>
+                    <label for="gender1" class="gender">
+                        <input type="radio" id="gender1" name="gender" {% if client.gender == 1 %} checked {% endif %} value="1">男
+                    </label>
+
+                    <label for="gender2" class="gender">
+                        <input type="radio" id="gender2" name="gender" {% if client.gender == 2 %} checked {% endif %} value="2">女
+                    </label>
+                </p>
+                <p>
+                    <label>生日：</label>
+                    <input class="contact birbath" id="selectDate" name="birbath" type="text" value="{{ client.birbath|date:'Y-m-d' }}">
+                </p>
+                <p>
+                    <label>联系方式：</label>
+                    <input class="contact" id="phoneNum" name="mobile" type="text" value="{{ client.mobile }}">
+                </p>
+                <p>
+                    <label>工作单位：</label>
+                    <input class="employe" name="employe" type="text" value="{{ client.employe }}" placeholder="请填写您的工作单位">
+                </p>
+                <p>
+                    <label>动态码：</label>
+                    <input class="promoCode" name="promo_code" value="{{ client.promo_code }}" type="text" placeholder="输入优惠码">
+                </p>
+            </div>
+                <!--<h4 class="baseinfo">身份认证</h4>-->
+            <div class="bottom">
+                <p>
+                    <lable>身份证认证：</lable>
+                    <input class="contact" type="text" name="id_card" value="{{ client.id_card }}">
+                </p>
+                <p>
+                    <label>认证情况：</label>
+                    {{ client.get_id_card_status_display }}
+                </p>
+                <br>
+                <input type="file" id="test-image-file" name="test-image-file" value="上传身份证正反照片" size="2">
+                {% if client.id_card_picture %}
+                    <img src="{{ client.id_card_picture_url }}?imageView2/1/w/300/h/200" width="150">
+                {% endif %}
+                <br/>
+                <input type="hidden" name="c_user_id" value="{{ client.id }}">
+                <button id="user_info_submit" type="submit" class="modify">确认修改</button>
+            </div>
+            <!-- <button type="submit">确认上传</button>-->
+            <!-- <button type="reset" class="modify">确认修改</button> -->
+            </div>
+            </form>
+        </div>
+        <div class="backToTop">↑<p>Top</p></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+
+<!--footer end-->
+<script src="/static/website/js/jquery-3.2.1.js"></script>
+<script src="/static/vendor/qiniu.min.js"></script>
+<script src="/static/vendor/plupload.full.min.js"></script>
+<script src="/static/website/js/nav.js"></script>
+<script src="/static/website/js/05-4-member.js"></script>
+<script src="/static/website/js/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+<script src="/static/website/js/dropzone-min/dropzone.min.js"></script>
+<script src="/static/website/js/dropzone-min/bootStyle.js"></script>
+<script>
+    $(".backToTop").click(function () {
+        console.log(11);
+        scrollTo(0,0);
+    });
+</script>
+<script>
+  $(function(){
+    // $('#selectDate').jHsDate();
+
+        //设置上传信息
+        var uploader1 = Qiniu.uploader({
+            runtimes: 'html5,flash,html4',    //上传模式,依次退化
+            browse_button: 'pickfiles1',       //上传选择的点选按钮，**必需**
+            uptoken_url: '/admin/uptoken/',            //Ajax请求upToken的Url，**强烈建议设置**（服务端提供）
+            // uptoken : '', //若未指定uptoken_url,则必须指定 uptoken ,uptoken由其他程序生成
+            unique_names: true, // 默认 false，key为文件名。若开启该选项，SDK为自动生成上传成功后的key（文件名）。
+            // save_key: true,   // 默认 false。若在服务端生成uptoken的上传策略中指定了 `sava_key`，则开启，SDK会忽略对key的处理
+            domain: 'http://{{qiniu_domain}}',   //bucket 域名，下载资源时用到，**必需**
+            get_new_uptoken: false,  //设置上传文件的时候是否每次都重新获取新的token
+            container: 'container1',           //上传区域DOM ID，默认是browser_button的父元素，
+            max_file_size: '500mb',           //最大文件体积限制
+            max_retries: 3,                   //上传失败最大重试次数
+            dragdrop: true,                   //开启可拖曳上传
+            drop_element: 'container1',        //拖曳上传区域元素的ID，拖曳文件或文件夹后可触发上传
+            chunk_size: '4mb',                //分块上传时，每片的体积
+            auto_start: true,                 //选择文件后自动上传，若关闭需要自己绑定事件触发上传
+            multi_selection: false,           //限制只能上传一个文件
+            filters : {
+                prevent_duplicates: true,
+                //Specify what files to browse for
+                 mime_types: [
+                  {title : "images files", extensions : "jpeg,png,jpg"},
+                 ]
+            },
+            init: {
+                'FilesAdded': function(up, files) {
+                    plupload.each(files, function(file) {
+                        // 文件添加进队列后,处理相关的事情
+                    });
+                },
+                'BeforeUpload': function(up, file) {
+                    // 每个文件上传前,处理相关的事情
+                    $('#pickfiles1').prev().val("");
+                },
+                'UploadProgress': function(up, file) {
+                   var percent = up.total.percent + '%';
+                   $("#upload_progress").css('width', percent);
+                   $("#upload_progress").text(percent);
+                },
+                'FileUploaded': function(up, file, info) {
+                    // 每个文件上传成功后,处理相关的事情
+                    var res = JSON.parse(info);
+                    key = res.key
+                    console.log(key)
+                    $('.avatar-pic').attr('src', 'http://{{ qiniu_domain }}/' + key)
+                    $('#pickfiles1').prev().val(key);
+                    // 更新用户的头像
+                    $.ajax({
+                        url:'/user/update_avatar',
+                        type: 'POST',
+                        data: {'avatar': key, 'c_user_id': {{ client.id }} },
+                    }).done(function(res){
+                        console.log(res)
+                        if (res.error_code == 0) {
+                            return;
+                        }
+                    }).fail(function(res){
+
+                    });
+                },
+                'Error': function(up, err, errTip) {
+                    //上传出错时,处理相关的事情
+                },
+                'UploadComplete': function() {
+                    //队列文件处理完毕后,处理相关的事情
+                },
+            }
+        });
+
+    });
+</script>
+{% endblock %}
+
