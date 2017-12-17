@@ -1,0 +1,153 @@
+/*筛选条件 begin*/
+.panel-filter{
+    padding: 10px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+}
+/* 区域位置 */
+.container{
+    height: auto;
+    margin: 0 auto;
+}
+.container .tabs,.tab_content .service_tabs{
+    height: 40px;
+    line-height: 40px;
+}
+.container .tabs li,.tab_content .service_tabs li{
+    float: left;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.container .tabs li a{
+    color: #000;
+}
+.container .tabs li a:hover,.tab_content .service_tabs li:hover{
+    color: #0bb8a5;
+}
+.container .tabs li.active a,.tab_content .service_tabs li.active{
+    color: #0bb8a5;
+}
+.tab_container{
+    width: 100px;
+    height: 50px;
+    background-color: #0bb8a5;
+}
+.district_container{
+    padding-left: 55px;
+}
+
+/*其他筛选*/
+.row.roommate{
+    display: none;
+}
+.row ul li{
+    height: 32px;
+    line-height: 32px;
+    float: left;
+    margin-left:10px;
+    cursor: pointer;
+    vertical-align: baseline;
+
+}
+.row ul li:nth-child(n+2):hover{
+    color: #0bb8a5;
+}
+.row ul li.active{
+    color: #0bb8a5;
+}
+.price .self-pricing{
+    height: 32px;
+    line-height: 32px;
+}
+.price .self-pricing input{
+    display: inline-block;
+    width: 60px;
+    border: 1px solid #ddd;
+}
+.price .self-pricing button{
+    background-color: transparent;
+    color: #0bb8a5;
+    cursor: pointer;
+}
+/*筛选条件 end*/
+
+
+/*筛选结果列表 begin*/
+.user{
+    width: 100%;
+    min-width: 1200px;
+    height: 220px;
+    box-shadow: 0 0 10px #ccc;
+    position: relative;
+}
+.user img{
+    width: 100%;
+    min-width: 1200px;
+    position: absolute;
+    bottom: 0;
+}
+
+/* 求组信息 item */
+.items{
+    padding-top: 30px;
+}
+.items .item{
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    box-shadow: 0 0 5px 0 rgba(0,0,0,0.1);
+}
+.items .item .left{
+    width: 200px;
+    text-align: center;
+}
+.items .item .left img{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+.items .item .left button{
+    width: 120px;
+    height: 32px;
+    font-size: 16px;
+    line-height: 32px;
+    text-align: center;
+    background-color: orange;
+    color: #fff;
+    border-radius: 4px;
+    margin-top: 30px;
+    cursor: pointer;
+}
+.items .item .left .complaint{
+    border:1px solid #999;
+    background-color: #fff;
+    color: #999;
+}
+.items .item .left .complaint:hover{
+    border:1px solid red;
+    background-color: red;
+    color: #fff;
+}
+.items .item .right p{
+    padding: 8px;
+}
+.items .item .right p label{
+    display: inline-block;
+    width: 90px;
+    color: #999;
+}
+.items .surrounding-facilities{
+    padding-top: 10px;
+}
+.items .surrounding-facilities li{
+    float: left;
+    text-align: center;
+    width: 70px;
+    height: 55px;
+}
+.items .surrounding-facilities li img{
+    height: 25px;
+}

@@ -1,0 +1,22 @@
+#-   repo: git://github.com/pre-commit/mirrors-pylint
+#    sha: 029186c31774c24af446c428eafc59ce8980dcb9
+#    hooks:
+#    -   id: pylint
+#-   repo: /Users/lucas/repo_pep8
+#    sha: 3e260c518eb394908138f6347551118a1481ce92
+#    hooks:
+#    -   id: pep8_hook
+-    repo: git://github.com/jinji-lukaishun/pep8-mirror
+     sha: 937c70b372e17890029a5570e5c0de98333c9490
+     hooks:
+     -    id: pep8
+          args: [--max-line-length=119]
+-    repo: git://github.com/pre-commit/mirrors-eslint
+     sha: v2.4.0 
+     hooks:
+     -    id: eslint
+     additional_dependencies: 
+-    repo: git://github.com/pre-commit/mirrors-csslint
+     sha: 9c492bd1cc4446a207ecd1d98784be436de565de
+     hooks:
+     -    id: csslint

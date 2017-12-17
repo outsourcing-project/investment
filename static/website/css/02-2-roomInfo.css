@@ -1,0 +1,294 @@
+
+/*图片简介 begin*/
+.info-pic{
+    height: 600px;
+    min-width: 1200px;
+    background: url("../images/roominfo-bg.jpg");
+    background-color: #999999;
+}
+.banner{
+    padding-top: 6%;
+}
+.swiper-container {
+    width: 800px;
+    height: 460px;
+    box-shadow: 0 0 30px 0 rgba(0,0,0,.2);
+}
+.swiper-container a{
+    font-size: 0;
+}
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    /*background: #fff;*/
+
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.contact{
+    width: 360px;
+    height: 460px;
+    background-color: #fff;
+    padding: 45px 30px 30px;
+    box-shadow: 0 0 30px 0 rgba(0,0,0,.2);
+}
+.contact p{
+    padding-top: 30px;
+    font-size: 16px;
+    color: #666;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+}
+.contact p a{
+    color: #999;
+    font-size: 16px;
+    cursor: pointer;
+}
+.contact p svg{
+    font-size: 18px;
+}
+.contact .payment{
+    width: 300px;
+    height: 70px;
+    background-color: #eee;
+    margin: 40px auto 0;
+    padding-left: 15px;
+}
+.contact .payment .orange{
+    font:  normal bold 26px/15px "微软雅黑";
+}
+
+.contact .phoneNum button{
+    width: 300px;
+    height: 50px;
+    background-color: orange;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 4px;
+    cursor: pointer;
+
+}
+/*图片简介 end*/
+
+
+/*房源详情 begin*/
+/* 公用 css*/
+.moreInfo{
+    border: 1px solid #ddd;
+    border-bottom: none;
+    height: auto;
+    margin-bottom: 30px;
+}
+.moreInfo .wrapper{
+    width: 100%;
+    height: auto;
+    padding: 30px;
+    border-bottom: 1px solid #ddd;
+    margin: 0 auto;
+}
+.wrapper .left{
+    width: 250px;
+    font-size: 28px;
+}
+.wrapper .left svg{
+    font-size: 40px;
+    vertical-align: middle;
+}
+.wrapper .right{
+    width: 888px;
+}
+.wrapper .right .text{
+    width: 600px;
+}
+
+
+/* 2 房屋详情*/
+.room-details .right p{
+    padding-bottom: 20px;
+}
+.room-details .right p:last-child{
+    padding: 0;
+}
+
+/* 3 基础设施*/
+.baseSet .right ul li{
+    float: left;
+    text-align: center;
+    width: 70px;
+    height: 55px;
+}
+.baseSet .right ul li img{
+    height: 25px;
+}
+
+.around .right{
+    height: 400px;
+    background-color: #999999;
+}
+
+/* 6 房间概况*/
+.someInfo ul{
+    width: 100%;
+}
+.someInfo ul li{
+    width: 100%;
+    height: 200px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+/*.someInfo ul li:hover{*/
+    /*cursor: pointer;*/
+    /*box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);*/
+/*}*/
+.someInfo ul li h4{
+    height: 40px;
+    line-height: 40px;
+    padding-left: 15px;
+    background-color: #f0f0f0;
+}
+.someInfo ul li h4 button{
+    width: 100px;
+    height: 40px;
+    font: normal 600 16px "微软雅黑";
+    background-color: #ddd;
+}
+.someInfo ul li h4 button.online{
+    background-color: orange;
+    color: #fff;
+}
+.someInfo ul li p{
+    line-height: 30px;
+    padding-left: 15px;
+    margin-top: 20px;
+}
+
+/* 7 看房评论*/
+.comment h3{
+    height: 40px;
+}
+.comment h3 span{
+    font-size: 24px;
+    color: orange;
+}
+.comment ul{
+    width: 100%;
+    margin-top: 20px;
+}
+.comment ul li{
+    width: 100%;
+    height: auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+.comment ul li p{
+    width: 100%;
+    margin-bottom: 20px;
+}
+.comment ul li .comment-time{
+    margin-bottom: 0;
+}
+.comment ul li .comment-pic img{
+    width: 120px;
+    height: 120px;
+    border: 4px solid #ddd;
+    border-radius: 4px;
+}
+/*图片部分 end*/
+
+
+/*房源推荐 begin*/
+.recommend h3{
+    margin-bottom: 10px;
+}
+.tab-content{
+    height: auto;
+}
+.tab-content .tabpanel{
+    font-size: 0;
+    height: 100%;
+}
+.tab-content .tabpanel a{
+    width: 282px;
+    height: 282px;
+    display: inline-block;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 0 24px 24px 0;
+    background-color: #fff;
+    transition: all .3s ease-in-out;
+}
+.tab-content .tabpanel a:hover{
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+}
+.tab-content .tabpanel a:nth-child(4n){
+    margin: 0 0 24px 0;
+}
+.tab-content .tabpanel a img{
+    width: 282px;
+    height: 178px;
+}
+.tab-content .tabpanel .trig div{
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    margin-bottom: 5px;
+}
+.tab-content .tabpanel .trig .trig_txt{
+    padding:18px 15px;
+}
+.tab-content .tabpanel .trig-price{
+    font:normal 600 20px "微软雅黑";
+}
+.tab-content .tabpanel .trig-price span{
+    font-size: 14px;
+}
+.tab-content .tabpanel .trig-addr{
+    font-size: 14px;
+    color: #000;
+}
+.tab-content .tabpanel .trig-describe{
+    font-size: 12px;
+    color: #000;
+}
+/*房源推荐 end*/
+
+/*回到顶部*/
+.backToTop{
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    color: #999;
+    line-height: 25px;
+    text-align: center;
+    background-color: rgba(221,221,221,0.7);
+    position: fixed;
+    right: 100px;
+    bottom:100px;
+    z-index: 1000;
+    cursor: pointer;
+}
+.backToTop:hover{
+    color: #fff;
+    background-color: orange;
+}
+.backToTop p{
+    font-size: 14px;
+}
+
+
+

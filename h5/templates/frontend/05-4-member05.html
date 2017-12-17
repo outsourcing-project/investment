@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>05求租发布</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/05-4-member.css">
+    <link type="text/css" rel="stylesheet" href="js/jquery-ui-1.12.1.custom/jquery-ui.css"/>
+    <link type="text/css" rel="stylesheet" href="js/jquery-ui-1.12.1.custom/jquery-ui.structure.css"/>
+    <link type="text/css" rel="stylesheet" href="js/jquery-ui-1.12.1.custom/jquery-ui.theme.css"/>
+    <script src="//at.alicdn.com/t/font_344262_t15uvgtl6elmobt9.js"></script>
+</head>
+<body>
+<!--通用top begin -->
+
+<!--header begin-->
+<header class="wrap">
+    <div class="banxin welcome clearfix">
+        <div class="wel_left fl">
+            <span class="white">欢迎来到租房网！更多房源选择任您挑选！请选择您的位置：</span>
+            <select class="city white" name="city" id="">
+                <option value="武汉" selected>武汉</option>
+            </select>
+
+        </div>
+        <div class="wel_right fr clearfix">
+            <a class="white" href="javascript:void(0)">收藏本站 |</a>
+            <a class="white" href="javascript:void(0)">设为首页 |</a>
+            <a class="white" href="javascript:void(0)">登录 |</a>
+            <a class="white" href="javascript:void(0)">注册 </a>
+        </div>
+    </div>
+</header>
+<!--header end-->
+
+<!--nav begin-->
+<nav class="wrap">
+    <div class="banxin nav  clearfix">
+        <a class="logo fl" href="javascript:void(0)"><img src="images/LOGO.png" alt=""></a>
+        <ul class="nav_items fl clearfix">
+            <li class="fl"><a href="javascript:void(0)">首页</a></li>
+            <li class="fl"><a href="javascript:void(0)">房源信息</a></li>
+            <li class="fl"><a href="javascript:void(0)">求租信息</a></li>
+            <li class="fl"><a href="javascript:void(0)">生活馆</a></li>
+            <li class="fl"><a href="javascript:void(0)">注册登录</a></li>
+        </ul>
+        <div class="hot-line fr clearfix">
+            <img src="images/QRcode.png" alt="公众号二维码">
+            <p align="center">联系我们</p>
+        </div>
+    </div>
+</nav>
+<!--nav end-->
+<!--通用top end -->
+
+<div class="user">
+    <img src="images/member-bg.jpg" alt="">
+    <div class="user-info banxin clearfix">
+        <div class="user-face fl"><img class="avatar-pic" src="images/user-face.jpg" alt=""><a class="avatar"><input type="file">修改头像</a></div>
+        <p class="user-name grey">你好，<span>XXX</span>！</p>
+        <p class="user-loginTime grey">上次登录：<span>2017-06-22  11:52:00</span></p>
+        <p class="user-credit grey">租客信用：<span class="green">900/1000</span> <strong class="green">优</strong></p>
+    </div>
+</div>
+<div class="container banxin clearfix">
+    <!--左边列表-->
+    <ul class="tabs fl">
+        <h4 align="center">账号管理</h4>
+        <li><a href="05-4-member01.html"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-01jbxx"></use></svg> 基本信息</a></li>
+        <li><a href="05-4-member02.html"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-02fbfy"></use></svg> 房源发布</a></li>
+        <li><a href="05-4-member03.html"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-03fygl"></use></svg> 房源管理</a></li>
+        <li><a href="05-4-member04.html"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-04lfgl"></use></svg> 来访管理</a></li>
+        <li class="active"><a href="05-4-member05.html"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-05qzfb"></use></svg> 求租发布</a></li>
+        <li><a href="05-4-member06.html"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-06qzgl"></use></svg> 求租管理</a></li>
+        <li><a href="05-4-member07.html"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-07kfgl"></use></svg> 看房管理</a></li>
+        <li><a href="05-4-member08.html"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-08zjgl"></use></svg> 资金管理</a></li>
+        <li><a href="05-4-member09.html"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-09xtxx"></use></svg> 系统消息</a></li>
+    </ul>
+    <!--右边列表-->
+    <div class="tab_container fr">
+        <!--tab5 求租发布-->
+        <div id="tab5" class="tab_content seekRent">
+            <h4 class="house-online">基础信息</h4>
+            <form action="" method="POST" target="" accept-charset="UTF-8"
+                  ectype="application/x-www-form-urlencoded" autocomplete="off">
+                <p><label><span class="orange ">*</span>求租地段：</label>
+                    <select name="rentArea" id="rentProvince" required>
+                    <option value="湖北省" selected>湖北省</option>
+                </select>&nbsp;&nbsp;
+                    <select name="rentArea" id="rentCity" required>
+                        <option value="武汉市" selected>武汉市</option>
+                    </select>&nbsp;&nbsp;
+                    <select name="rentBlock" id="rentBlock" required>
+                        <option value="wc">武昌区</option>
+                        <option value="hk">汉口区</option>
+                        <option value="hs">洪山区</option>
+                        <option value="gg">光谷区</option>
+                        <option value="hy">汉阳区</option>
+                    </select>
+                </p>
+                <p><label><span class="orange">*</span>租金：</label><select name="rent" id="rent" required>
+                    <option value="请选择租金">请选择租金</option>
+                    <option value="0-500">0-500</option>
+                    <option value="500-1000">500-1000</option>
+                    <option value="1000-1500">1000-1500</option>
+                    <option value="1500-2000">1500-2000</option>
+                    <option value="2000-2500">2000-2500</option>
+                    <option value="2000-2500">2000-2500</option>
+                    <option value="2500-3000">2500-3000</option>
+                    <option value="3000-3500">3000-3500</option>
+                    <option value="3500-4000">3500-4000</option>
+                    <option value="4000以上">4000以上</option>
+                    <option value="不限">不限</option>
+                </select>
+                </p>
+                <p class="checkinDay"><label><span class="orange">*</span>最迟入住时间：</label><input type="text" id="selectDate" readonly="readonly" placeholder="请选择日期" required/></p>
+                <p class="extraInfo"><label><span class="orange">*</span>补充说明：</label><textarea name="extraInfo" id="extraInfo" cols="30" rows="10" placeholder="凡本站会员不限制查看联系方式，请勿在此处添加任何联系方式或地址信息，如若添加信息审核将无法通过。" required></textarea></p>
+                <h4 class="house-online">基础设施</h4>
+                <ul class="surrounding-facilities clearfix">
+                    <li><img src="images/01bingxiang.jpg" alt=""><br><label>冰箱</label><br><input type="checkbox" name="surrounding-facilities" value="冰箱" ></li>
+                    <li><img src="images/02reshuiqi.jpg" alt=""><br><label>热水器</label><br><input type="checkbox" name="surrounding-facilities" value="热水器"></li>
+                    <li><img src="images/03-dianshi.jpg" alt=""><br><label>电视</label><br><input type="checkbox" name="surrounding-facilities" value="电视"></li>
+                    <li><img src="images/04-kongtiao.jpg" alt=""><br><label>空调</label><br><input type="checkbox" name="surrounding-facilities" value="空调"></li>
+                    <li><img src="images/05wifi.jpg" alt=""><br><label>无线网</label><br><input type="checkbox" name="surrounding-facilities" value="无线网"></li>
+                    <li><img src="images/06chuang.jpg" alt=""><br><label>床</label><br><input type="checkbox" name="surrounding-facilities" value="床"></li>
+                    <li><img src="images/07shafa.jpg" alt=""><br><label>沙发</label><br><input type="checkbox" name="surrounding-facilities" value="沙发"></li>
+                    <li><img src="images/08yigui.jpg" alt=""><br><label>衣柜</label><br><input type="checkbox" name="surrounding-facilities" value="衣柜"></li>
+                    <li><img src="images/09chufang.jpg" alt=""><br><label>厨房</label><br><input type="checkbox" name="surrounding-facilities" value="厨房"></li>
+                    <li><img src="images/10nuanqi.jpg" alt=""><br><label>暖气</label><br><input type="checkbox" name="surrounding-facilities" value="暖气"></li>
+                </ul>
+                <p class="rentAll"><label><input type="radio" name="rentType"><span class="orange">*</span>整租</label><select name="males" id="males">
+                    <option value="男性人数" selected>男性人数</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+                    <select name="males" id="females">
+                        <option value="女性人数" selected>女性人数</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                    <select name="relationship" id="relationship">
+                        <option value="关系" selected>关系</option>
+                        <option value="1">朋友</option>
+                        <option value="2">情侣</option>
+                        <option value="3">同学</option>
+                        <option value="3">亲戚</option>
+                        <option value="4">陌生人</option>
+                        <option value="4">其他</option>
+                    </select>
+                </p>
+                <p class="rentPart"><label><input type="radio" name="rentType"><span class="orange">*</span>合租</label><select name="totalPeople" id="totalPeople">人数
+                    <option value="总人数" selected>总人数</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                </select>
+                    <select name="relationship" id="relationship2">
+                        <option value="关系" selected>关系</option>
+                        <option value="1">朋友</option>
+                        <option value="2">情侣</option>
+                        <option value="3">同学</option>
+                        <option value="3">亲戚</option>
+                        <option value="4">陌生人</option>
+                        <option value="4">其他</option>
+                    </select>
+                    <select name="males" id="acceptable">
+                        <option value="能接受的合租对象" selected>能接受的合租对象</option>
+                        <option value="1">学生</option>
+                        <option value="2">白领</option>
+                        <option value="3">不限</option>
+                    </select>
+                </p>
+                <p class="userName"><label><span class="orange">*</span>姓名</label><input type="text" placeholder="请输入您的名字" required></p>
+                <p class="phoneNum"><label><span class="orange">*</span>手机</label><input id="phoneNum" type="text" placeholder="请输入您的手机" required><button>获取验证码</button></p>
+                <div class="release-ways">
+                    <button class="release-pay" type="button">确定发布</button>
+                    <button class="release-reserve" type="button">暂时保存</button>
+                </div>
+            </form>
+        </div>
+        <div class="backToTop">↑<p>Top</p></div>
+    </div>
+</div>
+<!--footer begin-->
+<div class="footer wrap">
+    <img src="images/footer.png" alt="">
+    <div class="company banxin">
+        <span class="service">SERVICE</span>
+        电话咨询服务电话：<span class="number green">400-1371-365</span>
+        <span class="right">&reg 2017 Zuke</span>
+    </div>
+</div>
+<!--footer end-->
+<script src="js/jquery-3.2.1.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/05-4-member05.js"></script>
+<script src="js/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+<script>
+    $(".backToTop").click(function () {
+        console.log(11);
+        scrollTo(0,0);
+    });
+</script>
+
+</body>
+</html>

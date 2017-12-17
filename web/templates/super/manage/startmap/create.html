@@ -1,0 +1,93 @@
+{% extends 'super/base.html' %}
+
+{% block pageheader %}
+  {% if client.id %}
+  编辑启动图
+  {% else %}
+  新建启动图
+  {% endif %}
+{% endblock %}
+
+{% block mainbody %}
+<div class="box box-danger">
+  <div class="box-header with-border">
+    <h3 class="box-title">
+      {% if client.id %}
+      编辑启动图
+      {% else %}
+      新建启动图
+      {% endif %}
+    </h3>
+  </div><!-- /.box-header -->
+  <!-- form start -->
+
+  <div class="box-body">
+    <form role="form" method="POST"
+      {% if not client.id %}
+      action="{% url 'web:startmap_create' %}"
+      {% else %}
+      action="{% url 'web:startmap_edit' client.id %}"
+      {% endif %}
+      enctype="multipart/form-data">
+      {% csrf_token %}
+    <div class="form-group">
+      <label for="name">名称</label><br>
+      <input type="text" class="form-control" name="name"  value="{{ client.name }}"/>
+      {{ error.title_msg|safe }}
+    </div>
+    <div class="form-group">
+      <label for="begin_date">启用时间</label><br>
+      <div class="input-group">
+        <input type="text" class="form-control" name="begin_date"  id="begin_date" value="{{ client.begin_date|date:'Y-m-d H:i' }}" />
+        <div class="input-group-addon">
+          <i class="fa fa-calendar"></i>
+        </div>
+      </div>
+      {{ error.start_time_msg|safe }}
+    </div>
+    <div class="form-group">
+      <label for="end_date">下线时间</label><br>
+      <div class="input-group">
+        <input type="text" class="form-control" name="end_date"  id="end_date" value="{{ client.end_date|date:'Y-m-d H:i' }}" />
+        <div class="input-group-addon">
+          <i class="fa fa-calendar"></i>
+        </div>
+      </div>
+      {{ error.end_time_msg|safe }}
+    </div>
+    <div class="form-group">
+      <label for="img">图片</label>
+      <input type="file" id="img" name="img" />
+      <p style="margin-top: 10px;">
+        {% if client.img_url and client.id %}
+          <img src="{{ client.img_url }}?imageView2/1/w/100/h/100" />
+        {% endif %}
+      </p>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary pull-right">
+        {% if client.id %}
+          更新
+        {% else %}
+          创建
+        {% endif %}
+      </button>
+    </div>
+  </form>
+  </div><!-- /.box-body -->
+
+  <div class="box-footer">
+  </div>
+</div>
+{% endblock %}
+{% block script %}
+<script>
+  $(function(){
+      $('#begin_date,#end_date').datetimepicker({
+        format: 'yyyy-mm-dd hh:ii',
+        autoclose: true,
+        todayBtn: true,
+      });
+    })
+</script>
+{% endblock %}

@@ -1,0 +1,386 @@
+
+/*banner begin*/
+/*毛玻璃背景*/
+.banner{
+    background-color: #f8f8f8;
+}
+
+.banner.b_blur_back{
+    width: 100%;
+    height: 530px;
+    position: relative;
+    background: url("../images/banner.jpg") no-repeat center bottom;
+    background-size: cover;
+}
+.banner .blur_box{
+    height: 530px;  /*最终展示的毛玻璃高度*/
+    overflow: hidden;
+    position: relative;
+}
+.banner .blur_box .blur{
+    background: url("../images/banner.jpg") no-repeat center bottom;
+    background-size: cover;
+    position: absolute;
+    width: 100%;
+    height: 550px;
+    top: -5px;
+    padding: 0 20px;
+    filter: blur(15px);
+}
+
+/*banner 图片部分*/
+.swiper-container {
+    /*position: relative;*/
+    /*margin-top: -530px;*/
+    width: 1200px;
+    height: 460px;
+
+}
+.swiper-container a{
+    font-size: 0;
+    display: inline-block;
+    width: 1200px;
+}
+.swiper-container a img{
+    width: 100%;
+}
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    /*background: #fff;*/
+
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+/*banner 搜索部分*/
+.banner .b_search{
+    height: 160px;
+    padding: 30px 110px 0;
+    background-color: #0bb8a5;
+    position: relative;
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: space-between;
+    box-shadow: 0 10px 15px 1px rgba(0,0,0,0.2);
+}
+.banner .b_search .s_keyword{
+    margin: 0 auto;
+    display: flex;
+    height: 55px;
+    position: relative;
+}
+.banner .b_search .s_keyword .keyword{
+    display: inline-block;
+    width: 680px;
+    height: 55px;
+    padding-left: 20px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    /*color: #999;*/
+}
+.banner .b_search .s_keyword .tenant-landlord{
+    border: none;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    line-height: 55px;
+    padding-right: 14px;
+    background: url(../images/select2.png) no-repeat scroll right center transparent;
+    position: absolute;
+    right: 105px;
+}
+.banner .b_search .s_keyword .s_submit{
+    display: inline-block;
+    width: 90px;
+    height: 55px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: orange;
+    cursor: pointer;
+}
+.banner .b_search .s_other{
+    width: 400px;
+    height: 55px;
+    display: flex;
+    justify-content: space-between;
+}
+.banner .b_search .s_other li{
+    width: 125px;
+    height: 55px;
+    line-height: 55px;
+    text-align: center;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.banner .b_search .s_other li:hover{
+    background-color: #fff;
+    color: #0bb8a5;
+}
+
+.banner .b_search .hot{
+    width: 450px;
+    height: 32px;
+    line-height: 32px;
+    overflow: hidden;
+}
+.banner .b_search .hot h4{
+    width: 80px;
+    font-size: 14px;
+    float: left;
+}
+.banner .b_search .hot .autoList{
+    float: left;
+    width: 300px;
+    /*background-color: #999999;*/
+}
+.banner .b_search .hot .autoList li{
+    float: left;
+    height: 32px;
+    width: 55px;
+    margin-left: 5px;
+    text-overflow: ellipsis;
+}
+.banner .b_search .hot a{
+    color: #fff;
+}
+.banner .b_search .hot a.more{
+    font-size: 12px;
+}
+/*banner end*/
+
+
+/* 租客 提意见 begin*/
+.suggest{
+    height: 435px;
+    font-size: 24px;
+    line-height: 36px;
+    text-align: center;
+    color: #666;
+    padding-top: 50px;
+}
+.suggest b{
+    font-size: 36px;
+}
+.suggest .s_submit{
+    width: 920px;
+    margin: 0 auto;
+}
+.suggest .s_submit div{
+    width: 430px;
+    height: 275px;
+    border:1px solid #ccc;
+    margin-top: 20px;
+    position: relative;
+}
+/*.suggest .s_submit .sub_pic .picBorder{*/
+    /*border: none;*/
+    /*width: 408px;*/
+    /*height: 230px;*/
+    /*background: url("../images/suggest-pic.jpg") no-repeat center #fff;*/
+    /*position: absolute;*/
+    /*top:  5px;*/
+    /*left: -40px;*/
+    /*box-shadow: 0 5px 5px 0 rgba(0,0,0,0.3);*/
+/*}*/
+.suggest .s_submit .sub_pic h6{
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    background-color: #ddd;
+    font-style: normal;
+    color: #000;
+    padding-left: 15px;
+}
+.suggest .s_submit .sub_write{
+    text-align: left;
+    padding: 10px 20px 0;
+}
+.suggest .s_submit .sub_write h4{
+    font: normal lighter 18px "微软雅黑" ;
+    margin-bottom: 8px;
+}
+.suggest .s_submit .sub_write textarea{
+    height: 160px;
+    width: 388px;
+    padding: 10px;
+    resize: none;
+}
+.suggest .s_submit .sub_write button{
+    width: 100%;
+    height: 40px;
+    background-color: orange;
+    font-size: 20px;
+    border-radius: 4px;
+}
+/*租客提意见 end*/
+
+
+/*房源推荐 begin*/
+.recommend{
+    height: 870px;
+    padding-top: 50px;
+    background-color: #f8f8f8;
+}
+.recommend .houseMess h5{
+    font:normal normal 24px "微软雅黑";
+    width: 225px;
+    color: #0bb8a5;
+    margin: 0 auto;
+}
+.recommend .houseMess h2{
+    width: 160px;
+    font: normal normal 30px "微软雅黑";
+    margin: 20px auto 30px;
+    padding-left: 40px;
+    background: url("../images/sprite.png") -160px -71px no-repeat;
+}
+.recommend .houseMess .mess_list{
+    width: 400px;
+    display: flex;
+    margin: 0 auto 30px;
+    justify-content: space-between;
+}
+.recommend .houseMess .mess_list li{
+    width: 100px;
+    height: 32px;
+    line-height: 28px;
+    text-align: center;
+}
+.recommend .houseMess .mess_list li a{
+    color: #000;
+}
+.recommend .houseMess .mess_list li.active{
+    color: orange;
+    border: 2px solid orange;
+    border-radius: 4px;
+}
+.recommend .houseMess .mess_list li.active a{
+    color: orange;
+}
+.recommend .houseMess .mess_list li:hover{
+     color: orange;
+     border: 2px solid orange;
+     border-radius: 4px;
+ }
+.recommend .houseMess .mess_list li:hover a{
+    color: orange;
+}
+.recommend .houseMess .tab-content{
+    height: 612px;
+    display: none;
+}
+.recommend .houseMess .tab-content.active{
+    display: block;
+}
+.recommend .houseMess .tab-content .tabpanel{
+    font-size: 0;
+    height: 100%;
+}
+.recommend .houseMess .tab-content .tabpanel a{
+    width: 282px;
+    height: 282px;
+    display: inline-block;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 0 24px 24px 0;
+    background-color: #fff;
+    transition: all .3s ease-in-out;
+}
+.recommend .houseMess .tab-content .tabpanel a:hover{
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+}
+.recommend .houseMess .tab-content .tabpanel a:nth-child(4n){
+    margin: 0 0 24px 0;
+}
+.recommend .houseMess .tab-content .tabpanel a img{
+    width: 282px;
+    height: 178px;
+}
+.tab-content .tabpanel .trig div{
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    margin-bottom: 5px;
+}
+.tab-content .tabpanel .trig .trig_txt{
+    padding:18px 15px;
+}
+.tab-content .tabpanel .trig-price{
+    font:normal 600 20px "微软雅黑";
+}
+.tab-content .tabpanel .trig-price span{
+    font-size: 14px;
+}
+.tab-content .tabpanel .trig-addr{
+    font-size: 14px;
+    color: #000;
+}
+.tab-content .tabpanel .trig-describe{
+    font-size: 12px;
+    color: #000;
+}
+/*房源推荐 end*/
+
+/*关注租客begin*/
+.tenant{
+    height: 440px;
+    padding: 50px 0 50px 0;
+}
+.tenant h5{
+    font:normal normal 24px "微软雅黑";
+    width: 270px;
+    color: #0bb8a5;
+    margin: 0 auto;
+}
+.tenant h2{
+    width: 164px;
+    font: normal normal 30px "微软雅黑";
+    margin: 20px auto 30px;
+    padding-left: 40px;
+    background: url('../images/tenant.png') no-repeat;
+    background-size: 40px;
+}
+.tenant ul{
+    width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+.tenant ul li{
+    width: 130px;
+    height: 200px;
+
+}
+
+.tenant ul li .pic{
+    width: 130px;
+    height: 130px;
+    line-height: 180px;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    text-align: center;
+}
+.tenant ul li .txt{
+    height: 45px;
+    width: 64px;
+    margin: 30px auto 0;
+    padding-top: 20px;
+    border-top: 4px solid #0bb8a5;
+    text-align: center;
+}
+/*关注租客 end*/
+
+
+

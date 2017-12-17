@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="/static/admin/plugins/select2/select2.min.css">
+    <link rel="stylesheet" href="/static/website/css/base.css">
+    {% block style %}
+    {% endblock %}
+</head>
+<body {% block bodyclass %}{% endblock %}>
+    <header class="wrap">
+        <div class="banxin welcome clearfix">
+            <div class="wel_left fl">
+                <span class="white">欢迎来到租房网！更多房源选择任您挑选！请选择您的位置：</span>
+                <select class="city white" name="city" id="">
+                    <option value="武汉" selected>武汉</option>
+                </select>
+            </div>
+            <div class="wel_right fr">
+                <a class="white" href="javascript:void(0)">收藏本站 |</a>
+                <a class="white" href="javascript:void(0)">设为首页 |</a>
+                {% if request.session.c_user %}
+                    <a class="white" href="{% url 'website:user_index' %}">{{request.session.c_user.user_name}}
+                    </a>
+                    <a class="white" href="{% url 'website:login_out' %}"> | 注销</a>
+                {% else %}
+                    <a class="white" href="{% url 'website:home_login' %}">登录 |</a>
+                    <a class="white" href="{% url 'website:home_register' %}">注册 </a>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+    <!--nav begin-->
+    <nav class="wrap">
+        <div class="banxin nav clearfix">
+            <a class="logo fl" href="javascript:void(0)">
+                <img src="/static/website/images/LOGO.png" alt="">
+            </a>
+            <ul class="nav_items fl clearfix">
+                <li class="fl"><a href="/">首页</a></li>
+                <li class="fl">
+                    <a href="javascript:void(0)">房源信息</a>
+                </li>
+                <li class="fl">
+                    <a href="javascript:void(0)">求租信息</a>
+                </li>
+                <li class="fl">
+                    <a href="javascript:void(0)">生活馆</a>
+                </li>
+                <li class="fl">
+                {% if request.session.c_user %}
+                    <a href="{% url 'website:user_index' %}">用户中心</a>
+                {% else %}
+                    <a href="{% url 'website:home_login' %}">注册登录</a>
+                {% endif %}
+                </li>
+            </ul>
+            <div class="hot-line fr">
+<!--                 <div class="p_number green">
+                    <b></b>400-6789-888
+                </div>
+                <div class="p_time fr">看房热线：<span class="green">08:00 - 21:00</span></div> -->
+                <img src="/static/website/images/QRcode.png" alt="公众号二维码">
+                <p align="center">联系我们</p>
+            </div>
+        </div>
+    </nav>
+
+    <!--nav end-->
+    {% block container %}
+    {% endblock %}
+
+    <!--footer begin-->
+    <div class="footer wrap">
+        <img src="/static/website/images/footer.png" alt="">
+        <div class="company banxin">
+            <span class="service">SERVICE</span>
+            电话咨询服务电话：<span class="number green">400-1371-365</span>
+            <span class="right">&reg 2017 Zuke</span>
+        </div>
+    </div>
+
+    <!--footer end-->
+    <script src="//at.alicdn.com/t/font_ydrr42zlcvea5rk9.js"></script>
+    <script src="/static/website/js/jquery-3.2.1.js"></script>
+    <script src="/static/website/js/nav.js"></script>
+    {% block script %}
+    {% endblock %}
+</body>
+</html>

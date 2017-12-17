@@ -1,0 +1,90 @@
+{% extends 'super/base.html' %}
+
+{% block pageheader %}
+合作企业管理员
+{% endblock %}
+
+{% block mainbody %}
+<div class="box box-primary">
+  <div class="box-header with-border">
+    <h3 class="box-title">
+      {% if client %}
+      编辑合作企业管理员
+      {% else %}
+      新建合作企业管理员
+      {% endif %}
+    </h3>
+  </div><!-- /.box-header -->
+  <!-- form start -->
+
+  <div class="box-body">
+    <form class="form-check" role="form" method="POST"
+      {% if not client %}
+      action="{% url 'web:venture_manage_create' %}"
+      {% else %}
+      action="{% url 'web:venture_manage_edit' client.id %}?page={{page}}"
+      {% endif %}
+      enctype="multipart/form-data">
+      {% csrf_token %}
+    <div class="form-group">
+      <label for="username">账号</label>
+      <input type="text" class="form-control check" id="username" name="username" placeholder=""
+      {% if client %}value="{{ client.user.username }}"{% endif %} />
+    </div>
+    <div class="form-group">
+      <label for="username">密码</label>
+      <input type="password" class="form-control not-null" id="password" name="password" placeholder=""/>
+    </div>
+    <div class="form-group">
+      <label for="city">合作企业</label>
+      <select class="form-control select2" name="joint_venture_id">
+        {% for j in joint_ventures %}
+          <option value="{{j.id}}" {% if client.joint_venture == j %} selected {% endif %}>{{j.name}}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="city">所属权限组</label>
+      <select class="form-control" name="permissions">
+        {% for p in permissionss %}
+          <option value="{{p.id}}" {% if client.permissions.id == p.id %} selected {% endif %}>{{p.name}}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary pull-right">
+        {% if client.id %}
+          更新
+        {% else %}
+          创建
+        {% endif %}
+      </button>
+    </div>
+  </form>
+  </div>
+  <div class="box-footer">
+  </div>
+</div>
+{% endblock %}
+{% block script %}
+<script>
+  $(function (){
+    $('.mobile-exist').css({'color':'red', 'display':'none'});
+    $('form').submit(function(){
+      var result = check();
+      return result;
+    })
+  function check(){
+    var can_submit = form_validation('not-null');
+    var name = $('#').val();
+    if (!name){
+      can_submit = false;
+      $('.mobile-exist').text("请填写城市").css('display','block');
+
+    }
+    return can_submit;
+  }
+});
+</script>
+{% endblock %}

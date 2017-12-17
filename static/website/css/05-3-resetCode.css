@@ -1,0 +1,68 @@
+.mask-bg{
+    position: relative;
+    min-width: 1200px;
+    width: 100%;
+    height: 100%;
+}
+.mask-bg img{
+    width: 100%;
+    height: 100%;
+    min-height: 862px;
+    overflow: hidden;
+    display: block;
+}
+.mask-bg .register{
+    width: 400px;
+    height: 400px;
+    background-color: #fff;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    margin-left: -260px;
+    padding-top:30px;
+    box-shadow: 0 0 8px 0 rgba(00,00,00,0.3);
+}
+.mask-bg .register p{
+    width: 350px;
+    margin: 20px auto;
+}
+.mask-bg .register p:nth-child(1){
+    margin-top: 30px;
+}
+.mask-bg .register p input{
+    height: 40px;
+    width: 350px;
+    padding-left: 10px;
+    border: 1px solid #ddd;
+}
+.mask-bg .register .verification-code input{
+    width: 170px;
+}
+.mask-bg .register .verification-code button.disable{
+    width: 170px;
+    height: 40px;
+    background-color: #999;
+    color: #fff;
+}
+.mask-bg .register .verification-code button.able{
+    width: 170px;
+    height: 40px;
+    background-color: orange;
+    color: #fff;
+    cursor: pointer;
+}
+.mask-bg .register .reg-submit input{
+    padding-left: 0;
+    background-color: orange;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+}
+.mask-bg .register .wrong{
+    color: red;
+    width: 350px;
+    height: 15px;
+    font-size: 14px;
+    margin: -15px auto 20px;
+    display: block;
+}

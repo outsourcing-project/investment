@@ -1,0 +1,104 @@
+{% extends 'super/base.html' %}
+
+{% block pageheader %}
+反馈管理
+{% endblock %}
+
+{% block mainbody %}
+<div class="box box-danger">
+  <div class="box-header with-border">
+    <h3 class="box-title">
+      反馈管理
+    </h3>
+    <div class="box-tools">
+    </div>
+  </div><!-- /.box-header -->
+
+  <div class="box-body">
+    <div style="margin-bottom:15px;" class="row">
+      <form class="navbar-form navbar-left" method="GET" role="search">
+        <div class="form-group">
+          <div class="input-group">
+            <input type="text" class="form-control" name="param_content" placeholder="关键字" value="{{ param_content }}"/>
+          </div>
+          <div class="input-group">
+            <input type="text" class="form-control" name="param_begin_time" placeholder="开始时间" value="{{ param_begin_time }}" id="param_begin_time"/>
+          </div>
+          <div class="input-group">
+            <input type="text" class="form-control" name="param_end_time" placeholder="结束时间" value="{{ param_end_time }}" id="param_end_time"/>
+          </div>
+          <button type="submit" class="btn btn-default">搜索</button>
+        </div>
+      </form>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-bordered table-striped">
+          <tbody>
+            <tr>
+              <th style="width: 10px">#</th>
+              <th>昵称</th>
+              <th>手机号码</th>
+              <th>反馈内容</th>
+              <th>平台</th>
+              <th>发布时间</th>
+              <th>操作</th>
+            </tr>
+            {% for client in clients %}
+              <tr>
+                <td style="vertical-align: middle;">{{ client.id }}</td>
+                <td style="vertical-align: middle;">{{ client.user.profile.nickname }}</td>
+                <td style="vertical-align: middle;">{{ client.user.profile.mobile }}</td>
+                <td style="vertical-align: middle;">{{ client.content }}</td>
+                <td style="vertical-align: middle;">{{ client.platform }}</td>
+                <td style="vertical-align: middle;">{{ client.created }}</td>
+                <td style="vertical-align: middle;">
+                    <a class="btn-xs btn-danger" href="{% url 'web:feedback_delete' client.id %}" onclick="return confirm('确认删除反馈吗?')">删除</a>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <center>
+        <ul class="pagination">
+          <li class={% if clients.has_previous %}"previous"{% else %}"previous disabled"{% endif %}>
+            <a {% if clients.has_previous %}href="?page={{clients.previous_page_number}}&param_content={{ param_content }}&param_begin_time={{ param_begin_time }}&param_end_time={{ param_end_time }}"{% endif %}>
+              <span aria-hidden="true">上一页</span>
+            </a>
+          </li>
+          <li class={% if clients.has_next %}"next"{% else %}"next disabled"{% endif %}>
+            <a {% if clients.has_next %}href="?page={{clients.next_page_number}}&param_content={{ param_content }}&param_begin_time={{ param_begin_time }}&param_end_time={{ param_end_time }}"{% endif %}>
+              <span aria-hidden="true">下一页</span>
+            </a>
+          </li>
+        </ul>
+      </center>
+    </div>
+
+    <div class="row">
+      <center>
+        <span>第{{clients.number}}页，</span>
+        <span>共{{clients.paginator.num_pages}}页/共{{clients.paginator.count}}条记录</span> 
+        <span>跳到第</span><input type="text" name="page" class="skip_page_number" value="{{clients.number }}" style="width: 50px"><span>页</span>
+        <button type="button" class="btn btn-default btn-sm" onclick="skip_page()">确定</button>        
+      </center>
+    </div>
+
+  </div>
+</div>
+{% endblock %}
+{% block script %}
+<script>
+  $(function(){
+      $('#param_begin_time,#param_end_time').datetimepicker({
+        format: 'yyyy-mm-dd hh:ii',
+        autoclose: true,
+        todayBtn: true,
+      });
+    })
+</script>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'super/base.html' %}
+
+{% block pageheader %}
+栏目
+{% endblock %}
+
+{% block mainbody %}
+<div class="box box-success">
+  <div class="box-header with-border">
+    <h3 class="box-title">
+      {% if column.id %}
+      编辑栏目
+      {% else %}
+      新建栏目
+      {% endif %} 
+    </h3>
+  </div><!-- /.box-header -->
+  <!-- form start -->
+
+  <div class="box-body">
+    <form role="form" method="POST"
+      {% if not column.id %}
+      action="{% url 'web:column_create' %}"
+      {% else %}
+      action="{% url 'web:column_edit' column.id %}"
+      {% endif %}
+      enctype="multipart/form-data">
+      {% csrf_token %}
+    <div class="form-group">
+      <label for="name">名称</label><br>
+      <input type="text" class="form-control" name="name"  value="{{ column.name }}"/>
+      {{ error.name_msg|safe }}
+    </div>
+    <div class="form-group">
+      <label for="slug">slug</label><br>
+      <input type="text" class="form-control" name="slug"  value="{{ column.slug }}"/>
+      {{ error.slug_msg|safe }}
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary pull-right">
+        {% if column.id %}
+          更新
+        {% else %}
+          创建
+        {% endif %}
+      </button>
+    </div>
+  </form>
+  </div><!-- /.box-body -->
+
+  <div class="box-footer">
+  </div>
+</div>
+{% endblock %}

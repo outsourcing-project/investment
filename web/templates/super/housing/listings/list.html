@@ -1,0 +1,92 @@
+{% extends 'super/base.html' %}
+
+{% block pageheader %}
+房源列表
+{% endblock %}
+
+{% block mainbody %}
+<div class="box box-success">
+  <div class="box-header with-border">
+    <h3 class="box-title">
+      房源列表
+    </h3>
+    <div class="box-tools">
+    </div>
+  </div><!-- /.box-header -->
+
+  <div class="box-body">
+<!--     <div style="margin-bottom:15px;">
+      <a href="{% url 'web:infrastructure_create' %}" class="btn btn-info">新建</a>
+    </div> -->
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-bordered table-striped">
+          <tbody>
+            <tr>
+              <th style="width: 10px">#</th>
+              <th>房屋描述</th>
+              <th>房屋类型</th>
+              <th>租赁方式</th>
+              <th>押付方式</th>
+              <th>所在小区</th>
+              <th>房屋照片</th>
+              <th>状态</th>
+              <th>操作</th>
+            </tr>
+            {% for c in clients %}
+              <tr>
+                <td style="vertical-align: middle;">{{ c.id }}</td>
+                <td style="vertical-align: middle;">{{ c.content }}</td>
+                <td style="vertical-align: middle;">{{ c.category }}</td>
+                <td style="vertical-align: middle;">{{ c.get_lease_display }}</td>
+                <td style="vertical-align: middle;">押{{ c.bet }}付{{ c.pay }}</td>
+                <td style="vertical-align: middle;">{{ c.community }}</td>
+                <td style="vertical-align: middle;">
+                {% for p in c.get_housing_pricturs %}
+                  <img src="{{ p }}" width="50" height="50" />
+                {% endfor %}
+                </td>
+                <td style="vertical-align: middle;">{{ c.get_status_display }}</td>
+                <td style="vertical-align: middle;">
+                    <!-- <a class="btn btn-info" href="{% url 'web:infrastructure_edit' c.id %}">编辑</a> -->
+                    {% if not c.status or c.status == 1 %}
+                      <a class="btn-xs btn-success" href="{% url 'web:listings_online' c.id %}?page={{page}}">上线</a>
+                    {% else %}
+                      <a class="btn-xs btn-success" href="{% url 'web:listings_offline' c.id %}?page={{page}}">下线</a>
+                    {% endif %}
+                    <a class="btn-xs btn-danger" href="{% url 'web:listings_delete' c.id %}" onclick="return confirm('确认删除吗?')">删除</a>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <center>
+        <ul class="pagination">
+          <li class={% if clients.has_previous %}"previous"{% else %}"previous disabled"{% endif %}>
+            <a {% if clients.has_previous %}href="?page={{clients.previous_page_number}}"{% endif %}>
+              <span aria-hidden="true">上一页</span>
+            </a>
+          </li>
+          <li class={% if clients.has_next %}"next"{% else %}"next disabled"{% endif %}>
+            <a {% if clients.has_next %}href="?page={{clients.next_page_number}}"{% endif %}>
+              <span aria-hidden="true">下一页</span>
+            </a>
+          </li>
+        </ul>
+      </center>
+    </div>
+
+    <div class="row">
+      <center>
+        <span>第{{clients.number}}页，</span>
+        <span>共{{clients.paginator.num_pages}}页/共{{clients.paginator.count}}条记录</span>        
+      </center>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

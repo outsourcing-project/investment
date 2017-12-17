@@ -1,0 +1,63 @@
+{% extends 'super/base.html' %}
+
+{% block pageheader %}
+  {% if user1.id %}
+  编辑管理员
+  {% else %}
+  新建管理员
+  {% endif %}
+{% endblock %}
+
+{% block mainbody %}
+<div class="box box-danger">
+  <div class="box-header with-border">
+    <h3 class="box-title">
+      {% if user1.id %}
+      编辑管理员
+      {% else %}
+      新建管理员
+      {% endif %}
+    </h3>
+  </div><!-- /.box-header -->
+  <!-- form start -->
+
+  <div class="box-body">
+    <form role="form" method="POST"
+      {% if not user1.id %}
+      action="{% url 'web:manage_create' %}"
+      {% else %}
+      action="{% url 'web:manage_edit' user1.id %}"
+      {% endif %}
+      enctype="multipart/form-data">
+      {% csrf_token %}
+
+    <div class="form-group">
+      {% if user %}
+        <input type="hidden" id="user-id" name="user-id" value="{{ user1.id }}" />
+      {% endif %}
+      <label for="username">账号</label>
+      <input type="text" class="form-control" id="username" name="username" placeholder=""
+      {% if user1 %}value="{{ user1.username }}"{% endif %} />
+      {{error.username_msg|safe}}
+    </div>
+    <div class="form-group">
+      <label for="password">密码</label><br>
+      <input type="password" class="form-control" id="password" name="password"  />
+      {{error.password_msg|safe}}
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary pull-right">
+        {% if user1.id %}
+          更新
+        {% else %}
+          创建
+        {% endif %}
+      </button>
+    </div>
+  </form>
+  </div><!-- /.box-body -->
+
+  <div class="box-footer">
+  </div>
+</div>
+{% endblock %}

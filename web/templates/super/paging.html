@@ -1,0 +1,38 @@
+{% load paging_filter %}
+{% with paging_objs|paging as pages%}
+{% if pages|length >= 1%}
+<div class="row">
+  <center>
+    <nav>
+      <ul class="pagination">
+        {% if pages|first == paging_objs.number %}
+        <li class="disabled"><a  class="btn btn-success btn" href="javascript:void(0)">&laquo;</a></li>
+        {% else %}
+        <li>
+            <a href="{{ request.GET.dict|url_deal }}page={{paging_objs.previous_page_number}}">&laquo;</a>
+        </li>
+        {% endif %}
+
+        {% for i in pages %}
+        {% if paging_objs.number == i %}
+        <li class="active"><a class="btn btn-success btn" href="javascript:void(0)">{{i}}</a></li>
+        {% else %}
+        <li>
+            <a href="{{ request.GET.dict|url_deal }}page={{i}}">{{i}}</a>
+        </li>
+        {% endif %}
+        {% endfor %}
+
+        {% if pages|last == paging_objs.number %}
+        <li class="disabled"><a href="javascript:void(0)">&raquo;</a></li>
+        {% else %}
+        <li>
+            <a href="{{ request.GET.dict|url_deal }}page={{paging_objs.next_page_number}}">&raquo;</a>
+        </li>
+        {% endif %}
+      </ul>
+    </nav>
+  </center>
+</div>
+{% endif %}
+{% endwith %}

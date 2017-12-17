@@ -1,0 +1,10 @@
+django==1.9
+djangorestframework==3.4.0
+djangorestframework-jwt==1.8.0
+qiniu==7.1.2
+django-guardian==1.4.6
+mysql-python==1.2.5
+pingpp==2.0.11
+redis==2.10.5
+simplejson==3.8.2
+

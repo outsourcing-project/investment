@@ -1,0 +1,58 @@
+{% extends 'super/base.html' %}
+
+{% block pageheader %}
+基础设施
+{% endblock %}
+
+{% block mainbody %}
+<div class="box box-success">
+  <div class="box-header with-border">
+    <h3 class="box-title">
+      {% if client.id %}
+      编辑基础设施
+      {% else %}
+      新建基础设施
+      {% endif %} 
+    </h3>
+  </div><!-- /.box-header -->
+  <!-- form start -->
+
+  <div class="box-body">
+    <form role="form" method="POST"
+      {% if not client.id %}
+      action="{% url 'web:infrastructure_create' %}"
+      {% else %}
+      action="{% url 'web:infrastructure_edit' client.id %}"
+      {% endif %}
+      enctype="multipart/form-data">
+      {% csrf_token %}
+    <div class="form-group">
+      <label for="name">名称</label><br>
+      <input type="text" class="form-control" name="name"  value="{{ client.name }}"/>
+      {{ error.name_msg|safe }}
+    </div>
+    <div class="form-group">
+      <label for="img">图片</label>
+      <input type="file" id="cover" name="cover" />
+      <p style="margin-top: 10px;">
+        {% if client.cover_url and client.id %}
+          <img src="{{ client.cover_url }}?imageView2/1/w/100/h/100" />
+        {% endif %}
+      </p>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary pull-right">
+        {% if client.id %}
+          更新
+        {% else %}
+          创建
+        {% endif %}
+      </button>
+    </div>
+  </form>
+  </div><!-- /.box-body -->
+
+  <div class="box-footer">
+  </div>
+</div>
+{% endblock %}
