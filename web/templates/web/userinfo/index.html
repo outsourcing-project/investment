@@ -1,0 +1,81 @@
+{% extends 'web/base.html' %}
+
+{% block pageheader %}
+用户管理
+{% endblock %}
+
+{% block mainbody %}
+<div class="box box-success">
+  <div class="box-header with-border">
+    <h3 class="box-title">
+      用户列表
+    </h3>
+  </div><!-- /.box-header -->
+     {% load guardian_tags %}
+     {% load perm_extra %}
+  <div class="box-body">
+    <div style="margin-bottom:15px;">
+      <form class="navbar-form navbar-left" method="get" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" name="search_name" placeholder="姓名或昵称" value="{{ search_name }}"></input>
+        </div>
+        <button type="submit" class="btn btn-default">搜索</button>
+        <a class="btn btn-default" href="{% url 'web:user_info_list' %}">清除</a>
+      </form>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-bordered table-striped">
+          <tbody>
+            <tr>
+              <th style="width: 10px">ID</th>
+              <th>姓名</th>
+              <th>昵称</th>
+              <th>头像</th>
+              <th>邮箱</th>
+              <th>手机号</th>
+              <th>发布项目</th>
+              <th>状态</th>
+              <th>注册时间</th>
+              <th>操作</th>
+            </tr>
+            {% for c in clients %}
+              <tr>
+                <td style="vertical-align: middle;">{{ c.id }}</td>
+                <td style="vertical-align: middle;">{{ c.user_name }}</td>
+                <td style="vertical-align: middle;">{{ c.nickname }}</td>
+                <td style="vertical-align: middle;">
+                  <img src="{{ c.cover_url }}" width="50"/>
+                </td>
+                <td style="vertical-align: middle;">{{ c.email }}</td>
+                <td style="vertical-align: middle;">{{ c.mobile }}</td>
+                <td style="vertical-align: middle;">{{ c.project_count }}</td>
+                <td style="vertical-align: middle;">
+                {% if c.is_valid %}
+                  正常
+                {% else %}
+                  已冻结
+                {% endif %}
+                </td>
+                <td style="vertical-align: middle;">{{ c.created|date:"Y-m-d" }}</td>
+                <td style="vertical-align: middle;">
+                  {% if "edit_module" in user|get_acl_perms:"user" %}
+                    <a class="btn btn-success btn-xs" href="{% url 'web:user_info_freeze' c.id %}?search_category={{search_category}}&search_name={{ search_name }}&page={{ page }}">冻结</a>
+                    <a class="btn btn-success btn-xs" href="{% url 'web:user_info_thaw' c.id %}?search_category={{search_category}}&search_name={{ search_name }}&page={{ page }}">解冻</a>
+                  {% endif %}
+                  {% if "delete_module" in user|get_acl_perms:"user" %}
+                    <a class="btn btn-danger btn-xs" href="{% url 'web:user_info_delete' c.id %}?page={{ page }}" onclick="return confirm('确认删除吗?')">删除</a>
+                  {% endif %}
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    {% with clients as paging_objs %}
+      {% include 'web/paging.html' %}
+    {% endwith %}
+  </div>
+</div>
+{% endblock %}

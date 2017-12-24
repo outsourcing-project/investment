@@ -1,0 +1,65 @@
+{% extends 'web/base.html' %}
+
+{% block pageheader %}
+用户组管理
+{% endblock %}
+
+{% block mainbody %}
+<div class="box box-success">
+  <div class="box-header with-border">
+    <h3 class="box-title">
+      用户组管理
+    </h3>
+    <div class="box-tools">
+    </div>
+  </div><!-- /.box-header -->
+
+  <div class="box-body">
+    <div style="margin-bottom:15px;">
+      <a href="{% url 'web:group_add' %}" class="btn btn-success">新建</a>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-bordered table-striped">
+          <tbody>
+            <tr>
+              <th>名称</th>
+              <th>权限</th>
+              <th>操作</th>
+            </tr>
+            {% for group in groups %}
+              <tr role="row">
+                <td style="vertical-align: middle;"><a href="{% url 'web:group_edit' group.id %}">{{ group.name }}</a></td>
+                <td style="vertical-align: middle;">
+                  {% for acl in acls %}
+                    {{acl.module_cn}}
+                    [
+                    {% load guardian_tags %}
+                    {% get_obj_perms group for acl as "obj_perms" %}
+
+                    {% for obj_perm in obj_perms %}
+                      {% load perm_extra %}
+                      {% if not forloop.first %},&nbsp;{% endif %}{{obj_perm|perm_name}}
+                    {% endfor %}
+                    ]
+                  {% endfor %}
+                </td>
+
+                <td style="vertical-align: middle;">
+                  <a class="btn btn-xs btn-success"
+                      href="#" target="view_window">用户组成员</a>
+                  {% if "delete_module" in user|get_acl_perms:module %}
+                  <a class="btn btn-xs btn-danger"
+                    href="{% url 'web:group_delete' group.id %}"
+                    onclick="return confirm('确认删除吗?')">删除</a>
+                  {% endif %}
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

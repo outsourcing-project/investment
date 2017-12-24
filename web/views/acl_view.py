@@ -12,13 +12,13 @@ from web.models import ACL
 def acl_list(request):
     context = {}
     context['module'] = 'acl'
-    search_id = request.GET.get('search_id',None)
+    search_id = request.GET.get('search_id', None)
     acls = ACL.objects.all()
     if search_id:
         acls = ACL.objects.filter(pk=search_id)
     context['acls'] = acls
 
-    return render(request, 'super/acl/index.html', context)
+    return render(request, 'web/acl/index.html', context)
 
 
 def acl_add(request):
@@ -54,7 +54,7 @@ def acl_add(request):
     context['permissions'] = permissions
     print permissions
 
-    return render(request, 'super/acl/add.html', context)
+    return render(request, 'web/acl/add.html', context)
 
 
 def acl_edit(request, acl_id):
@@ -91,10 +91,11 @@ def acl_edit(request, acl_id):
     context['acl'] = acl
     context['permissions'] = permissions
 
-    return render(request, 'super/acl/add.html', context)
+    return render(request, 'web/acl/add.html', context)
 
 
 def acl_delete(request, acl_id):
+
     page = request.GET.get('page', 1)
     search_id = acl_id
     # acl = get_object_or_404(ACL, id=search_id)

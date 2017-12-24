@@ -1,0 +1,95 @@
+{% extends 'web/base.html' %}
+
+{% block pageheader %}
+Dashboard
+{% endblock %}
+
+{% block breadcrumb %}
+{% endblock %}
+
+{% block mainbody %}
+
+<div class="row">
+
+  <div class="col-md-12">
+
+    <div class="box box-danger">
+      <div class="box-header ui-sortable-handle">
+        <h3 class="box-title">基础信息</h3>
+
+        <div class="box-tools pull-right">
+          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="box-body" style="overflow: hidden; width: auto;">
+
+        <div class="row">
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <a href="">
+                <div class="small-box bg-aqua">
+                  <div class="inner">
+                    <h3>{{ 2 }}</h3>
+
+                    <p>租房</p>
+                  </div>
+                  <div class="icon">
+                    <i class="ion ion-earth"></i>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <a href="">
+                <div class="small-box bg-yellow">
+                  <div class="inner">
+                    <h3>{{ 100 }}</h3>
+
+                    <p>用户</p>
+                  </div>
+                  <div class="icon">
+                    <i class="ion ion-person-add"></i>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <a href="">
+                <div class="small-box bg-green">
+                  <div class="inner">
+                    <h3>{{ 100 }}</h3>
+
+                    <p>订单</p>
+                  </div>
+                  <div class="icon">
+                    <i class="ion ion-stats-bars"></i>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <!-- ./col -->
+
+          </div>
+
+      </div>
+
+      <div class="box-footer">
+
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+
+{% endblock %}
+{% block script %}
+{% endblock %}

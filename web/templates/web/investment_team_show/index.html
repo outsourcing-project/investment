@@ -1,0 +1,62 @@
+{% extends 'web/base.html' %}
+
+{% block pageheader %}
+投资团展示
+{% endblock %}
+
+{% block mainbody %}
+<div class="box box-success">
+  <div class="box-header with-border">
+    <h3 class="box-title">
+      投资团展示
+    </h3>
+    <div class="box-tools">
+    </div>
+  </div><!-- /.box-header -->
+
+  <div class="box-body">
+    <div style="margin-bottom:15px;">
+      <a href="{% url 'web:investment_team_show_add' %}" class="btn btn-success">新建</a>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-bordered table-striped">
+          <tbody>
+            <tr>
+              <th>标题</th>
+              <th>图片</th>
+              <th>排序</th>
+              <th>操作</th>
+            </tr>
+            {% for c in clients %}
+              <tr>
+                <td style="vertical-align: middle;">
+                  <a href="{% url 'web:investment_team_show_edit' c.id %}">
+                    {{ c.title }}
+                  </a>
+                </td>
+                <td style="vertical-align: middle;">
+                  <img src="{{ c.img_url }}" width="50px">
+                </td>
+                <td style="vertical-align: middle;">
+                  <a href="{% url 'web:investment_team_show_up' c.id %}">
+                    <i class="fa fa-fw fa-arrow-up"></i>
+                  </a>
+                  <a href="{% url 'web:investment_team_show_down' c.id %}">
+                    <i class="fa fa-fw fa-arrow-down"></i>
+                  </a>
+                </td>
+                <td style="vertical-align: middle;">
+                  <a class="btn btn-xs btn-danger"
+                    href="{% url 'web:investment_team_show_delete' c.id %}"
+                    onclick="return confirm('确认删除吗?')">删除</a>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

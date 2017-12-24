@@ -162,11 +162,9 @@ SMS_SUB_ACCOUNT_TOKEN = 'c2c7a073d888513461a4f7439f110951'
 SMS_APP_ID = '8aaf070857dc0e780157e14b3a1c04b2'
 SMS_TEMPLATE_CODE_ID = 125618
 
-# qiniu
-QINIU_DOMAIN = 'oxaoo4ur4.bkt.clouddn.com'
-QINIU_ACCESS_KEY = 'uUpyGla7DTbzVG7BKjgMlsT8QEx0RsFuY8ofxY7r'
-QINIU_SECRET_KEY = 'J0FdHNr6i1PdwlVzoxs-sqR5IeJgqjTFmqbWubuC'
-BUCKET_NAME = 'yueju'
+# 微信
+WECHAT_APP_ID = 'wx6a6aa8335b5059c4'
+WECHAT_APP_SECRET = 'c3dcd3cf0738066226fe4b495d500485'
 
 # ping++
 API_KEY = 'sk_live_DKyPiDvnn1qTeDyzPK98W1e5'
@@ -183,10 +181,12 @@ STATICFILES_DIRS = [
 
 UPLOAD_DIR = os.path.join(BASE_DIR, 'static', 'upload')
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = UPLOAD_DIR
+
 DOMAIN = 'http://www.yuejuweb.com'
 
 # setting_local
 ROOT = os.path.abspath(os.path.dirname(__file__))
 if os.path.exists(os.path.join(ROOT, 'settings_local.py')):
     execfile(os.path.join(ROOT, 'settings_local.py'))
-

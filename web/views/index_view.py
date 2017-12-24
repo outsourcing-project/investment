@@ -9,9 +9,6 @@ from django.views.decorators.csrf import csrf_exempt
 from imagestore.qiniu_manager import (
     get_extension,
     handle_uploaded_file,
-    upload,
-    url,
-    get_upload_token,
 )
 from settings import(
     UPLOAD_DIR,
