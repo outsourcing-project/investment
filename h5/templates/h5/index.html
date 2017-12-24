@@ -1,0 +1,36 @@
+{% extends 'h5/base.html' %}
+{% block title %}x{% endblock %}
+
+{% block bodyclass %} class="pb50" {% endblock %}
+{% block container %}
+    <div class="fix_bottom">
+        <a href="index.html" class="fix_bottom-item active">
+            <i class="icon_paper"></i>
+            <div>发布项目</div>
+        </a>
+        <a href="personal.html" class="fix_bottom-item">
+            <i class="icon_person"></i>
+            <div>个人中心</div>
+        </a>
+    </div>
+
+    <div class="projects">
+    {% for p in projects %}
+        <a href="">
+            <div class="project">
+                <h3>{{ p.name }}</h3>
+                <div class="project_b">
+                    <span>发布者：{{ p.user_info.user_name }}</span>
+                    <span>{{ p.created|date:"Y-m-d H:i" }}</span>
+                </div>
+            </div>
+        </a>
+    {% endfor %}
+    </div>
+{% endblock %}
+{% block script %}
+    <script>
+        $(function () {
+        })
+    </script>
+{% endblock %}

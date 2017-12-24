@@ -20,7 +20,7 @@ def group_list(request):
     context['groups'] = groups
     context['acls'] = acls
 
-    return render(request, 'super/group/index.html', context)
+    return render(request, 'web/group/index.html', context)
 
 
 # @web_permission_required(codename='add_module', module='group')
@@ -50,7 +50,7 @@ def group_add(request):
     context['acls'] = acls
     context['module'] = 'group'
 
-    return render(request, 'super/group/add.html', context)
+    return render(request, 'web/group/add.html', context)
 
 
 def group_edit(request, group_id):
@@ -83,7 +83,7 @@ def group_edit(request, group_id):
 
             return HttpResponseRedirect(reverse('web:group_list'))
 
-    return render(request, 'super/group/add.html', context)
+    return render(request, 'web/group/add.html', context)
 
 
 def group_delete(request, group_id):

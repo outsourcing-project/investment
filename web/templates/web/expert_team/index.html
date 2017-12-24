@@ -1,0 +1,75 @@
+{% extends 'web/base.html' %}
+
+{% block pageheader %}
+专家团邮箱
+{% endblock %}
+
+{% block mainbody %}
+<div class="box box-success">
+  <div class="box-header with-border">
+    <h3 class="box-title">
+      专家团邮箱
+    </h3>
+    <div class="box-tools">
+    </div>
+  </div><!-- /.box-header -->
+
+  <div class="box-body">
+    <div style="margin-bottom:15px;">
+      <form class="navbar-form navbar-left" method="get" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" name="search_username" placeholder="姓名" value="{{ search_username }}"></input>
+        </div>
+        <button type="submit" class="btn btn-default">搜索</button>
+        <a class="btn btn-default" href="{% url 'web:expert_team_list' %}">清除</a>
+        <a href="{% url 'web:expert_team_add' %}" class="btn btn-success">新建</a>
+      </form>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-bordered table-striped">
+          <tbody>
+            <tr>
+              <th>姓名</th>
+              <th>邮箱</th>
+              <th>启用</th>
+              <th>操作</th>
+            </tr>
+            {% for c in clients %}
+              <tr>
+                <td style="vertical-align: middle;">
+                  <a href="{% url 'web:expert_team_edit' c.id %}">{{ c.username }}</a>
+                </td>
+                <td style="vertical-align: middle;">
+                  {{ c.email }}
+                </td>
+                <td style="vertical-align: middle;">
+                  {% if c.is_valid %}
+                    <i class="fa fa-fw fa-check-circle text-green"></i>
+                  {% else %}
+                    <i class="fa fa-fw fa-ban text-red"></i>
+                  {% endif %}
+                </td>
+                <td style="vertical-align: middle;">
+                  {% if c.is_valid %}
+                    <a class="btn btn-xs btn-success"
+                      href="{% url 'web:expert_team_offline' c.id %}"
+                      onclick="return confirm('确认禁用吗?')">禁用</a>
+                  {% else %}
+                    <a class="btn btn-xs btn-success"
+                      href="{% url 'web:expert_team_online' c.id %}"
+                      onclick="return confirm('确认启用吗?')">启用</a>
+                  {% endif %}
+                  <a class="btn btn-xs btn-danger"
+                    href="{% url 'web:expert_team_delete' c.id %}"
+                    onclick="return confirm('确认删除吗?')">删除</a>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

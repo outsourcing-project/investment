@@ -30,7 +30,7 @@ def account_login(request):
         else:
             context['error'] = '帐号/密码不正确'
 
-    return render(request, 'super/login.html', context)
+    return render(request, 'web/login.html', context)
 
 
 @web_login_required
@@ -52,7 +52,7 @@ def account_list(request):
 
     context['accounts'] = accounts
 
-    return render(request, 'super/account/index.html', context)
+    return render(request, 'web/account/index.html', context)
 
 
 @web_login_required
@@ -103,7 +103,7 @@ def account_add(request):
     groups = Group.objects.all()
     context['groups'] = groups
 
-    return render(request, 'super/account/add.html', context)
+    return render(request, 'web/account/add.html', context)
 
 
 @web_login_required
@@ -150,7 +150,7 @@ def account_edit(request, account_id):
     groups = Group.objects.all()
     context['groups'] = groups
 
-    return render(request, 'super/account/add.html', context)
+    return render(request, 'web/account/add.html', context)
 
 
 @web_login_required

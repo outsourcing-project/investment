@@ -1,0 +1,95 @@
+{% extends 'web/base.html' %}
+
+{% block pageheader %}
+项目管理
+{% endblock %}
+
+{% block mainbody %}
+<div class="box box-success">
+  <div class="box-header with-border">
+    <h3 class="box-title">
+      项目管理
+    </h3>
+  </div><!-- /.box-header -->
+     {% load guardian_tags %}
+     {% load perm_extra %}
+  <div class="box-body">
+    <div style="margin-bottom:15px;">
+      <form class="navbar-form navbar-left" method="get" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" name="search_name" placeholder="项目名称" value="{{ search_name }}"></input>
+        </div>
+        <button type="submit" class="btn btn-default">搜索</button>
+        <a class="btn btn-default" href="{% url 'web:project_list' %}">清除</a>
+      </form>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-bordered table-striped">
+          <tbody>
+            <tr>
+              <th style="width: 10px">ID</th>
+              <th>项目名称</th>
+              <th>发布者</th>
+              <th>主控主体</th>
+              <th>项目投资总额</th>
+              <th>投资份额</th>
+              <th>投资周期</th>
+              <th>预估回报</th>
+              <th>项目进度</th>
+              <th>备注</th>
+              <th>评论数</th>
+              <th>浏览量</th>
+              <th>置顶</th>
+              <th>发布时间</th>
+              {% if "edit_module" in user|get_acl_perms:"project" or "delete_module" in user|get_acl_perms:"project" %}
+              <th>操作</th>
+              {% endif %}
+            </tr>
+            {% for c in clients %}
+              <tr>
+                <td style="vertical-align: middle;">{{ c.id }}</td>
+                <td style="vertical-align: middle;">{{ c.name }}</td>
+                <td style="vertical-align: middle;">{{ c.user_info.user_name }}</td>
+                <td style="vertical-align: middle;">{{ c.theme }}</td>
+                <td style="vertical-align: middle;">¥{{ c.total_amount }}</td>
+                <td style="vertical-align: middle;">{{ c.share_amount }}%</td>
+                <td style="vertical-align: middle;">{{ c.cycle }}年</td>
+                <td style="vertical-align: middle;">{{ c.expect_return }}%</td>
+                <td style="vertical-align: middle;">{{ c.progress }}</td>
+                <td style="vertical-align: middle;">{{ c.note }}</td>
+                <td style="vertical-align: middle;">{{ c.comment_count }}</td>
+                <td style="vertical-align: middle;">{{ c.read_count }}</td>
+                <td style="vertical-align: middle;">
+                  {% if c.top %}
+                    <i class="fa fa-fw fa-check-circle text-green"></i>
+                  {% else %}
+                    <i class="fa fa-fw fa-ban text-red"></i>
+                  {% endif %}
+                </td>
+                <td style="vertical-align: middle;">{{ c.created|date:"Y-m-d" }}</td>
+                <td style="vertical-align: middle;">
+                  {% if "edit_module" in user|get_acl_perms:"project" %}
+                    {% if c.top %}
+                      <a class="btn btn-success btn-xs" href="{% url 'web:project_un_top' c.id %}?search_category={{search_category}}&search_name={{ search_name }}&page={{ page }}">取消置顶</a>
+                    {% else %}
+                      <a class="btn btn-success btn-xs" href="{% url 'web:project_top' c.id %}?search_category={{search_category}}&search_name={{ search_name }}&page={{ page }}">置顶</a>
+                    {% endif %}
+                    <a class="btn btn-success btn-xs" href="{% url 'web:project_down_attach' c.id %}?search_category={{search_category}}&search_name={{ search_name }}&page={{ page }}">下载附件</a>
+                  {% endif %}
+                  {% if "delete_module" in user|get_acl_perms:"project" %}
+                    <a class="btn btn-danger btn-xs" href="{% url 'web:project_delete' c.id %}?page={{ page }}" onclick="return confirm('确认删除吗?')">删除</a>
+                  {% endif %}
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    {% with clients as paging_objs %}
+      {% include 'web/paging.html' %}
+    {% endwith %}
+  </div>
+</div>
+{% endblock %}
