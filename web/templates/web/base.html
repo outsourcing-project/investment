@@ -90,7 +90,11 @@
             <li class="header">
               管理后台
             </li>
-
+            <li {% if module == 'index' %}class="active"{% endif %}>
+              <a href="{% url 'web:index' %}">
+                <i class="fa fa-dashboard"></i>
+                <span>Dashboard</span></a>
+            </li>
             {% if "view_module" in user|get_acl_perms:"user" %}
             <li {% if module == 'user' %}class="active" {% endif %}>
               <a href="{% url 'web:user_info_list' %}">
