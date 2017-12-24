@@ -11,12 +11,17 @@ from web.models import (
     ExpertTeam,
     InvestmentTeam,
     InvestmentTeamShow,
+    ACL,
 )
 
 
 class UserInfoAdmin(admin.ModelAdmin):
 
     list_display = ('id', 'user_name', 'openid')
+
+
+class ACLAdmin(admin.ModelAdmin):
+    pass
 
 
 class SettingAdmin(admin.ModelAdmin):
@@ -47,6 +52,7 @@ class InvestmentTeamShowAdmin(admin.ModelAdmin):
 	pass
 
 
+admin.site.register(ACL, ACLAdmin)
 admin.site.register(UserInfo, UserInfoAdmin)
 admin.site.register(Setting, SettingAdmin)
 admin.site.register(Project, ProjectAdmin)
