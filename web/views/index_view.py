@@ -30,7 +30,7 @@ def index(request):
         'module': 'index',
     }
 
-    return render(request, 'super/index.html', context)
+    return render(request, 'web/index.html', context)
 
 @csrf_exempt
 def ckeditor_upload(request):

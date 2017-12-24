@@ -7,4 +7,5 @@ mysql-python==1.2.5
 pingpp==2.0.11
 redis==2.10.5
 simplejson==3.8.2
+wechatpy==1.4.1
 
