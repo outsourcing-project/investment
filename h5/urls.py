@@ -14,4 +14,7 @@ urlpatterns = [
     # wechat
     url(r'^wechat/login/$', auth_view.login_wechat, name='login_wechat'),
     url(r'^wechat/callback/$', auth_view.login_wechat_callback, name='login_wechat_callback'),
+    # 个人中心
+
+
 ]

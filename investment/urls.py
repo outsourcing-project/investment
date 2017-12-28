@@ -15,6 +15,7 @@ urlpatterns = [
 	# 超级后台
 	url(r'^superadmin/', admin.site.urls),
 	# 上传文件
-	url(r"^media/(?P<path>.*)$", serve, {"document_root": MEDIA_ROOT}),
+	url(r"^media/(?P<path>.*)$", serve, {'document_root': MEDIA_ROOT}),
 	url(r'^MP_verify_K3P0dE2UJny1YqEW.txt', index_view.validation),
+	url(r'^wexin', index_view.wexin, name='wexin'),
 ]
