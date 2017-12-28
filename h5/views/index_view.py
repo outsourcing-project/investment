@@ -140,7 +140,7 @@ def wexin(request):
     微信正常的收发消息是用POST方法。
     """
     # 这个WEIXIN_TOKEN是在测试号的配置页面中配置的，等会会讲到
-    WEIXIN_TOKEN = 'pony'
+    WEIXIN_TOKEN = 'investment'
     if request.method == "GET":
         signature = request.GET.get("signature", None)
         timestamp = request.GET.get("timestamp", None)

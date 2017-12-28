@@ -184,7 +184,7 @@ UPLOAD_DIR = os.path.join(BASE_DIR, 'static', 'upload')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = UPLOAD_DIR
 
-DOMAIN = 'http://www.yuejuweb.com'
+DOMAIN = 'http://119.23.210.215:81'
 
 # setting_local
 ROOT = os.path.abspath(os.path.dirname(__file__))
