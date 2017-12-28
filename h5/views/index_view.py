@@ -53,7 +53,6 @@ def index(request):
     projects = Project.obs.get_queryset().filter().order_by('-top', '-created')
 
     # 定位选中分类
-
     if int(page) == 1:
         project_count = projects.count()
         projects = projects[:8]
@@ -69,7 +68,6 @@ def index(request):
         'projects': projects,
         'project_count': project_count,
         'user_info': user_info,
-
     }
     return render(request, "h5/index.html", context)
 
