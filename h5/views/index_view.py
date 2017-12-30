@@ -142,6 +142,8 @@ def wexin(request):
     # 这个WEIXIN_TOKEN是在测试号的配置页面中配置的，等会会讲到
     WEIXIN_TOKEN = 'investment'
     if request.method == "GET":
+        logging.error(request.GET)
+        logging.error('---------------wexin----------------')
         signature = request.GET.get("signature", None)
         timestamp = request.GET.get("timestamp", None)
         nonce = request.GET.get("nonce", None)
@@ -157,6 +159,8 @@ def wexin(request):
             return HttpResponse("error")
 
     else:
+        logging.error(request.POST)
+        logging.error('---------------wexin----------------')
         current_date = datetime.datetime.now()
         xml = request.body
         msg = parse_message(xml)
