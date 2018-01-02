@@ -109,7 +109,6 @@ def download_attachment():
                     # end if
                     nPos = content.find('降息')
                     print("nPos is %d" % (nPos))
-                    print >> data
 
         # f.close()
 
