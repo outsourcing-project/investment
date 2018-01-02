@@ -55,7 +55,8 @@ def create(request, attachment_id):
             project.total_amount = float(total_amount) if total_amount else 0
             project.share_amount = float(share_amount) if share_amount else 0
             project.cycle = float(cycle) if cycle else 0
-            project.expect_return = float(expect_return) if expect_return else 0
+            project.expect_return = float(
+                expect_return) if expect_return else 0
         except Exception as e:
             pass
 
@@ -70,13 +71,15 @@ def create(request, attachment_id):
     }
     return render(request, "h5/publish.html", context)
 
-@check_user
+
 def detail(request, project_id):
     user_info = UserInfo.objects.filter(
         is_del=False,
         user__id=request.session.get('user_id', 0)
     ).first()
     project = Project.objects.get(pk=project_id)
+    project.read_count += 1
+    project.save()
 
     context = {
         'user_info': user_info,
@@ -93,4 +96,3 @@ def attachment(request, attachment_id):
         'attachment': attachment,
     }
     return render(request, "h5/pdf.html", context)
-
