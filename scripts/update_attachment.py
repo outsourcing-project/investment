@@ -95,11 +95,12 @@ def download_attachment():
                     fEx.write(data)
                     fEx.close()
                     # 存入附件表中
-                    Attachment.objects.create(
+                    attachment, _ = Attachment.objects.get_or_create(
                         user_info=userinfo,
-                        file=key,
                         title=fname,
                     )
+                    attachment.file = key
+                    attachment.save()
                 elif contentType == 'text/plain':  # or contentType == 'text/html':
                     # 保存正文
                     data = part.get_payload(decode=True)
