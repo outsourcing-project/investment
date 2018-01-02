@@ -83,3 +83,14 @@ def detail(request, project_id):
         'project': project,
     }
     return render(request, "h5/project_detail.html", context)
+
+
+@check_user
+def attachment(request, attachment_id):
+    attachment = Attachment.objects.get(pk=attachment_id)
+
+    context = {
+        'attachment': attachment,
+    }
+    return render(request, "h5/pdf.html", context)
+
