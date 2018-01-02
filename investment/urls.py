@@ -9,7 +9,7 @@ from h5.views import index_view
 
 urlpatterns = [
 	# 首页
-	url(r'^h5', include('h5.urls', namespace='h5')),
+	url(r'^h5/', include('h5.urls', namespace='h5')),
 	# 管理员后台
 	url(r'^admin/', include('web.urls', namespace='web')),
 	# 超级后台

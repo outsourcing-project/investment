@@ -1,34 +1,44 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>X</title>
-    <link rel="stylesheet" href="../static/style/index.css">
-</head>
-<body class="pb50">
-    <div class="sign_out">退出</div>
-    <a href="">
-        <div class="tap_item">
-            <div class="tap_box">
-                <span>个人信息</span>
-            </div>
-        </div>
-    </a>
-    <a href="">
-        <div class="tap_item">
-            <div class="tap_box">
-                <span>个人信息</span>
-            </div>
-        </div>
-    </a>
+{% extends 'h5/base.html' %}
+{% block title %}x{% endblock %}
 
-    <script src="../static/vendor/jquery-3.1.1.min.js"></script>
+{% block bodyclass %} class="pb50" {% endblock %}
+{% block container %}
+    <div class="sign_out">退出</div>
+    <a href="{% url 'h5:person_info' %}">
+        <div class="tap_item">
+            <div class="tap_box">
+                <span>个人信息</span>
+            </div>
+        </div>
+    </a>
+    <a href="{% url 'h5:user_project' %}">
+        <div class="tap_item">
+            <div class="tap_box">
+                <span>我发布的项目</span>
+            </div>
+        </div>
+    </a>
+    <a href="{% url 'h5:user_attachment' %}">
+        <div class="tap_item">
+            <div class="tap_box">
+                <span>我的附件</span>
+            </div>
+        </div>
+    </a>
+    <a href="{% url 'h5:about' %}">
+        <div class="tap_item">
+            <div class="tap_box">
+                <span>关于我们</span>
+            </div>
+        </div>
+    </a>
+{% endblock %}
+{% block script %}
     <script>
-      $(function () {
-      })
+        $(function () {
+            $('.sign_out').on('click', function() {
+                window.location.href = "{% url 'h5:login_out' %}"
+            })
+        })
     </script>
-</body>
-</html>
+{% endblock %}
