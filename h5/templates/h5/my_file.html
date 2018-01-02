@@ -1,14 +1,14 @@
 {% extends 'h5/base.html' %}
-{% block title %}x{% endblock %}
+{% block title %}个人中心{% endblock %}
 
 {% block bodyclass %} class="pb50" {% endblock %}
 {% block container %}
     {% for a in attachment_list %}
-    <div class="detail-section noflex my-file">
+    <div class="detail-section noflex my-file active">
         <h4>{{ a.title }}</h4>
         <div class="t">{{ a.created|date:"Y-m-d H:i" }}</div>
         <div class="flex-sa">
-            <a href="" class="btn-blue">查看附件</a>
+            <a href="{% url 'h5:project_attachment' a.id %}" class="btn-blue">查看附件</a>
             <a href="{% url 'h5:project_create' a.id %}" class="btn-pink">发布项目</a>
         </div>
     </div>

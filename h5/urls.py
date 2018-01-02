@@ -42,5 +42,6 @@ urlpatterns = [
     url(r'^about/$', user_view.about, name='about'),
     # 项目
     url(r'^project/create/(?P<attachment_id>\d+)/$', project_view.create, name='project_create'),
+    url(r'^attachment/(?P<attachment_id>\d+)/$', project_view.attachment, name='project_attachment'),
     url(r'^project/(?P<project_id>\d+)/$', project_view.detail, name='project_detail'),
 ]
