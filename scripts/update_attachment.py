@@ -6,7 +6,7 @@ from web.models import (
     UserInfo,
     Attachment,
 )
-from imagestore import get_extension
+from imagestore.qiniu_manager import get_extension
 from email import parser
 import os
 import sys
