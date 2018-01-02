@@ -4,11 +4,11 @@
 {% block bodyclass %} class="pb50" {% endblock %}
 {% block container %}
     <div class="fix_bottom">
-        <a href="index.html" class="fix_bottom-item active">
+        <a href="{% url 'h5:user_attachment' %}" class="fix_bottom-item active">
             <i class="icon_paper"></i>
             <div>发布项目</div>
         </a>
-        <a href="personal.html" class="fix_bottom-item">
+        <a href="{% url 'h5:user_index' %}" class="fix_bottom-item">
             <i class="icon_person"></i>
             <div>个人中心</div>
         </a>
@@ -16,16 +16,20 @@
 
     <div class="projects">
     {% for p in projects %}
-        <a href="">
-            <div class="project">
+        <div class="project">
+            <a href="{% url 'h5:project_detail' p.id %}">
                 <h3>{{ p.name }}</h3>
                 <div class="project_b">
                     <span>发布者：{{ p.user_info.user_name }}</span>
                     <span>{{ p.created|date:"Y-m-d H:i" }}</span>
                 </div>
-            </div>
-        </a>
+            </a>
+        </div>
     {% endfor %}
+    {% if not project_count %}
+        <img src="/static/h5/img/icon@2x.png" alt="" class="icon_empty">
+        <p class="empty_txt">暂无项目</p>
+    {% endif %}
     </div>
 {% endblock %}
 {% block script %}

@@ -5,15 +5,13 @@
 {% block container %}
     <img src="/static/h5/img/icon_eye.png" alt="" class="icon_eye">
     <div class="container input_title">
-        <h3>更换邮箱</h3>
-        <p>当前绑定的邮箱为 {{ user_info.email }}</p>
-        <p>更换邮箱后，您需要使用新邮箱向制定邮箱发邮件</p>
+        <h3>修改姓名</h3>
     </div>
     <div class="container input_wrap">
         <form method="POST" >
             {% csrf_token %}
             <div class="input_section">
-                <input type="text" name="email" placeholder="新邮箱">
+                <input type="text" name="username" value="{{ user_info.user_name }}" placeholder="姓名">
             </div>
             <button class="btn btn-bound">确定</button>
         </form>

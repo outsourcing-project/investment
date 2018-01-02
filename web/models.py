@@ -83,12 +83,7 @@ class UserInfo(BaseModel):
         (2, '女')
     )
 
-    user = models.ForeignKey(
-        User,
-        default=None,
-        blank=True,
-        null=True,
-        verbose_name='用户')
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     email = models.CharField(
         max_length=128,
         default='',
@@ -222,6 +217,25 @@ class Setting(BaseModel):
     code = models.CharField(max_length=100, default='', verbose_name="code")
 
 
+class Attachment(BaseModel):
+
+    class Meta:
+        verbose_name = '附件'
+        verbose_name_plural = '附件'
+
+    user_info = models.ForeignKey(
+        UserInfo,
+        null=True,
+        blank=True,
+        verbose_name='用户')
+    file = models.CharField(max_length=1024, default='', verbose_name='附件')
+    title = models.CharField(max_length=1024, default='', verbose_name='附件名称')
+
+    @property
+    def file_url(self):
+        return o_url(self.file)
+
+
 class Project(BaseModel):
 
     class Meta(object):
@@ -238,6 +252,12 @@ class Project(BaseModel):
         null=True,
         blank=True,
         verbose_name='用户')
+    attachment = models.ForeignKey(
+        Attachment,
+        default=None,
+        null=True,
+        blank=True,
+        verbose_name='附件')
     name = models.CharField(max_length=255, default='', verbose_name="项目名称")
     theme = models.CharField(max_length=255, default='', verbose_name="主控主体")
     total_amount = models.FloatField(
@@ -267,6 +287,9 @@ class Project(BaseModel):
     def comment_count(self):
         return Comment.obs.get_queryset().filter(project=self).count()
 
+    def comments(self):
+        return Comment.obs.get_queryset().filter(project=self).all()
+
     def set_top(self):
         self.top = 1
         self.top_time = datetime.datetime.now()
@@ -276,22 +299,6 @@ class Project(BaseModel):
         self.top = 0
         self.top_time = None
         self.save()
-
-
-class Attachment(BaseModel):
-
-    class Meta:
-        verbose_name = '附件'
-        verbose_name_plural = '附件'
-
-    project = models.ForeignKey(
-        Project,
-        default=None,
-        null=True,
-        blank=True,
-        verbose_name='项目')
-    file = models.CharField(max_length=1024, default='', verbose_name='附件')
-    title = models.CharField(max_length=1024, default='', verbose_name='附件名称')
 
 
 class Comment(BaseModel):
