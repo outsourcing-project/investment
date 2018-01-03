@@ -54,25 +54,6 @@ def send_mail(project_title, to_addr, context, attach_url=None, file_name=None):
             # encoders.encode_base64(part)
             msg.attach(part)
 
-
-            with open(os.path.join(UPLOAD_DIR, attach_url), 'wb') as f:
-                # 设置附件的MIME和文件名，这里是png类型:
-                mime = MIMEBase('image', 'pdf', filename=file_name)
-                # 加上必要的头信息:
-                mime.add_header('Content-Type', 'application/octet-stream')
-                mime.add_header(
-                    'Content-Disposition',
-                    'attachment',
-                    filename=file_name)
-                mime.add_header('Content-ID', '<0>')
-                mime.add_header('X-Attachment-Id', '0')
-                # 把附件的内容读进来:
-                mime.set_payload(f.read())
-                # 用Base64编码:
-                encoders.encode_base64(mime)
-                # 添加到MIMEMultipart:
-                msg.attach(mime)
-
         server = smtplib.SMTP_SSL(smtp_server, 465)
         # server.set_debuglevel(1)
         server.login(from_addr, password)
