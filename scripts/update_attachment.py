@@ -83,24 +83,27 @@ def download_attachment():
                     if encodeStr is not None:
                         fname = fname.decode(encodeStr, mycode)
 
-                    from settings import UPLOAD_DIR
-                    ts = int(time.time())
-                    ext = get_extension(fname)
-                    key = 'investment_{}.{}'.format(ts, ext)
-                    fEx = open(
-                        os.path.join(
-                            UPLOAD_DIR,
-                            key),
-                        'wb')
-                    fEx.write(data)
-                    fEx.close()
-                    # 存入附件表中
-                    attachment, _ = Attachment.objects.get_or_create(
+                    # 判断附件是否已经上传过
+                    is_upload = Attachment.obs.get_queryset().filter(
                         user_info=userinfo,
-                        title=fname,
-                    )
-                    attachment.file = key
-                    attachment.save()
+                        title=fname
+                    ).exists()
+                    if not is_upload:
+                        from settings import UPLOAD_DIR
+                        ts = int(time.time())
+                        ext = get_extension(fname)
+                        key = 'investment_{}.{}'.format(ts, ext)
+                        fEx = open(os.path.join(UPLOAD_DIR, key), 'wb')
+                        fEx.write(data)
+                        fEx.close()
+
+                        # 存入附件表中
+                        attachment = Attachment.objects.create(
+                            user_info=userinfo,
+                            title=fname,
+                        )
+                        attachment.file = key
+                        attachment.save()
                 elif contentType == 'text/plain':  # or contentType == 'text/html':
                     # 保存正文
                     data = part.get_payload(decode=True)
