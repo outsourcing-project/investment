@@ -21,12 +21,59 @@ from web.models import (
     UserInfo,
     Project,
     Attachment,
+    ExpertTeam,
 )
 import datetime
 import logging
 import hashlib
 
 from wechat.constants import WECHAT_BATCHGET_MATERIAL
+from common.email_utils import send_mail
+
+
+def create_send_email_html(project_id):
+
+    project = Project.objects.get(pk=project_id)
+
+    html = u'<html><body><h1>' + project.name + u'</h1>' + \
+            u'<table>' + \
+              u'<tbody>' + \
+                  u'<tr>' + \
+                    u'<td>项目名称</td>' + \
+                    u'<td>' + project.name + u'</td>' + \
+                  u'</tr>' + \
+                  u'<tr>' + \
+                    u'<td>主控主题</td>' + \
+                    u'<td>' + project.theme + u'</td>' + \
+                  u'</tr>' + \
+                  u'<tr>' + \
+                    u'<td>项目总投资</td>' + \
+                    u'<td>¥' + str(project.total_amount) + u'</td>' + \
+                  u'</tr>' + \
+                  u'<tr>' + \
+                    u'<td>投资份额</td>' + \
+                    u'<td>' + str(project.share_amount) + u'%</td>' + \
+                  u'<tr>' + \
+                    u'<td>投资周期</td>' + \
+                    u'<td>' + str(project.cycle) + u'年</td>' + \
+                  u'</tr>' + \
+                  u'<tr>' + \
+                    u'<td>预估回报</td>' + \
+                    u'<td>' + str(project.expect_return) + u'%</td>' + \
+                  u'</tr>' + \
+                  u'<tr>' + \
+                    u'<td>项目进度</td>' + \
+                    u'<td>' + project.progress + u'</td>' + \
+                  u'</tr>' + \
+                  u'<tr>' + \
+                    u'<td>备注</td>' + \
+                    u'<td>' + project.note + u'</td>' + \
+                  u'</tr>' + \
+              u'</tbody>' + \
+            u'</table>' +  \
+            u'</body></html>'
+
+    return html
 
 
 @check_user
@@ -48,6 +95,7 @@ def create(request, attachment_id):
         note = request.POST.get('note', '')
 
         project = Project()
+        project.user_info = user_info
         project.attachment = attachment
         project.name = name
         project.theme = theme
@@ -63,6 +111,19 @@ def create(request, attachment_id):
         project.progress = progress
         project.note = note
         project.save()
+        # 成功则发送邮件
+        project_title = project.name
+        # 获取专家团邮箱
+        expert_team_list = ExpertTeam.obs.get_queryset().filter(
+            is_valid=True
+        )
+        emails = [et.email for et in expert_team_list]
+        to_addr = emails
+        context = create_send_email_html(project.id)
+        attach_url = project.attachment.file
+        file_name = project.attachment.title
+        send_mail(project_title, to_addr, context, attach_url, file_name)
+
         return HttpResponseRedirect(reverse('h5:h5_index'))
 
     context = {
