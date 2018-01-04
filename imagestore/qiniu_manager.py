@@ -14,7 +14,7 @@ def o_url(key):
     print os.path.join(DOMAIN, key)
     print 'sdfasdfasd'
     if key:
-        return '{}{}'.format(DOMAIN, key)
+        return '{}/media/{}'.format(DOMAIN, key)
     else:
         return ''
 
