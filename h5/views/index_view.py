@@ -28,6 +28,7 @@ from wechat.request_manager import RequestManager
 from web.models import (
     UserInfo,
     Project,
+    InvestmentTeam,
 )
 from wechatpy import parse_message
 from wechatpy.replies import TextReply
@@ -35,8 +36,8 @@ import datetime
 import logging
 import hashlib
 import wechatpy
-
 from wechat.constants import WECHAT_BATCHGET_MATERIAL
+
 
 
 # @check_login

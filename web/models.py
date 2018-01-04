@@ -282,6 +282,9 @@ class Project(BaseModel):
         blank=True,
         verbose_name="置顶时间")
     read_count = models.IntegerField(default=0, verbose_name="浏览量")
+    expert_team_email = models.TextField(blank=True, default='', verbose_name="已发专家团邮箱")
+    investment_team_email = models.TextField(blank=True, default='', verbose_name="已发投资团邮箱")
+
 
     @property
     def comment_count(self):
