@@ -29,8 +29,6 @@ import hashlib
 import random
 
 from wechat.constants import WECHAT_BATCHGET_MATERIAL
-from utils import send_v_code, check_v_code, verify_mobile
-
 
 
 @check_user
