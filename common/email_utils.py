@@ -32,38 +32,37 @@ def send_mail(
         attach_url=None,
         file_name=None):
 
-    try:
-        msg = MIMEMultipart('alternative')
+    # try:
+    msg = MIMEMultipart('alternative')
+    msg1 = MIMEText(context, 'html', 'utf-8')
 
-        msg1 = MIMEText(context, 'html', 'utf-8')
+    msg.attach(MIMEText('hello', 'plain', 'utf-8'))
+    msg.attach(msg1)
+    msg['From'] = _format_addr(u'项目评审 <%s>' % from_addr)
+    msg['To'] = _format_addr(u'<%s>' % to_addr)
+    msg['Subject'] = Header(u'%s项目评审' % project_title, 'utf-8').encode()
 
-        msg.attach(MIMEText('hello', 'plain', 'utf-8'))
-        msg.attach(msg1)
-        msg['From'] = _format_addr(u'项目评审 <%s>' % from_addr)
-        msg['To'] = _format_addr(u'<%s>' % to_addr)
-        msg['Subject'] = Header(u'%s项目评审' % project_title, 'utf-8').encode()
+    # 添加附件就是加上一个MIMEBase，从本地读取一个图片:
+    if attach_url:
+        from settings import UPLOAD_DIR
+        print os.path.join(UPLOAD_DIR, attach_url)
+        print file_name
+        with open(os.path.join(UPLOAD_DIR, attach_url), 'rb') as f:
+            logging.error(file_name)
+            att2 = MIMEText(f.read(), 'base64', 'gb2312')
+            att2["Content-Type"] = 'application/octet-stream'
+            att2["Content-Disposition"] = 'attachment; filename="' + file_name.encode("gbk") + '"'
+            print att2["Content-Disposition"]
+            msg.attach(att2)
 
-        # 添加附件就是加上一个MIMEBase，从本地读取一个图片:
-        if attach_url:
-            from settings import UPLOAD_DIR
-            print os.path.join(UPLOAD_DIR, attach_url)
-            print file_name
-            with open(os.path.join(UPLOAD_DIR, attach_url), 'rb') as f:
-
-                att2 = MIMEText(f.read(), 'base64', 'gb2312')
-                att2["Content-Type"] = 'application/octet-stream'
-                att2["Content-Disposition"] = 'attachment; filename="' + file_name.encode("gbk") + '"'
-                print att2["Content-Disposition"]
-                msg.attach(att2)
-
-        server = smtplib.SMTP_SSL(smtp_server, 465)
-        server.set_debuglevel(1)
-        server.login(from_addr, password)
-        server.sendmail(from_addr, to_addr, msg.as_string())
-        server.quit()
-    except Exception as e:
-        logging.error(e)
-        logging.error('----------send_mail---------')
+    server = smtplib.SMTP_SSL(smtp_server, 465)
+    server.set_debuglevel(1)
+    server.login(from_addr, password)
+    server.sendmail(from_addr, to_addr, msg.as_string())
+    server.quit()
+    # except Exception as e:
+    #     logging.error(e)
+    #     logging.error('----------send_mail---------')
 
 
 if __name__ == "__main__":
