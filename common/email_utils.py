@@ -41,21 +41,20 @@ def send_mail(project_title, to_addr, context, attach_url=None, file_name=None):
         # 添加附件就是加上一个MIMEBase，从本地读取一个图片:
         if attach_url:
             from settings import UPLOAD_DIR
-            print os.path.join(UPLOAD_DIR, attach_url)
             part = MIMEApplication(open(os.path.join(UPLOAD_DIR, attach_url), 'rb').read())
             part.add_header('Content-Type', 'application/octet-stream')
             part.add_header(
                 'Content-Disposition',
                 'attachment',
                 filename=file_name)
-            part.add_header('Content-ID', '<0>')
-            part.add_header('X-Attachment-Id', '0')
+            # part.add_header('Content-ID', '<0>')
+            # part.add_header('X-Attachment-Id', '0')
             # 把附件的内容读进来:
             # encoders.encode_base64(part)
             msg.attach(part)
 
         server = smtplib.SMTP_SSL(smtp_server, 465)
-        # server.set_debuglevel(1)
+        server.set_debuglevel(1)
         server.login(from_addr, password)
         server.sendmail(from_addr, to_addr, msg.as_string())
         server.quit()
