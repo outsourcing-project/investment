@@ -227,6 +227,8 @@ def confirm_mobile(request):
         else:
             user_info.mobile = phone
             user_info.save()
+            user_info.user.username = phone
+            user_info.user.save()
             return HttpResponseRedirect(reverse('h5:user_index'))
 
     context = {
