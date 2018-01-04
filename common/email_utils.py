@@ -50,7 +50,7 @@ def send_mail(
                 att2 = MIMEText(f.read(), 'base64', 'gb2312')
                 att2["Content-Type"] = 'application/octet-stream'
                 att2["Content-Disposition"] = 'attachment; filename="' + file_name.encode('gbk') + '"'
-                print att2["Content-Disposition"]  
+                print att2["Content-Disposition"]
                 msg.attach(att2)
 
         server = smtplib.SMTP_SSL(smtp_server, 465)

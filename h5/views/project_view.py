@@ -123,7 +123,8 @@ def create(request, attachment_id):
         attach_url = project.attachment.file
         file_name = project.attachment.title
         send_mail(project_title, to_addr, context, attach_url, file_name)
-
+        project.expert_team_email = ','.join(to_addr)
+        project.save()
         return HttpResponseRedirect(reverse('h5:h5_index'))
 
     context = {
