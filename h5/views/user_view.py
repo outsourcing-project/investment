@@ -26,8 +26,11 @@ from web.models import (
 import datetime
 import logging
 import hashlib
+import random
 
 from wechat.constants import WECHAT_BATCHGET_MATERIAL
+from utils import send_v_code, check_v_code, verify_mobile
+
 
 
 @check_user
@@ -156,12 +159,7 @@ def edit_uname(request):
 
         user_info.user_name = username
         user_info.save()
-        return HttpResponseRedirect(
-            reverse(
-                'h5:person_info',
-                kwargs={
-                    'userinfo_id':
-                    user_info.id}))
+        return HttpResponseRedirect(reverse('h5:person_info'))
 
     context = {
         'user_info': user_info,
@@ -182,12 +180,7 @@ def edit_email(request):
 
         user_info.email = email
         user_info.save()
-        return HttpResponseRedirect(
-            reverse(
-                'h5:person_info',
-                kwargs={
-                    'userinfo_id':
-                    user_info.id}))
+        return HttpResponseRedirect(reverse('h5:person_info'))
 
     context = {
         'user_info': user_info,
@@ -211,10 +204,7 @@ def edit_mobile(request):
         else:
             return HttpResponseRedirect(
                 reverse(
-                    'h5:confirm_mobile',
-                    kwargs={
-                        'userinfo_id':
-                        user_info.id}))
+                    'h5:confirm_mobile'))
 
     context = {
         'user_info': user_info,
