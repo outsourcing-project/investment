@@ -15,6 +15,7 @@
     {% endfor %}
 
     {% if not attachment_list %}
+        <div class="sign_out" onclick="window.location.href='{% url "h5:h5_index" %}'">首页</div>
         <div class="email_tab">当前绑定邮箱为 {{ user_info.email }}</div>
         <p class="email_tip">使用绑定的邮箱给 2274841039@qq.com 发附件，并在我的附件中发布项目，您的项目就会被专家看到。</p>
         <p class="send_font-pink">说明：附件格式仅限PDF,PPT</p>
