@@ -51,7 +51,11 @@ def download_attachment():
         subject = message.get('subject')
         h = email.Header.Header(subject)
         dh = email.Header.decode_header(h)
-        subject = unicode(dh[0][0], dh[0][1]).encode('utf8')
+        try:
+            subject = unicode(dh[0][0], dh[0][1]).encode('utf8')
+        except Exception as e:
+            subject = ''
+
         mailName = "mail%d.%s" % (i, subject)
         from_email = email.utils.parseaddr(message.get('from'))[1]
         # f = open('%d.log' % (i), 'w')
