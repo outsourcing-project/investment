@@ -1,5 +1,5 @@
 {% extends 'h5/base.html' %}
-{% block title %}x{% endblock %}
+{% block title %}登录{% endblock %}
 
 {% block bodyclass %} class="pb50" {% endblock %}
 {% block container %}
@@ -44,9 +44,23 @@
             return true
         }
         $(function () {
-            $('.get_verify').on('click', function(argument) {
-                alert('短信发送成功')
+            $('.get_verify').on('click', function() {
+                var mobile = $.trim($("#mobile").val())
+                if (!mobile) {
+                    return;
+                };
+                $.ajax({
+                  method: "GET",
+                  url: '{{domain}}/h5/send_v_code/?mobile=' + mobile
+                }).done(function( args ) {
+                    if (!args.error_code) {
+                        alert('发送成功')
+                    }else{
+                        alert('发送失败')
+                    }
+                })
             })
+
             // $('#form_btn').on('click', function() {
             //     checkMobile()
             // })

@@ -12,6 +12,10 @@ from settings import (
     WECHAT_APP_ID,
     WECHAT_APP_SECRET,
     DOMAIN,
+    REDIS_HOST,
+    REDIS_PORT,
+    REDIS_DB,
+    AL_VALIDATION_CODE
 )
 from h5.utils import check_login, check_user
 from django.views.decorators.csrf import csrf_exempt
@@ -27,8 +31,27 @@ import datetime
 import logging
 import hashlib
 import random
+import redis
 
+from utils import send_yanzheng_code, verify_mobile, check_v_code
 from wechat.constants import WECHAT_BATCHGET_MATERIAL
+redis_conn = redis.Redis(host=REDIS_HOST, port=REDIS_PORT, db=REDIS_DB)
+
+
+def send_v_code(request):
+    mobile = request.GET.get('mobile', '')
+    if not verify_mobile(mobile):
+        return Response({'error_code': 2, 'error_msg': '手机号格式错误'})
+
+    v_code = str(random.randint(1000, 9999))
+
+    data = send_yanzheng_code(mobile, v_code, AL_VALIDATION_CODE, 2)
+    if data:
+        redis_conn.set('v_code_json', json.dumps(
+            {data['mobile']: v_code, 'send_time': data['send_time']}, ensure_ascii=False))
+        return JsonResponse({'error_code': 0, 'v_code': v_code})
+    else:
+        return JsonResponse({'error_code': 1, 'error_msg': '发送失败'})
 
 
 @check_user
@@ -74,7 +97,16 @@ def login(request):
         phone = request.POST.get('phone', '')
         code = request.POST.get('code', '')
 
-        if code != '6666':
+        msg = ''
+        status = check_v_code(request, redis_conn, phone, code, 'v_code_json', 360)
+        if not verify_mobile(phone):
+            msg = '手机号码格式错误'
+        elif status == 3:
+            msg = '未发送验证码'
+        elif status == 1:
+            msg = '验证码已过期'
+
+        if not status or code != '6666':
             msg = '验证码错误'
         else:
             user, _ = User.objects.get_or_create(
@@ -88,6 +120,7 @@ def login(request):
             return HttpResponseRedirect(reverse('h5:user_index'))
 
     context = {
+        'domain': DOMAIN,
         'team_show_list': team_show_list,
         'msg': msg,
     }
@@ -197,7 +230,17 @@ def edit_mobile(request):
     if request.method == 'POST':
         code = request.POST.get('code', '')
 
-        if code != '6666':
+        msg = ''
+        phone = user_info.mobile
+        status = check_v_code(request, redis_conn, phone, code, 'v_code_json', 360)
+        if not verify_mobile(phone):
+            msg = '手机号码格式错误'
+        elif status == 3:
+            msg = '未发送验证码'
+        elif status == 1:
+            msg = '验证码已过期'
+
+        if not status or code != '6666':
             msg = '验证码错误'
         else:
             return HttpResponseRedirect(
@@ -222,14 +265,23 @@ def confirm_mobile(request):
     if request.method == 'POST':
         phone = request.POST.get('phone', '')
         code = request.POST.get('code', '')
-        if code != '6666':
+
+        status = check_v_code(request, redis_conn, phone, code, 'v_code_json', 360)
+        if not verify_mobile(phone):
+            msg = '手机号码格式错误'
+        elif status == 3:
+            msg = '未发送验证码'
+        elif status == 1:
+            msg = '验证码已过期'
+
+        if not status or code != '6666':
             msg = '验证码错误'
         else:
             user_info.mobile = phone
             user_info.save()
             user_info.user.username = phone
             user_info.user.save()
-            return HttpResponseRedirect(reverse('h5:user_index'))
+            return HttpResponseRedirect(reverse('h5:person_info'))
 
     context = {
         'user_info': user_info,

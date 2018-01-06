@@ -16,7 +16,7 @@ from web.models import (
 from django.db.models import Q
 from django.contrib.auth.hashers import make_password
 from web.decorators import web_login_required
-from utils.paging_utils import (
+from tools.paging_utils import (
     paging_objs,
 )
 

@@ -3,6 +3,9 @@
 
 {% block bodyclass %} class="pb50" {% endblock %}
 {% block container %}
+    <div class="navbar">
+        <a class="back" href="{% url "h5:user_attachment" %}"></a>
+    </div>
     <form method="POST" >
         {% csrf_token %}
         <div class="detail-section noflex my-file">
