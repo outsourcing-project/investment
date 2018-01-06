@@ -18,13 +18,14 @@ def update_project_email():
     expire_time = datetime.datetime.now() - datetime.timedelta(days=2)
     project_list = Project.obs.get_queryset().filter(
         is_valid=True,
-        created__lt=expire_time
-    ).exclude(investment_team_email='')
+        created__lt=expire_time,
+        investment_team_email=''
+    )
 
     for p in project_list:
         # 成功则发送邮件
         project_title = p.name
-        # 获取专家团邮箱
+        # 获取投资团邮箱
         investment_team_list = InvestmentTeam.obs.get_queryset().filter(
             is_valid=True
         )

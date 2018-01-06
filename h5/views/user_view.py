@@ -117,7 +117,7 @@ def login(request):
                 mobile=phone
             )
             request.session['user_id'] = user.id
-            return HttpResponseRedirect(reverse('h5:user_index'))
+            return HttpResponseRedirect(reverse('h5:h5_index'))
 
     context = {
         'domain': DOMAIN,
