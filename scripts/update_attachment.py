@@ -89,18 +89,18 @@ def download_attachment():
                             fname = fname.decode(encodeStr, mycode)
 
                         # 判断附件是否已经上传过
-                        # is_upload = Attachment.obs.get_queryset().filter(
-                        #     user_info=userinfo,
-                        #     title=fname
-                        # ).exists()
-                        # if not is_upload:
-                        from settings import UPLOAD_DIR
-                        ts = int(time.time())
-                        ext = get_extension(fname)
-                        key = 'investment_{}.{}'.format(ts, ext)
-                        fEx = open(os.path.join(UPLOAD_DIR, key), 'wb')
-                        fEx.write(data)
-                        fEx.close()
+                        is_upload = Attachment.obs.get_queryset().filter(
+                            user_info=userinfo,
+                            title=fname
+                        ).exists()
+                        if not is_upload:
+                            from settings import UPLOAD_DIR
+                            ts = int(time.time())
+                            ext = get_extension(fname)
+                            key = 'investment_{}.{}'.format(ts, ext)
+                            fEx = open(os.path.join(UPLOAD_DIR, key), 'wb')
+                            fEx.write(data)
+                            fEx.close()
 
                         # 存入附件表中
                         attachment = Attachment.objects.create(
