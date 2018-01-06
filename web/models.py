@@ -9,6 +9,8 @@ from imagestore.qiniu_manager import o_url
 
 import datetime
 
+from settings import DOMAIN
+
 
 class BaseModelManager(models.Manager):
 
@@ -233,7 +235,7 @@ class Attachment(BaseModel):
 
     @property
     def file_url(self):
-        return o_url(self.file)
+        return DOMAIN + u'/media/' + self.file
 
 
 class Project(BaseModel):
