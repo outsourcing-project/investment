@@ -3,6 +3,9 @@
 
 {% block bodyclass %} class="pb50" {% endblock %}
 {% block container %}
+    <div class="navbar">
+        <a class="back" href="{% url "h5:h5_index" %}"></a>
+    </div>
     <div class="sign_out">退出</div>
     <a href="{% url 'h5:person_info' %}">
         <div class="tap_item">

@@ -71,7 +71,7 @@ def create_send_email_html(project_id):
                   u'</tr>' + \
               u'</tbody>' + \
             u'</table>' +  \
-            u'</body></html>'
+            u'</body><input type="hidden" id="project_id" value="' + str(project.id) + u'"></html>'
 
     return html
 
