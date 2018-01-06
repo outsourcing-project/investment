@@ -78,32 +78,33 @@ def download_attachment():
                     data = part.get_payload(decode=True)
                     h = email.Header.Header(fileName)
                     dh = email.Header.decode_header(h)
-                    fname = dh[0][0]
-                    encodeStr = dh[0][1]
-                    if encodeStr is not None:
-                        fname = fname.decode(encodeStr, mycode)
+                    for indx, val in enumerate(dh):
+                        fname = val[0]
+                        encodeStr = val[1]
+                        if encodeStr is not None:
+                            fname = fname.decode(encodeStr, mycode)
 
-                    # 判断附件是否已经上传过
-                    is_upload = Attachment.obs.get_queryset().filter(
-                        user_info=userinfo,
-                        title=fname
-                    ).exists()
-                    if not is_upload:
-                        from settings import UPLOAD_DIR
-                        ts = int(time.time())
-                        ext = get_extension(fname)
-                        key = 'investment_{}.{}'.format(ts, ext)
-                        fEx = open(os.path.join(UPLOAD_DIR, key), 'wb')
-                        fEx.write(data)
-                        fEx.close()
-
-                        # 存入附件表中
-                        attachment = Attachment.objects.create(
+                        # 判断附件是否已经上传过
+                        is_upload = Attachment.obs.get_queryset().filter(
                             user_info=userinfo,
-                            title=fname,
-                        )
-                        attachment.file = key
-                        attachment.save()
+                            title=fname
+                        ).exists()
+                        if not is_upload:
+                            from settings import UPLOAD_DIR
+                            ts = int(time.time())
+                            ext = get_extension(fname)
+                            key = 'investment_{}.{}'.format(ts, ext)
+                            fEx = open(os.path.join(UPLOAD_DIR, key), 'wb')
+                            fEx.write(data)
+                            fEx.close()
+
+                            # 存入附件表中
+                            attachment = Attachment.objects.create(
+                                user_info=userinfo,
+                                title=fname,
+                            )
+                            attachment.file = key
+                            attachment.save()
                 elif contentType == 'text/plain':  # or contentType == 'text/html':
                     # 保存正文
                     data = part.get_payload(decode=True)
