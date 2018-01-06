@@ -102,13 +102,13 @@ def download_attachment():
                             fEx.write(data)
                             fEx.close()
 
-                        # 存入附件表中
-                        attachment = Attachment.objects.create(
-                            user_info=userinfo,
-                            title=fname,
-                        )
-                        attachment.file = key
-                        attachment.save()
+                            # 存入附件表中
+                            attachment = Attachment.objects.create(
+                                user_info=userinfo,
+                                title=fname,
+                            )
+                            attachment.file = key
+                            attachment.save()
                 elif contentType == 'text/plain':  # or contentType == 'text/html':
                     # 保存正文
                     data = part.get_payload(decode=True)
