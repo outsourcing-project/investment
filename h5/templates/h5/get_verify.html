@@ -1,5 +1,5 @@
 {% extends 'h5/base.html' %}
-{% block title %}个人中心{% endblock %}
+{% block title %}更换手机号{% endblock %}
 
 {% block bodyclass %} class="pb50" {% endblock %}
 {% block container %}
@@ -16,6 +16,7 @@
                 <div class="get_verify">获取验证码</div>
             </div>
             <span style="color: red">{{ msg }}</span>
+            <input type="hidden" id="mobile" value="{{ user_info.mobile }}">
             <button class="btn btn-bound">下一步</button>
         </form>
     </div>
@@ -24,7 +25,20 @@
     <script>
         $(function () {
             $('.get_verify').on('click', function(argument) {
-                alert('短信发送成功')
+                var mobile = $.trim($("#mobile").val())
+                if (!mobile) {
+                    return;
+                };
+                $.ajax({
+                  method: "GET",
+                  url: '{{domain}}/h5/send_v_code/?mobile=' + mobile
+                }).done(function( args ) {
+                    if (!args.error_code) {
+                        alert('发送成功')
+                    }else{
+                        alert('发送失败')
+                    }
+                })
             })
         })
     </script>

@@ -2,6 +2,9 @@
 {% block title %}项目详情{% endblock %}
 
 {% block container %}
+    <div class="navbar">
+        <a class="back" href="{% url "h5:h5_index" %}"></a>
+    </div>
     <div class="pdf-modal">
         <div>
             <img src="/static/h5/img/loads.gif" alt="" class="loading" id="loading">

@@ -1,8 +1,11 @@
 {% extends 'h5/base.html' %}
-{% block title %}个人中心{% endblock %}
+{% block title %}我的附件{% endblock %}
 
 {% block bodyclass %} class="pb50" {% endblock %}
 {% block container %}
+    <div class="navbar">
+        <a class="back" href="javascript:history.back(-1)"></a>
+    </div>
     {% for a in attachment_list %}
     <div class="detail-section noflex my-file active">
         <h4>{{ a.title }}</h4>

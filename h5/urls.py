@@ -20,6 +20,7 @@ urlpatterns = [
         name='login_wechat_callback'),
 
     # 用户中心
+    url(r'^send_v_code/$', user_view.send_v_code, name='send_v_code'),
     url(r'^user/$', user_view.index, name='user_index'),
     url(r'^user_info/$',
         user_view.person_info, name='person_info'),

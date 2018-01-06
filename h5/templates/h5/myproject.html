@@ -1,7 +1,10 @@
 {% extends 'h5/base.html' %}
-{% block title %}个人中心{% endblock %}
+{% block title %}我的项目{% endblock %}
 
 {% block container %}
+    <div class="navbar">
+        <a class="back" href="{% url "h5:user_index" %}"></a>
+    </div>
     <div class="projects">
         {% for p in projects %}
             <div class="project">

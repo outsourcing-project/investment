@@ -11,10 +11,10 @@ from web.models import (
     Comment,
 )
 
-from utils.paging_utils import (
+from tools.paging_utils import (
     paging_objs,
 )
-from utils.qiniu_utils import (
+from tools.qiniu_utils import (
     get_extension,
     handle_uploaded_file,
 )

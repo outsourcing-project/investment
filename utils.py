@@ -1,11 +1,10 @@
 # coding: utf-8
 
 from rest_framework_jwt.settings import api_settings
-from settings import SMS_ACCOUNT_SID, SMS_ACCOUNT_TOKEN, SMS_SUB_ACCOUNT_SID, SMS_TEMPLATE_CODE_ID, SMS_SUB_ACCOUNT_TOKEN, SMS_APP_ID
-from sms import SMSManager
 from django.core.urlresolvers import reverse
 from functools import wraps
 from django.http import HttpResponseRedirect
+from common.sms import alisms
 
 import random
 import simplejson
@@ -40,6 +39,7 @@ def website_check_login(view):
 
     return wrapper
 
+
 def md5_create(src):
     """生成md5字符串
     """
@@ -66,67 +66,6 @@ def jwt_token_decode(token):
     return payload
 
 
-def send_v_code(mobile, v_code, expired_minutes):
-    sms_manager = SMSManager(SMS_ACCOUNT_SID, SMS_ACCOUNT_TOKEN, SMS_SUB_ACCOUNT_SID, SMS_SUB_ACCOUNT_TOKEN, SMS_APP_ID)
-    try:
-        result = sms_manager.send_auth_code(mobile, v_code, expired_minutes=expired_minutes, template_id=SMS_TEMPLATE_CODE_ID)
-        send_status = True
-    except Exception, e:
-        send_status = False
-    data = {}
-    if send_status:
-        data['mobile'] = mobile
-        data['v_code'] = v_code
-        data['send_time'] = int(time.time())
-    return data
-
-
-def send_notice(mobile, datas, template_id):
-    sms_manager = SMSManager(SMS_ACCOUNT_SID, SMS_ACCOUNT_TOKEN, SMS_SUB_ACCOUNT_SID, SMS_SUB_ACCOUNT_TOKEN, SMS_APP_ID)
-    try:
-        result = sms_manager.send_sms_msg(mobile, datas, 2, template_id)
-        send_status = True
-    except Exception, e:
-        send_status = False
-    data = {}
-    if send_status:
-        data['mobile'] = mobile
-        data['send_time'] = int(time.time())
-    return data
-
-
-def send_voice_code(mobile, v_code):
-    sms_manager = SMSManager(SMS_ACCOUNT_SID, SMS_ACCOUNT_TOKEN, SMS_SUB_ACCOUNT_SID, SMS_SUB_ACCOUNT_TOKEN, SMS_APP_ID)
-    try:
-        result = sms_manager.send_voice_code(mobile, v_code)
-        send_status = True
-    except Exception, e:
-        send_status = False
-    data = {}
-    if send_status:
-        data['mobile'] = mobile
-        data['v_code'] = v_code
-        data['send_time'] = int(time.time())
-    return data
-
-
-def check_v_code(request, redis_conn, mobile, v_code, expired_minutes):
-    # 返回值0，1，2，3，0代表验证通过，1代表验证码过期，2代表验证码错误，3代表未发送验证码
-    if redis_conn.get('v_code_json'):
-        v_data = redis_conn.get('v_code_json')
-        v_data = simplejson.loads(v_data)
-        s_v_code = v_data.get(mobile, '')
-        if s_v_code and s_v_code == v_code:
-            diff_v_time = int(time.time())-int(v_data['send_time'])
-            if diff_v_time <= int(expired_minutes)*60:
-                return 0
-            elif diff_v_time > int(expired_minutes)*60:
-                return 1
-        else:
-            return 2
-    else:
-        return 3
-
 def verify_mobile(mobile):
     # 返回值True 代表验证通过
     try:
@@ -141,5 +80,49 @@ def verify_mobile(mobile):
             # if cnm or cnu or cnt:
             return True
         return False
-    except Exception, e:
+    except Exception as e:
         return False
+
+
+def send_yanzheng_code(mobile, v_code, al_validation_code, expired_minutes):
+    sms_param = {
+        'code': v_code
+    }
+
+    try:
+        res = alisms.send_sms(mobile, '云通信产品', al_validation_code, sms_param)
+        send_status = True
+    except Exception as e:
+        logging.error(e)
+        send_status = False
+
+    data = {}
+    if send_status:
+        data['mobile'] = mobile
+        data['v_code'] = v_code
+        data['send_time'] = int(time.time())
+    return data
+
+
+def check_v_code(
+        request,
+        redis_conn,
+        mobile,
+        v_code,
+        v_code_json,
+        expired_minutes):
+    # 返回值0，1，2，3，0代表验证通过，1代表验证码过期，2代表验证码错误，3代表未发送验证码
+    if redis_conn.get('v_code_json'):
+        v_data = redis_conn.get('v_code_json')
+        v_data = simplejson.loads(v_data)
+        s_v_code = v_data.get(mobile, '')
+        if s_v_code and s_v_code == v_code:
+            diff_v_time = int(time.time()) - int(v_data['send_time'])
+            if diff_v_time <= int(expired_minutes) * 60:
+                return 0
+            elif diff_v_time > int(expired_minutes) * 60:
+                return 1
+        else:
+            return 2
+    else:
+        return 3
