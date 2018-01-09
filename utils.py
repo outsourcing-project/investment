@@ -90,7 +90,7 @@ def send_yanzheng_code(mobile, v_code, al_validation_code, expired_minutes):
     }
 
     try:
-        res = alisms.send_sms(mobile, '云通信产品', al_validation_code, sms_param)
+        res = alisms.send_sms(mobile, '文投平台', al_validation_code, sms_param)
         send_status = True
     except Exception as e:
         logging.error(e)
