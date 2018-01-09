@@ -49,14 +49,13 @@ def download_attachment():
         message = messages[index]
         i = i + 1
         subject = message.get('subject')
+        mail_id = message.get('x-qq-mid')
         h = email.Header.Header(subject)
         dh = email.Header.decode_header(h)
         try:
             subject = unicode(dh[0][0], dh[0][1]).encode('utf8')
         except Exception as e:
             subject = ''
-
-        mailName = "mail%d.%s" % (i, subject)
         from_email = email.utils.parseaddr(message.get('from'))[1]
         # f = open('%d.log' % (i), 'w')
         # print >> f, "Date: ", message["Date"]
@@ -91,7 +90,8 @@ def download_attachment():
                         # 判断附件是否已经上传过
                         is_upload = Attachment.obs.get_queryset().filter(
                             user_info=userinfo,
-                            title=fname
+                            title=fname,
+                            mail_id=mail_id
                         ).exists()
                         if not is_upload:
                             from settings import UPLOAD_DIR

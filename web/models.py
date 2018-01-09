@@ -232,6 +232,7 @@ class Attachment(BaseModel):
         verbose_name='用户')
     file = models.CharField(max_length=1024, default='', verbose_name='附件')
     title = models.CharField(max_length=1024, default='', verbose_name='附件名称')
+    mail_id = models.TextField(blank=True, default='', verbose_name="邮件id")
 
     @property
     def file_url(self):

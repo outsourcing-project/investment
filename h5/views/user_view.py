@@ -98,7 +98,13 @@ def login(request):
         code = request.POST.get('code', '')
 
         msg = ''
-        status = check_v_code(request, redis_conn, phone, code, 'v_code_json', 360)
+        status = check_v_code(
+            request,
+            redis_conn,
+            phone,
+            code,
+            'v_code_json',
+            360)
         if not verify_mobile(phone):
             msg = '手机号码格式错误'
         elif status == 3:
@@ -232,7 +238,13 @@ def edit_mobile(request):
 
         msg = ''
         phone = user_info.mobile
-        status = check_v_code(request, redis_conn, phone, code, 'v_code_json', 360)
+        status = check_v_code(
+            request,
+            redis_conn,
+            phone,
+            code,
+            'v_code_json',
+            360)
         if not verify_mobile(phone):
             msg = '手机号码格式错误'
         elif status == 3:
@@ -266,7 +278,13 @@ def confirm_mobile(request):
         phone = request.POST.get('phone', '')
         code = request.POST.get('code', '')
 
-        status = check_v_code(request, redis_conn, phone, code, 'v_code_json', 360)
+        status = check_v_code(
+            request,
+            redis_conn,
+            phone,
+            code,
+            'v_code_json',
+            360)
         if not verify_mobile(phone):
             msg = '手机号码格式错误'
         elif status == 3:
@@ -314,11 +332,12 @@ def project(request):
         user__id=request.session.get('user_id', 0)
     ).first()
 
-    project_list = Project.obs.get_queryset().filter(user_info=user_info)
+    projects = Project.obs.get_queryset().filter(user_info=user_info)
 
     context = {
         'user_info': user_info,
-        'project_list': project_list,
+        'projects': projects,
+        'project_count': projects.count()
     }
     return render(request, "h5/myproject.html", context)
 
