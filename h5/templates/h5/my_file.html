@@ -4,7 +4,7 @@
 {% block bodyclass %} class="pb50" {% endblock %}
 {% block container %}
     <div class="navbar">
-        <a class="back" href="javascript:history.back(-1)"></a>
+        <a class="back" href="{% url 'h5:h5_index' %}"></a>
     </div>
     {% for a in attachment_list %}
     <div class="detail-section noflex my-file active">
