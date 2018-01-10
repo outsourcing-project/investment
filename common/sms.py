@@ -1,9 +1,9 @@
 # coding: utf-8
 
-from aliyun.aliyunsdkcore.request import RpcRequest
-from aliyun.aliyunsdkdysmsapi.request.v20170525 import SendSmsRequest
-from aliyun.aliyunsdkdysmsapi.request.v20170525 import QuerySendDetailsRequest
-from aliyun.aliyunsdkcore.client import AcsClient
+import sys
+from aliyunsdkdysmsapi.request.v20170525 import SendSmsRequest
+from aliyunsdkdysmsapi.request.v20170525 import QuerySendDetailsRequest
+from aliyunsdkcore.client import AcsClient
 
 from settings import AL_APP_KEY, AL_APP_SECRET, AL_VALIDATION_CODE, REGION
 
