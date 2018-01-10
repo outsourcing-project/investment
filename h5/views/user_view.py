@@ -293,7 +293,7 @@ def confirm_mobile(request):
         elif status == 1:
             msg = '验证码已过期'
 
-        if not status or code != '6666':
+        if status:
             msg = '验证码错误'
         else:
             user_info.mobile = phone
