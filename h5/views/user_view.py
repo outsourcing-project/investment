@@ -32,6 +32,7 @@ import logging
 import hashlib
 import random
 import redis
+import simplejson as json
 
 from utils import send_yanzheng_code, verify_mobile, check_v_code
 from wechat.constants import WECHAT_BATCHGET_MATERIAL
@@ -112,7 +113,7 @@ def login(request):
         elif status == 1:
             msg = '验证码已过期'
 
-        if not status or code != '6666':
+        if status:
             msg = '验证码错误'
         else:
             user, _ = User.objects.get_or_create(
@@ -252,7 +253,7 @@ def edit_mobile(request):
         elif status == 1:
             msg = '验证码已过期'
 
-        if not status or code != '6666':
+        if status:
             msg = '验证码错误'
         else:
             return HttpResponseRedirect(
