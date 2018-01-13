@@ -59,10 +59,10 @@ WSGI_APPLICATION = 'investment.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'investment',
-        'USER': 'root',
-        'PASSWORD': 'yijia',
-        'HOST': 'localhost',
+        'NAME': 'ftptest',
+        'USER': 'ftptest',
+        'PASSWORD': 'qw98765',
+        'HOST': '47.104.3.144',
         'PORT': '3306',
         'OPTIONS': {'charset': 'utf8mb4'},
     }
@@ -182,7 +182,7 @@ UPLOAD_DIR = os.path.join(BASE_DIR, 'static', 'upload')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = UPLOAD_DIR
 
-DOMAIN = 'http://119.23.210.215:81'
+DOMAIN = 'http://bddyq.wonderlandedm.com'
 
 # setting_local
 ROOT = os.path.abspath(os.path.dirname(__file__))
