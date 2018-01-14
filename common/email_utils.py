@@ -11,6 +11,8 @@ import smtplib
 import os
 import logging
 
+from settings import EMAILADDRESS, PASSWORD, SMTP_SERVER
+
 
 def _format_addr(s):
     name, addr = parseaddr(s)
@@ -19,10 +21,9 @@ def _format_addr(s):
         addr.encode('utf-8') if isinstance(addr, unicode) else addr))
 
 
-smtp_server = 'smtp.qq.com'
-from_addr = '2274841039@qq.com'
-password = 'atyxurlcmkaxdiea'
-to_addr = '631378725@qq.com'
+smtp_server = SMTP_SERVER
+from_addr = EMAILADDRESS
+password = PASSWORD
 
 
 def send_mail(

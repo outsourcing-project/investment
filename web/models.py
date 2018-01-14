@@ -325,6 +325,7 @@ class Comment(BaseModel):
         blank=True,
         verbose_name='项目')
     content = models.TextField(default='', blank=True, verbose_name='内容')
+    mail_id = models.TextField(blank=True, default='', verbose_name="邮件id")
 
 
 class ExpertTeam(BaseModel):
