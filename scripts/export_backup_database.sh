@@ -2,9 +2,9 @@
 
 echo investment
 date
-source /home/yijia/envs/investment/bin/activate
+source /home/bddyq/envs/investment/bin/activate
 export DJANGO_SETTINGS_MODULE=settings
-export PYTHONPATH=/home/jinji/workspace/investment
-python /home/yijia/workspace/investment/scripts/export_backup_database.py
+export PYTHONPATH=/home/bddyq/workspace/investment
+python /home/bddyq/workspace/investment/scripts/export_backup_database.py
 date
 echo 'done'

@@ -14,7 +14,7 @@ db_user = DATABASES['default']['USER']
 db_passwd = DATABASES['default']['PASSWORD']
 db_name = DATABASES['default']['NAME']
 db_charset = "utf8"
-db_backup_name = r"/home/yijia/workspace/data/backup/investment_%s.sql" % (
+db_backup_name = r"/home/bddyq/workspace/data/backup/investment_%s.sql" % (
     time.strftime("%Y%m%d%H%M"))
 
 zip_src = db_backup_name

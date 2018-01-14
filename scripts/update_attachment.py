@@ -6,6 +6,7 @@ from web.models import (
     UserInfo,
     Attachment,
 )
+from settings import EMAILADDRESS, PASSWORD, POP3_SERVER
 from imagestore.qiniu_manager import get_extension
 from email import parser
 import os
@@ -24,10 +25,9 @@ if "ascii" == __g_codeset:
 def mbs_to_utf8(s):
     return s.decode(__g_codeset).encode("utf-8")
 
-host = 'pop.qq.com'
-username = '2274841039@qq.com'
-password = 'gdbxsbkajevneaeb'
-auth_code = 'gdbxsbkajevneaeb'
+host = POP3_SERVER
+username = EMAILADDRESS
+password = PASSWORD
 
 pop_conn = poplib.POP3_SSL(host)
 pop_conn.user(username)
@@ -78,6 +78,7 @@ def download_attachment():
                 mycode = part.get_content_charset()
                 # 保存附件
                 if fileName:
+                    fileName = fileName.decode('gbk')
                     data = part.get_payload(decode=True)
                     h = email.Header.Header(fileName)
                     dh = email.Header.decode_header(h)
@@ -98,17 +99,22 @@ def download_attachment():
                             ts = int(time.time())
                             ext = get_extension(fname)
                             key = 'investment_{}.{}'.format(ts, ext)
-                            fEx = open(os.path.join(UPLOAD_DIR, key), 'wb')
-                            fEx.write(data)
-                            fEx.close()
+                            try:
+                                fEx = open(os.path.join(UPLOAD_DIR, key), 'wb')
+                                fEx.write(data)
+                                fEx.close()
 
-                            # 存入附件表中
-                            attachment = Attachment.objects.create(
-                                user_info=userinfo,
-                                title=fname,
-                            )
-                            attachment.file = key
-                            attachment.save()
+                                # 存入附件表中
+                                attachment = Attachment.objects.create(
+                                    user_info=userinfo,
+                                    title=fname,
+                                )
+                                attachment.file = key
+                                attachment.save()
+                            except Exception as e:
+                                print '---------attachment-error----------'
+
+
                 elif contentType == 'text/plain':  # or contentType == 'text/html':
                     # 保存正文
                     data = part.get_payload(decode=True)

@@ -169,6 +169,12 @@ API_KEY = 'sk_live_DKyPiDvnn1qTeDyzPK98W1e5'
 APP_ID = 'app_SOGGKKPaLafDq1aH'
 
 
+# 邮箱设置
+EMAILADDRESS = '2274841039@qq.com'
+PASSWORD = 'gdbxsbkajevneaeb'
+POP3_SERVER = 'pop.qq.com'
+SMTP_SERVER = 'smtp.qq.com'
+
 STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
