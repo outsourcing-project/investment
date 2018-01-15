@@ -59,10 +59,10 @@ WSGI_APPLICATION = 'investment.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ftptest',
-        'USER': 'ftptest',
-        'PASSWORD': 'qw98765',
-        'HOST': '47.104.3.144',
+        'NAME': 'investment',
+        'USER': 'root',
+        'PASSWORD': '111222',
+        'HOST': 'localhost',
         'PORT': '3306',
         'OPTIONS': {'charset': 'utf8mb4'},
     }
