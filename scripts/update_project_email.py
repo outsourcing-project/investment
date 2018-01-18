@@ -9,8 +9,10 @@ from web.models import (
 )
 
 from h5.views.project_view import create_send_email_html
-from common.email_utils import send_mail
 import datetime
+from common.emailutils import emailutils
+from common.emailutils.emailutils import get_email_headers, guess_charset, send_mail
+
 
 def update_project_email():
 

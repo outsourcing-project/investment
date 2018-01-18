@@ -6,42 +6,24 @@ from web.models import (
     UserInfo,
     Attachment,
 )
-from settings import EMAILADDRESS, PASSWORD, POP3_SERVER
 from imagestore.qiniu_manager import get_extension
 from email import parser
-import os
-import sys
-import locale
-import poplib
 import email
+import os
 import logging
 import time
-# 确定运行环境的encoding
-__g_codeset = sys.getdefaultencoding()
-if "ascii" == __g_codeset:
-    __g_codeset = locale.getdefaultlocale()[1]
-
-
-def mbs_to_utf8(s):
-    return s.decode(__g_codeset).encode("utf-8")
-
-host = POP3_SERVER
-username = EMAILADDRESS
-password = PASSWORD
-
-pop_conn = poplib.POP3_SSL(host)
-pop_conn.user(username)
-pop_conn.pass_(password)
+from common.emailutils import emailutils
+from common.emailutils.emailutils import get_email_headers, guess_charset
 
 
 def download_attachment():
-
+    pop3 = emailutils.pop3
     userinfo_list = UserInfo.obs.get_queryset().filter(
         is_valid=True,
     )
     userinfo_emails = [u.email for u in userinfo_list]
-    messages = [pop_conn.retr(i)
-                for i in range(1, len(pop_conn.list()[1]) + 1)]
+    messages = [pop3.retr(i)
+                for i in range(1, len(pop3.list()[1]) + 1)]
     messages = ["\n".join(mssg[1]) for mssg in messages]
     messages = [parser.Parser().parsestr(mssg) for mssg in messages]
     i = 0
@@ -114,20 +96,18 @@ def download_attachment():
                             except Exception as e:
                                 print '---------attachment-error----------'
 
-
                 elif contentType == 'text/plain':  # or contentType == 'text/html':
                     # 保存正文
                     data = part.get_payload(decode=True)
-                    content = str(data)
-                    if mycode == 'gb2312':
-                        content = mbs_to_utf8(content)
-                    # end if
-                    nPos = content.find('降息')
-                    print("nPos is %d" % (nPos))
+                    charset = guess_charset(part)
+                    if charset:
+                        charset = charset.strip().split(';')[0]
+                        data = data.decode(charset)
 
         # f.close()
 
-    pop_conn.quit()
+    # 关闭连接
+    emailutils.smtp_quit()
 
 
 if __name__ == '__main__':
