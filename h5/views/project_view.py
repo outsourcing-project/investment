@@ -29,7 +29,6 @@ import hashlib
 
 from wechat.constants import WECHAT_BATCHGET_MATERIAL
 from common.emailutils import emailutils
-from common.emailutils.emailutils import get_email_headers, guess_charset, send_mail
 
 
 def create_send_email_html(project_id):
@@ -123,7 +122,7 @@ def create(request, attachment_id):
         context = create_send_email_html(project.id)
         attach_url = project.attachment.file
         file_name = project.attachment.title
-        send_mail(project_title, to_addr, context, attach_url, file_name)
+        emailutils.send_mail(project_title, to_addr, context, attach_url, file_name)
         project.expert_team_email = ','.join(to_addr)
         project.save()
         return HttpResponseRedirect(reverse('h5:h5_index'))
