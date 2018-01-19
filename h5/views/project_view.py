@@ -28,7 +28,8 @@ import logging
 import hashlib
 
 from wechat.constants import WECHAT_BATCHGET_MATERIAL
-from common.email_utils import send_mail
+from common.emailutils import emailutils
+from common.emailutils.emailutils import get_email_headers, guess_charset, send_mail
 
 
 def create_send_email_html(project_id):
