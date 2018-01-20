@@ -90,7 +90,7 @@ class EmailUtils(object):
                     # 需要解码Email地址:
                     hdr, addr = parseaddr(value)
                     name = self.__decode_str(hdr)
-                    value = u'%s <%s>' % (name, addr)
+                    value = u'%s' % addr
                     if header == 'From':
                         from_address = value
                         headers['from'] = from_address
