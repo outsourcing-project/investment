@@ -116,7 +116,7 @@ class EmailUtils(object):
 
             msg.attach(MIMEText('hello', 'plain', 'utf-8'))
             msg.attach(msg1)
-            msg['From'] = self.__format_addr(u'项目评审 <%s>' % from_addr)
+            msg['From'] = self.__format_addr(u'项目评审 <%s>' % self.emailaddress)
             msg['To'] = self.__format_addr(u'<%s>' % to_addr)
             msg['Subject'] = Header(u'%s项目评审' % project_title, 'utf-8').encode()
 
