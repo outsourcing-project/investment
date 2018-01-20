@@ -92,6 +92,7 @@ def download_attachment():
                                 attachment.file = key
                                 attachment.save()
                             except Exception as e:
+                                logging.error(e)
                                 print '---------attachment-error----------'
 
                 elif contentType == 'text/plain':  # or contentType == 'text/html':
