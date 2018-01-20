@@ -28,7 +28,6 @@ import logging
 import hashlib
 
 from wechat.constants import WECHAT_BATCHGET_MATERIAL
-from common.emailutils import emailutils
 
 
 def create_send_email_html(project_id):
@@ -119,9 +118,12 @@ def create(request, attachment_id):
         )
         emails = [et.email for et in expert_team_list]
         to_addr = emails
+
         context = create_send_email_html(project.id)
         attach_url = project.attachment.file
         file_name = project.attachment.title
+
+        from common.emailutils import emailutils
         emailutils.send_mail(project_title, to_addr, context, attach_url, file_name)
         project.expert_team_email = ','.join(to_addr)
         project.save()
