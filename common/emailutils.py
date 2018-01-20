@@ -84,12 +84,12 @@ class EmailUtils(object):
                     headers['date'] = value
                 if header == 'Subject':
                     # 需要解码Subject字符串:
-                    subject = self.decode_str(value)
+                    subject = self.__decode_str(value)
                     headers['subject'] = subject
                 else:
                     # 需要解码Email地址:
                     hdr, addr = parseaddr(value)
-                    name = self.decode_str(hdr)
+                    name = self.__decode_str(hdr)
                     value = u'%s <%s>' % (name, addr)
                     if header == 'From':
                         from_address = value
