@@ -13,8 +13,6 @@ import os
 import logging
 import time
 from common.emailutils import emailutils
-from common.emailutils.emailutils import get_email_headers, guess_charset
-
 
 def download_attachment():
     pop3 = emailutils.pop3
@@ -99,7 +97,7 @@ def download_attachment():
                 elif contentType == 'text/plain':  # or contentType == 'text/html':
                     # 保存正文
                     data = part.get_payload(decode=True)
-                    charset = guess_charset(part)
+                    charset = emailutils.guess_charset(part)
                     if charset:
                         charset = charset.strip().split(';')[0]
                         data = data.decode(charset)

@@ -11,7 +11,6 @@ from web.models import (
 from h5.views.project_view import create_send_email_html
 import datetime
 from common.emailutils import emailutils
-from common.emailutils.emailutils import get_email_headers, guess_charset, send_mail
 
 
 def update_project_email():
@@ -37,7 +36,7 @@ def update_project_email():
             context = create_send_email_html(p.id)
             attach_url = p.attachment.file if p.attachment else ''
             file_name = p.attachment.title if p.attachment else ''
-            send_mail(project_title, to_addr, context, attach_url, file_name)
+            emailutils.send_mail(project_title, to_addr, context, attach_url, file_name)
             p.investment_team_email = ','.join(to_addr)
             p.save()
 

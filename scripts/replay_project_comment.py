@@ -11,8 +11,6 @@ import email
 import re
 from email.parser import Parser
 from common.emailutils import emailutils
-from common.emailutils.emailutils import get_email_headers, guess_charset
-
 
 def parsing_email():
     pop3 = emailutils.pop3
@@ -42,7 +40,7 @@ def parsing_email():
         # 但是这个Message对象本身可能是一个MIMEMultipart对象，即包含嵌套的其他MIMEBase对象，
         # 嵌套可能还不止一层。所以我们要递归地打印出Message对象的层次结构：
         print '---------- 解析之后 ----------'
-        msg_headers = get_email_headers(msg)
+        msg_headers = emailutils.get_email_headers(msg)
         mail_id = msg_headers['x-qq-mid']
         print 'subject:', msg_headers['subject']
         print 'from_address:', msg_headers['from']
@@ -66,7 +64,7 @@ def parsing_email():
                 elif contentType == 'text/html':
                     # 保存正文
                     data = part.get_payload(decode=True)
-                    charset = guess_charset(part)
+                    charset = emailutils.guess_charset(part)
                     if charset:
                         charset = charset.strip().split(';')[0]
                         data = data.decode(charset)
