@@ -131,6 +131,7 @@ class EmailUtils(object):
                     msg.attach(att2)
 
             self.smtp.sendmail(self.emailaddress, to_addr, msg.as_string())
+
         except Exception as e:
             logging.error(e)
             logging.error('----------send_mail---------')
