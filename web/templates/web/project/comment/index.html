@@ -47,7 +47,7 @@
                 <td style="vertical-align: middle;">{{ c.project.name }}</td>
                 <td style="vertical-align: middle;">{{ c.user_info.user_name }}</td>
                 <td style="vertical-align: middle;">{{ c.user_info.email }}</td>
-                <td style="vertical-align: middle;">{{ c.content }}</td>
+                <td style="vertical-align: middle;">{{ c.content|safe }}</td>
                 <td style="vertical-align: middle;">{{ c.created|date:"Y-m-d" }}</td>
                 <td style="vertical-align: middle;">
                   {% if "delete_module" in user|get_acl_perms:"project" %}
