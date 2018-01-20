@@ -134,7 +134,7 @@ class EmailUtils(object):
 
         except Exception as e:
             logging.error(e)
-            logging.error('----------send_mail---------')
+            logging.error('----------send_mail1---------')
 
     def pop3_quit(self):
         """pop3邮件服务器退出
