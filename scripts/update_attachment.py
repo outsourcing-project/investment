@@ -106,7 +106,7 @@ def download_attachment():
         # f.close()
 
     # 关闭连接
-    # emailutils.smtp_quit()
+    emailutils.smtp_quit()
 
 
 if __name__ == '__main__':

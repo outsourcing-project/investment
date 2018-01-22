@@ -87,7 +87,7 @@ def parsing_email():
                                 mail_id=mail_id
                             )
     # 关闭连接
-    # emailutils.smtp_quit()
+    emailutils.smtp_quit()
 
 if __name__ == '__main__':
     parsing_email()
