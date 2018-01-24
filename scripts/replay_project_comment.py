@@ -76,10 +76,10 @@ def parsing_email():
                         print '--------------------project--------------------%s', project_id
                         contents = content.split(u'------')
                         replay_content = contents[0] if contents else ''
-                        project = Project.objects.get(pk=project_id)
+                        project = Project.objects.filter(pk=project_id).first()
                         # 回复评论
                         is_comment = Comment.obs.get_queryset().filter(mail_id=mail_id).exists()
-                        if not is_comment:
+                        if not is_comment and project:
                             Comment.objects.create(
                                 user_info=user_info,
                                 project=project,
