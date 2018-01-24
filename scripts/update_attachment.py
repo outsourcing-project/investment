@@ -88,6 +88,7 @@ def download_attachment():
                                 attachment = Attachment.objects.create(
                                     user_info=userinfo,
                                     title=fname,
+                                    mail_id=mail_id
                                 )
                                 attachment.file = key
                                 attachment.save()
