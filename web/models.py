@@ -326,7 +326,7 @@ class Comment(BaseModel):
     @property
     def replay_expert_name(self):
         expert_team = ExpertTeam.obs.get_queryset().filter(email=self.email).first()
-        return expert_team.username
+        return expert_team.username if expert_team else ''
 
 
 class ExpertTeam(BaseModel):
