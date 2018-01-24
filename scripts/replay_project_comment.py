@@ -49,43 +49,39 @@ def parsing_email():
         print 'x-qq-mid:', mail_id
         j = 0
         content = ''
-        user_info = UserInfo.obs.get_queryset().filter(
-            email=msg_headers['from'],
-        ).first()
-        if user_info:
-            for part in msg.walk():
-                j = j + 1
-                file_name = part.get_filename()
-                contentType = part.get_content_type()
-                # 保存附件
-                project_id = 0
-                if contentType == 'text/plain':
-                    pass
-                elif contentType == 'text/html':
-                    # 保存正文
-                    data = part.get_payload(decode=True)
-                    charset = emailutils.guess_charset(part)
-                    if charset:
-                        charset = charset.strip().split(';')[0]
-                        data = data.decode(charset)
-                    content = data
-                    # 解析回复内容，和项目id
-                    project_ids = re.findall(r"value=\"(.+?)\"", content)
-                    if project_ids:
-                        project_id = int(project_ids[0])
-                        print '--------------------project--------------------%s', project_id
-                        contents = content.split(u'------')
-                        replay_content = contents[0] if contents else ''
-                        project = Project.objects.filter(pk=project_id).first()
-                        # 回复评论
-                        is_comment = Comment.obs.get_queryset().filter(mail_id=mail_id).exists()
-                        if not is_comment and project:
-                            Comment.objects.create(
-                                user_info=user_info,
-                                project=project,
-                                content=replay_content,
-                                mail_id=mail_id
-                            )
+        for part in msg.walk():
+            j = j + 1
+            file_name = part.get_filename()
+            contentType = part.get_content_type()
+            # 保存附件
+            project_id = 0
+            if contentType == 'text/plain':
+                pass
+            elif contentType == 'text/html':
+                # 保存正文
+                data = part.get_payload(decode=True)
+                charset = emailutils.guess_charset(part)
+                if charset:
+                    charset = charset.strip().split(';')[0]
+                    data = data.decode(charset)
+                content = data
+                # 解析回复内容，和项目id
+                project_ids = re.findall(r"value=\"(.+?)\"", content)
+                if project_ids:
+                    project_id = int(project_ids[0])
+                    print '--------------------project--------------------%s', project_id
+                    contents = content.split(u'------')
+                    replay_content = contents[0] if contents else ''
+                    project = Project.objects.filter(pk=project_id).first()
+                    # 回复评论
+                    is_comment = Comment.obs.get_queryset().filter(mail_id=mail_id).exists()
+                    if not is_comment and project:
+                        Comment.objects.create(
+                            email=msg_headers['from'],
+                            project=project,
+                            content=replay_content,
+                            mail_id=mail_id
+                        )
     # 关闭连接
     # emailutils.smtp_quit()
 
