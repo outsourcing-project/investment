@@ -313,11 +313,7 @@ class Comment(BaseModel):
         verbose_name = "评论"
         verbose_name_plural = "评论"
 
-    user_info = models.ForeignKey(
-        UserInfo,
-        null=True,
-        blank=True,
-        verbose_name='评论用户')
+    email = models.CharField(max_length=1024, default='', verbose_name='email')
     project = models.ForeignKey(
         Project,
         default=None,
