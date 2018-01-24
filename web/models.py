@@ -323,6 +323,11 @@ class Comment(BaseModel):
     content = models.TextField(default='', blank=True, verbose_name='内容')
     mail_id = models.TextField(blank=True, default='', verbose_name="邮件id")
 
+    @property
+    def replay_expert_name(self):
+        expert_team = ExpertTeam.obs.get_queryset().filter(email=self.email).first()
+        return expert_team.username
+
 
 class ExpertTeam(BaseModel):
 

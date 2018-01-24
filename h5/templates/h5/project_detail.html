@@ -63,7 +63,7 @@
     <div class="detail-section noflex">
         <div class="t tac">评论</div>
         {% for c in project.comments %}
-            <div class="comment">{{ c.email }}：{{ c.content|safe }}</div>
+            <div class="comment">{{ c.replay_expert_name }}：{{ c.content|safe }}</div>
         {% endfor %}
     </div>
 {% endblock %}
