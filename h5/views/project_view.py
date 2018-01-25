@@ -98,7 +98,10 @@ def create(request, attachment_id):
         project.attachment = attachment
         project.name = name
         project.theme = theme
+
         try:
+            total_amount = total_amount.replace('%', '')
+            share_amount = share_amount.replace('%', '')
             project.total_amount = float(total_amount) if total_amount else 0
             project.share_amount = float(share_amount) if share_amount else 0
             project.cycle = float(cycle) if cycle else 0
