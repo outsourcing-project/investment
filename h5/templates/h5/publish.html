@@ -14,31 +14,31 @@
         </div>
         <div class="pb-section flex">
             <span class="k">项目名称</span>
-            <input class="input tr" type="text" name="name" placeholder="输入内容">
+            <input class="input tr" type="text" name="name" placeholder="例:西游记">
         </div>
         <div class="pb-section flex">
             <span class="k">主控方</span>
-            <input class="input tr" type="text" name="theme" placeholder="输入内容">
+            <input class="input tr" type="text" name="theme" placeholder="例:北京电影学院">
         </div>
         <div class="pb-section flex">
             <span class="k">项目总投资</span>
-            <input class="input tr number_a" name="total_amount" type="number" placeholder="输入内容">
+            <input class="input tr number_a" name="total_amount" type="number" placeholder="例:1000000">
         </div>
         <div class="pb-section flex">
             <span class="k">投资份额</span>
-            <input class="input tr number_b" type="number" name="share_amount" placeholder="输入内容">
+            <input class="input tr number_b" type="number" name="share_amount" placeholder="例:40%">
         </div>
         <div class="pb-section flex">
             <span class="k">投资周期</span>
-            <input class="input tr number_c" type="text" name="cycle" placeholder="输入内容">
+            <input class="input tr number_c" type="number" name="cycle" placeholder="例:1.5年">
         </div>
         <div class="pb-section flex">
             <span class="k">预估回报</span>
-            <input class="input tr number_d" type="number" name="expect_return" placeholder="输入内容">
+            <input class="input tr number_d" type="number" name="expect_return" placeholder="例:200%">
         </div>
         <div class="pb-section flex">
             <span class="k">项目进度</span>
-            <input class="input tr" type="text" name="progress" placeholder="输入内容">
+            <input class="input tr" type="text" name="progress" placeholder="例:已拍摄">
         </div>
         <div class="pb-section">
             <div class="tip">备注</div>
@@ -57,21 +57,33 @@
             var number_b = $('.number_b').val();
             var number_c = $('.number_c').val();
             var number_d = $('.number_d').val();
-            if (!$.isNumeric(number_a)) {
-                alert('请输入数字')
+            if (!$.isNumeric(number_a) || !number_a) {
+                $('.number_a').val('')
+                $('.number_a').parents('.pb-section').addClass('fail')
                 return
+            } else {
+                $('.number_a').parents('.pb-section').removeClass('fail')
             }
-            if (!$.isNumeric(number_b)) {
-                alert('请输入数字')
+            if (!$.isNumeric(number_b) || !number_b) {
+                $('.number_b').val('')
+                $('.number_b').parents('.pb-section').addClass('fail')
                 return
+            } else {
+                $('.number_b').parents('.pb-section').removeClass('fail')
             }
-            if (!$.isNumeric(number_c)) {
-                alert('请输入数字')
+            if (!$.isNumeric(number_c) || !number_c) {
+                $('.number_c').val('')
+                $('.number_c').parents('.pb-section').addClass('fail')
                 return
+            } else {
+                $('.number_c').parents('.pb-section').removeClass('fail')
             }
-            if (!$.isNumeric(number_d)) {
-                alert('请输入数字')
+            if (!$.isNumeric(number_d) || !number_d) {
+                $('.number_d').val('')
+                $('.number_d').parents('.pb-section').addClass('fail')
                 return
+            } else {
+                $('.number_d').parents('.pb-section').removeClass('fail')
             }
         })
       })
