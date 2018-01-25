@@ -36,7 +36,8 @@
     <script type="text/javascript">
         function checkFrom(){
             var code = document.getElementById("code").value;
-            if (!checkMobile()) {
+            var sMobile = document.getElementById("mobile").value;
+            if (!checkMobile(sMobile)) {
                 return false
             }
             if(!code){
@@ -45,15 +46,13 @@
             }
             return true
         }
-        function checkMobile(){
-            var sMobile = document.getElementById("mobile").value;
-
+        function checkMobile(sMobile){
             if (!sMobile) {
                 alert("手机号不能为空");
                 return false
             }else if(!(/^1[3|4|5|7|8][0-9]\d{4,8}$/.test(sMobile))){
                 alert("不是完整的11位手机号或者正确的手机号前七位");
-                document.mobileform.mobile.focus();
+                document.getElementById("mobile").focus();
                 return false;
             }
             return true
@@ -63,17 +62,20 @@
     <script>
       $(function () {
         $('.js_verify').on('click', function() {
-            if (!checkMobile()) {
+            obj = $(this)
+            var sMobile = document.getElementById("mobile").value;
+            if (!checkMobile(sMobile)) {
                 return;
             };
             // 发送短信
             $.ajax({
               method: "GET",
-              url: '{{domain}}/h5/send_v_code/?mobile=' + mobile
+              url: '{{domain}}/h5/send_v_code/?mobile=' + sMobile
             }).done(function( args ) {
+                console.log(args)
                 if (!args.error_code) {
                     var cout_down = 60
-                    var _this = $(this)
+                    var _this = obj
                     var timeDown = setInterval(function() {
                         cout_down--
                         _this.html(cout_down)

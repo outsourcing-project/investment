@@ -9,11 +9,11 @@
         <p>当前绑定的手机号为 {{ user_info.mobile }}</p>
     </div>
     <div class="container input_wrap">
-        <form method="POST" >
+        <form method="POST" onsubmit="return checkFrom()">
             {% csrf_token %}
             <div class="input_section input_verify">
-                <input type="number" name="code" placeholder="验证码">
-                <div class="get_verify">获取验证码</div>
+                <input type="number" id="code" name="code" placeholder="验证码">
+                <div class="get_verify js_verify">获取验证码</div>
             </div>
             <span style="color: red">{{ msg }}</span>
             <input type="hidden" id="mobile" value="{{ user_info.mobile }}">
@@ -22,24 +22,44 @@
     </div>
 {% endblock %}
 {% block script %}
+    <script type="text/javascript">
+        function checkFrom(){
+            var code = document.getElementById("code").value;
+            if(!code){
+                alert("验证码不能为空");
+                return false
+            }
+            return true
+        }
+    </script>
     <script>
         $(function () {
-            $('.get_verify').on('click', function(argument) {
-                var mobile = $.trim($("#mobile").val())
-                if (!mobile) {
-                    return;
-                };
-                $.ajax({
-                  method: "GET",
-                  url: '{{domain}}/h5/send_v_code/?mobile=' + mobile
-                }).done(function( args ) {
-                    if (!args.error_code) {
-                        // alert('发送成功')
-                    }else{
-                        alert('发送失败')
-                    }
-                })
+        $('.js_verify').on('click', function() {
+            obj = $(this)
+            var sMobile = document.getElementById("mobile").value;
+            // 发送短信
+            $.ajax({
+              method: "GET",
+              url: '{{domain}}/h5/send_v_code/?mobile=' + sMobile
+            }).done(function( args ) {
+                console.log(args)
+                if (!args.error_code) {
+                    var cout_down = 60
+                    var _this = obj
+                    var timeDown = setInterval(function() {
+                        cout_down--
+                        _this.html(cout_down)
+                        if (cout_down <= 0) {
+                            clearInterval(timeDown)
+                            _this.html('获取验证码')
+                        }
+                    },1000)
+                }else{
+                    alert('发送失败')
+                }
             })
+
+        })
         })
     </script>
 {% endblock %}
