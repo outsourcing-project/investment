@@ -66,7 +66,6 @@
             return false
         } else {
             $('.pro_name').parents('.pb-section').removeClass('fail')
-            return false
         }
         if (!pro_author) {
             $('.pro_author').val('');
@@ -74,7 +73,6 @@
             return false
         } else {
             $('.pro_author').parents('.pb-section').removeClass('fail')
-            return false
         }
         if (!r.test(number_a)) {
             $('.number_a').val('')
@@ -82,7 +80,6 @@
             return false
         } else {
             $('.number_a').parents('.pb-section').removeClass('fail')
-            return false
         }
         if (!re.test(number_b)) {
             $('.number_b').val('')
@@ -90,7 +87,6 @@
             return false
         } else {
             $('.number_b').parents('.pb-section').removeClass('fail')
-            return false
         }
         if (!r.test(number_c)) {
             $('.number_c').val('')
@@ -98,7 +94,6 @@
             return false
         } else {
             $('.number_c').parents('.pb-section').removeClass('fail')
-            return false
         }
         if (!re.test(number_d)) {
             $('.number_d').val('')
@@ -106,21 +101,18 @@
             return false
         } else {
             $('.number_d').parents('.pb-section').removeClass('fail')
-            return false
         }
         if (!$('.requ').val()) {
             $('.requ').parents('.pb-section').addClass('fail')
             return false
         } else {
             $('.requ').parents('.pb-section').removeClass('fail')
-            return false
         }
         if (!$('.textarea').val()) {
             $('.textarea').parents('.pb-section').addClass('fail')
             return false
         } else {
             $('.textarea').parents('.pb-section').removeClass('fail')
-            return false
         }
 
         return true
