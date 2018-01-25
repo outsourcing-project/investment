@@ -42,7 +42,7 @@ redis_conn = redis.Redis(host=REDIS_HOST, port=REDIS_PORT, db=REDIS_DB)
 def send_v_code(request):
     mobile = request.GET.get('mobile', '')
     if not verify_mobile(mobile):
-        return Response({'error_code': 2, 'error_msg': '手机号格式错误'})
+        return JsonResponse({'error_code': 2, 'error_msg': '手机号格式错误'})
 
     v_code = str(random.randint(1000, 9999))
 
