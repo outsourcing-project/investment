@@ -6,7 +6,7 @@
     <div class="navbar">
         <a class="back" href="{% url "h5:user_attachment" %}"></a>
     </div>
-    <form method="POST" >
+    <form method="POST" onsubmit="return checkForm()">
         {% csrf_token %}
         <div class="detail-section noflex my-file">
             <h4>{{ attachment.title }}</h4>
@@ -51,71 +51,80 @@
 
 {% block script %}
     <script>
-      $(function () {
-        $('.j_publish').on('click', function() {
-            var number_a = $('.number_a').val();
-            var number_b = $('.number_b').val();
-            var number_c = $('.number_c').val();
-            var number_d = $('.number_d').val();
-            var pro_name = $('.pro_name').val();
-            var pro_author = $('.pro_author').val();
-            var r = /^[0-9]*[1-9][0-9]*$/ //正整数
-            var re = /^-?\d+%$/; // 百分比
-            if (!pro_name) {
-                $('.pro_name').val('');
-                $('.pro_name').parents('.pb-section').addClass('fail')
-                return
-            } else {
-                $('.pro_name').parents('.pb-section').removeClass('fail')
-            }
-            if (!pro_author) {
-                $('.pro_author').val('');
-                $('.pro_author').parents('.pb-section').addClass('fail')
-                return
-            } else {
-                $('.pro_author').parents('.pb-section').removeClass('fail')
-            }
-            if (!r.test(number_a)) {
-                $('.number_a').val('')
-                $('.number_a').parents('.pb-section').addClass('fail')
-                return
-            } else {
-                $('.number_a').parents('.pb-section').removeClass('fail')
-            }
-            if (!re.test(number_b)) {
-                $('.number_b').val('')
-                $('.number_b').parents('.pb-section').addClass('fail')
-                return
-            } else {
-                $('.number_b').parents('.pb-section').removeClass('fail')
-            }
-            if (!r.test(number_c)) {
-                $('.number_c').val('')
-                $('.number_c').parents('.pb-section').addClass('fail')
-                return
-            } else {
-                $('.number_c').parents('.pb-section').removeClass('fail')
-            }
-            if (!re.test(number_d)) {
-                $('.number_d').val('')
-                $('.number_d').parents('.pb-section').addClass('fail')
-                return
-            } else {
-                $('.number_d').parents('.pb-section').removeClass('fail')
-            }
-            if (!$('.requ').val()) {
-                $('.requ').parents('.pb-section').addClass('fail')
-                return
-            } else {
-                $('.requ').parents('.pb-section').removeClass('fail')
-            }
-            if (!$('.textarea').val()) {
-                $('.textarea').parents('.pb-section').addClass('fail')
-                return
-            } else {
-                $('.textarea').parents('.pb-section').removeClass('fail')
-            }
-        })
-      })
+    function checkForm() {
+        var number_a = $('.number_a').val();
+        var number_b = $('.number_b').val();
+        var number_c = $('.number_c').val();
+        var number_d = $('.number_d').val();
+        var pro_name = $('.pro_name').val();
+        var pro_author = $('.pro_author').val();
+        var r = /^[0-9]*[1-9][0-9]*$/ //正整数
+        var re = /^-?\d+%$/; // 百分比
+        if (!pro_name) {
+            $('.pro_name').val('');
+            $('.pro_name').parents('.pb-section').addClass('fail')
+            return false
+        } else {
+            $('.pro_name').parents('.pb-section').removeClass('fail')
+            return false
+        }
+        if (!pro_author) {
+            $('.pro_author').val('');
+            $('.pro_author').parents('.pb-section').addClass('fail')
+            return false
+        } else {
+            $('.pro_author').parents('.pb-section').removeClass('fail')
+            return false
+        }
+        if (!r.test(number_a)) {
+            $('.number_a').val('')
+            $('.number_a').parents('.pb-section').addClass('fail')
+            return false
+        } else {
+            $('.number_a').parents('.pb-section').removeClass('fail')
+            return false
+        }
+        if (!re.test(number_b)) {
+            $('.number_b').val('')
+            $('.number_b').parents('.pb-section').addClass('fail')
+            return false
+        } else {
+            $('.number_b').parents('.pb-section').removeClass('fail')
+            return false
+        }
+        if (!r.test(number_c)) {
+            $('.number_c').val('')
+            $('.number_c').parents('.pb-section').addClass('fail')
+            return false
+        } else {
+            $('.number_c').parents('.pb-section').removeClass('fail')
+            return false
+        }
+        if (!re.test(number_d)) {
+            $('.number_d').val('')
+            $('.number_d').parents('.pb-section').addClass('fail')
+            return false
+        } else {
+            $('.number_d').parents('.pb-section').removeClass('fail')
+            return false
+        }
+        if (!$('.requ').val()) {
+            $('.requ').parents('.pb-section').addClass('fail')
+            return false
+        } else {
+            $('.requ').parents('.pb-section').removeClass('fail')
+            return false
+        }
+        if (!$('.textarea').val()) {
+            $('.textarea').parents('.pb-section').addClass('fail')
+            return false
+        } else {
+            $('.textarea').parents('.pb-section').removeClass('fail')
+            return false
+        }
+
+        return true
+    }
+
     </script>
 {% endblock %}
