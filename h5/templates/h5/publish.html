@@ -22,19 +22,19 @@
         </div>
         <div class="pb-section flex">
             <span class="k">项目总投资</span>
-            <input class="input tr" type="text" name="total_amount" placeholder="输入内容">
+            <input class="input tr number_a" name="total_amount" type="number" placeholder="输入内容">
         </div>
         <div class="pb-section flex">
             <span class="k">投资份额</span>
-            <input class="input tr" type="text" name="share_amount" placeholder="输入内容">
+            <input class="input tr number_b" type="number" name="share_amount" placeholder="输入内容">
         </div>
         <div class="pb-section flex">
             <span class="k">投资周期</span>
-            <input class="input tr" type="text" name="cycle" placeholder="输入内容">
+            <input class="input tr number_c" type="text" name="cycle" placeholder="输入内容">
         </div>
         <div class="pb-section flex">
             <span class="k">预估回报</span>
-            <input class="input tr" type="text" name="expect_return" placeholder="输入内容">
+            <input class="input tr number_d" type="number" name="expect_return" placeholder="输入内容">
         </div>
         <div class="pb-section flex">
             <span class="k">项目进度</span>
@@ -47,4 +47,33 @@
         <input type="hidden" name="attachment_id" value="{{ attachment.id }}">
         <button class="btn-pink-large">发布</button>
     </form>
+{% endblock %}
+
+{% block script %}
+    <script>
+      $(function () {
+        $('.j_publish').on('click', function() {
+            var number_a = $('.number_a').val();
+            var number_b = $('.number_b').val();
+            var number_c = $('.number_c').val();
+            var number_d = $('.number_d').val();
+            if (!$.isNumeric(number_a)) {
+                alert('请输入数字')
+                return
+            }
+            if (!$.isNumeric(number_b)) {
+                alert('请输入数字')
+                return
+            }
+            if (!$.isNumeric(number_c)) {
+                alert('请输入数字')
+                return
+            }
+            if (!$.isNumeric(number_d)) {
+                alert('请输入数字')
+                return
+            }
+        })
+      })
+    </script>
 {% endblock %}
