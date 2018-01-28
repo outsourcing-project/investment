@@ -81,10 +81,14 @@
         } else {
             $('.number_a').parents('.pb-section').removeClass('fail')
         }
-        if (!re.test(number_b)) {
-            $('.number_b').val('')
-            $('.number_b').parents('.pb-section').addClass('fail')
-            return false
+        if (!Boolean(number_b.match(re))) {
+            if (!Boolean(number_b.match(r))) {
+                $('.number_b').val('')
+                $('.number_b').parents('.pb-section').addClass('fail')
+                return false
+            } else {
+                $('.number_b').parents('.pb-section').removeClass('fail')
+            }
         } else {
             $('.number_b').parents('.pb-section').removeClass('fail')
         }
@@ -95,10 +99,14 @@
         } else {
             $('.number_c').parents('.pb-section').removeClass('fail')
         }
-        if (!re.test(number_d)) {
-            $('.number_d').val('')
-            $('.number_d').parents('.pb-section').addClass('fail')
-            return false
+        if (!Boolean(number_d.match(re))) {
+            if (!Boolean(number_d.match(r))) {
+                $('.number_d').val('')
+                $('.number_d').parents('.pb-section').addClass('fail')
+                return false
+            } else {
+                $('.number_d').parents('.pb-section').removeClass('fail')
+            }
         } else {
             $('.number_d').parents('.pb-section').removeClass('fail')
         }
