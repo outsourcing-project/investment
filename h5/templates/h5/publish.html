@@ -99,6 +99,7 @@
         } else {
             $('.number_c').parents('.pb-section').removeClass('fail')
         }
+
         if (!Boolean(number_d.match(re))) {
             if (!Boolean(number_d.match(r))) {
                 $('.number_d').val('')
@@ -110,6 +111,7 @@
         } else {
             $('.number_d').parents('.pb-section').removeClass('fail')
         }
+
         if (!$('.requ').val()) {
             $('.requ').parents('.pb-section').addClass('fail')
             return false
