@@ -267,7 +267,7 @@ class Project(BaseModel):
         default=0, blank=True, verbose_name="项目投资总额")
     share_amount = models.IntegerField(
         default=0, blank=True, verbose_name="项目投资份额")
-    cycle = models.FloatField(default=0, blank=True, verbose_name="投资周期")
+    cycle = models.IntegerField(default=0, blank=True, verbose_name="投资周期")
     expect_return = models.IntegerField(
         default=0, blank=True, verbose_name="预计回报")
     progress = models.CharField(
