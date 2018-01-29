@@ -135,7 +135,7 @@ class EmailUtils(object):
         except Exception as e:
             EmailUtils.instance = EmailUtils(EMAILADDRESS, PASSWORD, POP3_SERVER, SMTP_SERVER)
             emailutils = EmailUtils.instance
-            emailutils.send_mail(self, project_title, to_addr, context, attach_url, file_name)
+            emailutils.send_mail(project_title, to_addr, context, attach_url, file_name)
             logging.error(e)
             logging.error('----------send_mail1---------')
 
