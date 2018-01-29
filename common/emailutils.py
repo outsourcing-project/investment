@@ -110,31 +110,34 @@ class EmailUtils(object):
             file_name=None):
         """发送邮件
         """
-        # try:
-        msg = MIMEMultipart('alternative')
-        msg1 = MIMEText(context, 'html', 'utf-8')
+        try:
+            msg = MIMEMultipart('alternative')
+            msg1 = MIMEText(context, 'html', 'utf-8')
 
-        msg.attach(MIMEText('hello', 'plain', 'utf-8'))
-        msg.attach(msg1)
-        msg['From'] = self.__format_addr(u'项目评审 <%s>' % self.emailaddress)
-        msg['To'] = self.__format_addr(u'<%s>' % to_addr)
-        msg['Subject'] = Header(u'%s项目评审' % project_title, 'utf-8').encode()
+            msg.attach(MIMEText('hello', 'plain', 'utf-8'))
+            msg.attach(msg1)
+            msg['From'] = self.__format_addr(u'项目评审 <%s>' % self.emailaddress)
+            msg['To'] = self.__format_addr(u'<%s>' % to_addr)
+            msg['Subject'] = Header(u'%s项目评审' % project_title, 'utf-8').encode()
 
-        # 添加附件就是加上一个MIMEBase，从本地读取一个图片:
-        if attach_url:
-            from settings import UPLOAD_DIR
-            with open(os.path.join(UPLOAD_DIR, attach_url), 'rb') as f:
-                att2 = MIMEText(f.read(), 'base64', 'gb2312')
-                att2["Content-Type"] = 'application/octet-stream'
-                att2["Content-Disposition"] = 'attachment; filename="' + file_name.encode('gbk') + '"'
-                print att2["Content-Disposition"]
-                msg.attach(att2)
+            # 添加附件就是加上一个MIMEBase，从本地读取一个图片:
+            if attach_url:
+                from settings import UPLOAD_DIR
+                with open(os.path.join(UPLOAD_DIR, attach_url), 'rb') as f:
+                    att2 = MIMEText(f.read(), 'base64', 'gb2312')
+                    att2["Content-Type"] = 'application/octet-stream'
+                    att2["Content-Disposition"] = 'attachment; filename="' + file_name.encode('gbk') + '"'
+                    print att2["Content-Disposition"]
+                    msg.attach(att2)
 
-        self.smtp.sendmail(self.emailaddress, to_addr, msg.as_string())
+            self.smtp.sendmail(self.emailaddress, to_addr, msg.as_string())
 
-        # except Exception as e:
-        #     logging.error(e)
-        #     logging.error('----------send_mail1---------')
+        except Exception as e:
+            EmailUtils.instance = EmailUtils(EMAILADDRESS, PASSWORD, POP3_SERVER, SMTP_SERVER)
+            emailutils = EmailUtils.instance
+            emailutils.send_mail(self, project_title, to_addr, context, attach_url, file_name)
+            logging.error(e)
+            logging.error('----------send_mail1---------')
 
     def pop3_quit(self):
         """pop3邮件服务器退出
