@@ -263,12 +263,12 @@ class Project(BaseModel):
         verbose_name='附件')
     name = models.CharField(max_length=255, default='', verbose_name="项目名称")
     theme = models.CharField(max_length=255, default='', verbose_name="主控主体")
-    total_amount = models.FloatField(
+    total_amount = models.IntegerField(
         default=0, blank=True, verbose_name="项目投资总额")
-    share_amount = models.FloatField(
+    share_amount = models.IntegerField(
         default=0, blank=True, verbose_name="项目投资份额")
     cycle = models.FloatField(default=0, blank=True, verbose_name="投资周期")
-    expect_return = models.FloatField(
+    expect_return = models.IntegerField(
         default=0, blank=True, verbose_name="预计回报")
     progress = models.CharField(
         max_length=255,
