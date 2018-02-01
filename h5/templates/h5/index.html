@@ -14,7 +14,7 @@
         </a>
     </div>
 
-    <div class="projects">
+    <div class="projects" has_next="1" page="1">
     {% for p in projects %}
         <div class="project">
             <a href="{% url 'h5:project_detail' p.id %}">
@@ -35,6 +35,32 @@
 {% block script %}
     <script>
         $(function () {
+            $(document).scroll(function(){
+                if ($(document).scrollTop() + $(window).height() >= $(document).height()){
+                    var top_tab = $(".projects");
+                    var has_next = top_tab.attr('has_next');
+                    if (has_next == "1"){
+                        next_page = Number(top_tab.attr('page')) + 1;
+                        var url = "{% url 'h5:h5_index' %}" + "?page=" + next_page + '&name=' + experts_apply_treasure;
+                        $.get(url, function(data,status){
+                            console.log('--------------response--------------------')
+                            console.log(data)
+                            if (status == "success"){
+                                var has_next = data.has_next;
+                                var html = data.html;
+                                var page = data.page;
+                                current_page = top_tab.attr('page')
+                                if (parseInt(current_page) < page) {
+                                    top_tab.attr('has_next', has_next);
+                                    top_tab.attr('page', page);
+                                    top_tab.append(html);
+                                }
+
+                            }
+                        })
+                    }
+                }
+            })
         })
     </script>
 {% endblock %}
