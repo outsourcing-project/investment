@@ -39,7 +39,6 @@ import wechatpy
 from wechat.constants import WECHAT_BATCHGET_MATERIAL
 
 
-
 # @check_login
 def index(request):
     user_info = UserInfo.objects.filter(
@@ -47,19 +46,20 @@ def index(request):
         user__id=request.session.get('user_id', 0)
     ).first()
     page = request.GET.get('page', 1)
-    start = (int(page) - 1) * 7
-    end = start + 7
+    start = (int(page) - 1) * 10
+    end = start + 10
     project_count = 0
 
-    projects = Project.obs.get_queryset().filter().order_by('-top', '-created')
+    print page
 
+    projects = Project.obs.get_queryset().order_by('-top', '-created')
     # 定位选中分类
     if int(page) == 1:
         project_count = projects.count()
-        projects = projects[:8]
+        projects = projects[:10]
     else:
         projects = projects[start:end]
-        tmp = loader.get_template('h5/load-coupon.html')
+        tmp = loader.get_template('h5/load-project.html')
         html = tmp.render({'projects': projects})
         # 是否有下一页
         has_next = 1 if projects else 0

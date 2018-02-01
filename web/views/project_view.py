@@ -86,7 +86,6 @@ def comment_list(request):
     objs = Comment.obs.get_queryset().order_by('-created')
     search_project_name = request.GET.get('search_project_name', '')
     search_content = request.GET.get('search_content', '')
-    project_id = request.GET.get('project_id', 0)
     if search_project_name:
         context['search_project_name'] = search_project_name
         objs = objs.filter(project__name__icontains=search_project_name)
@@ -95,14 +94,11 @@ def comment_list(request):
         context['search_content'] = search_content
         objs = objs.filter(content__icontains=search_content)
 
-    if project_id:
-        objs = objs.filter(project__pk=project_id)
-
     page = request.GET.get('page', 1)
-    projects = paging_objs(object_list=objs, per_page=10, page=page)
+    comments = paging_objs(object_list=objs, per_page=10, page=page)
 
     context['page'] = page
-    context['clients'] = projects
+    context['clients'] = comments
 
     return render(request, 'web/project/comment/index.html', context)
 
