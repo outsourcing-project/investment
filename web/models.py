@@ -288,7 +288,6 @@ class Project(BaseModel):
     expert_team_email = models.TextField(blank=True, default='', verbose_name="已发专家团邮箱")
     investment_team_email = models.TextField(blank=True, default='', verbose_name="已发投资团邮箱")
 
-
     @property
     def comment_count(self):
         return Comment.obs.get_queryset().filter(project=self).count()

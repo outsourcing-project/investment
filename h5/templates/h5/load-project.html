@@ -1,0 +1,11 @@
+{% for p in projects %}
+    <div class="project">
+        <a href="{% url 'h5:project_detail' p.id %}">
+            <h3>{{ p.name }}</h3>
+            <div class="project_b">
+                <span>发布者：{{ p.user_info.user_name }}</span>
+                <span>{{ p.created|date:"Y-m-d H:i" }}</span>
+            </div>
+        </a>
+    </div>
+{% endfor %}

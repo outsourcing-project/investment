@@ -13,8 +13,7 @@
             <div>个人中心</div>
         </a>
     </div>
-
-    <div class="projects" has_next="1" page="1">
+    <div class="projects j_project" data-page="1" has_next="1">
     {% for p in projects %}
         <div class="project">
             <a href="{% url 'h5:project_detail' p.id %}">
@@ -35,27 +34,19 @@
 {% block script %}
     <script>
         $(function () {
-            $(document).scroll(function(){
-                if ($(document).scrollTop() + $(window).height() >= $(document).height()){
-                    var top_tab = $(".projects");
-                    var has_next = top_tab.attr('has_next');
-                    if (has_next == "1"){
-                        next_page = Number(top_tab.attr('page')) + 1;
-                        var url = "{% url 'h5:h5_index' %}" + "?page=" + next_page + '&name=' + experts_apply_treasure;
-                        $.get(url, function(data,status){
-                            console.log('--------------response--------------------')
-                            console.log(data)
-                            if (status == "success"){
-                                var has_next = data.has_next;
-                                var html = data.html;
-                                var page = data.page;
-                                current_page = top_tab.attr('page')
-                                if (parseInt(current_page) < page) {
-                                    top_tab.attr('has_next', has_next);
-                                    top_tab.attr('page', page);
-                                    top_tab.append(html);
-                                }
-
+            var top_tab = $('.j_project')
+            $(window).on('scroll', function(e) {
+                if ($(document).scrollTop() + $(window).height() >= $(document).height()) {
+                    var has_next = top_tab.attr('has_next')
+                    if (parseInt(has_next) === 1) {
+                        var currentPage = top_tab.attr('data-page')
+                        var url = "{% url 'h5:h5_index' %}" + "?page=" + (Number(currentPage) + 1)
+                        $.get(url, function(data, status) {
+                            console.log(data.html)
+                            if (status == 'success') {
+                                top_tab.attr('has_next', data.has_next)
+                                top_tab.attr('data-page', data.page)
+                                top_tab.append(data.html)
                             }
                         })
                     }
