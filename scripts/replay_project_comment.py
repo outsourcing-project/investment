@@ -42,11 +42,11 @@ def parsing_email():
         print '---------- 解析之后 ----------'
         msg_headers = emailutils.get_email_headers(msg)
         mail_id = msg_headers['x-qq-mid']
-        print 'subject:', msg_headers['subject']
-        print 'from_address:', msg_headers['from']
-        print 'to_address:', msg_headers['to']
-        print 'date:', msg_headers['date']
-        print 'x-qq-mid:', mail_id
+        # print 'subject:', msg_headers['subject']
+        # print 'from_address:', msg_headers['from']
+        # print 'to_address:', msg_headers['to']
+        # print 'date:', msg_headers['date']
+        # print 'x-qq-mid:', mail_id
         j = 0
         content = ''
         for part in msg.walk():
