@@ -93,11 +93,12 @@ def create(request, attachment_id):
         progress = request.POST.get('progress', '')
         note = request.POST.get('note', '')
 
-        project = Project()
-        project.user_info = user_info
-        project.attachment = attachment
-        project.name = name
-        project.theme = theme
+        project, _ = Project.objects.get_or_create(
+            user_info=user_info,
+            attachment=attachment,
+            name=name,
+            theme=theme,
+        )
 
         try:
             total_amount = total_amount.replace('%', '')
